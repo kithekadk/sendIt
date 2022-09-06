@@ -28,11 +28,12 @@
     background-color: #191341;
     color:white;
     border-radius: 5px;
-    width:30vw;
+    width:42.5vw;
     margin-top: 0.5vw;
     margin-left: 0.5vw;
     padding-left:20px;
     padding-bottom:10px;
+    cursor: pointer;
 }
 .card2header{
     display: flex;
@@ -45,4 +46,25 @@
     margin-top: 0.5vw;
     margin-left: 0.5vw;
 
+}
+.update{
+    position: absolute;
+    right: 20px;
+    background-color: #191341;
+    color:white;
+    
+}
+#map{
+    width:40vw;
+    max-height: 45vh;
+}
+.mapDisplay{
+    width:40vw;
+    max-height: 45vh;
+}
+.form{
+    padding:20px;
+}
+.updateStatus{
+    height: 30vh;
 }

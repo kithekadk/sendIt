@@ -1,0 +1,22 @@
+.dashboard{
+    background-color: #191341;
+    width:16vw;
+    color:white;
+    height:100vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between
+}
+.options{
+    background-color: #0A0A2E;
+    padding:20px;
+}
+li{
+    list-style-type:none;
+    cursor:pointer;
+    padding:10px;
+}
+li:hover{
+    background-color: rgb(32, 142, 175);
+    border-radius: 5px;
+}

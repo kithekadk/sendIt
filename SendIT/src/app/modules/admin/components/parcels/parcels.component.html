@@ -13,29 +13,61 @@
     <div class="card card-header">Delivered Parcels</div>
 </div>
 <div>
+    <div *ngIf="viewOne"class="update">
+        <div class="map">
+            <h3 style="padding-left: 20px;">Navigation</h3>
+            <div>
+                <div id="map">
+
+                </div>
+            </div>
+
+            <!-- <img src="https://media.istockphoto.com/photos/city-map-with-pin-pointers-3d-rendering-image-picture-id469523023?k=20&m=469523023&s=612x612&w=0&h=N6gjbbsdP5Ildi3skzunA8aXpyCOLdD8bYJuvOmNCBA=" alt=""> -->
+        </div>
+        <div class="updateStatus">
+            <h3 style="padding-left: 20px;">Update Status</h3>
+            <form class="form">
+                <div>
+                    <label for="">Status</label><br>
+                    <select name="" id="">
+                        <option value="">Select an option</option>
+                        <option value="">In Transit</option>
+                        <option value="">Awaiting Pick-up</option>
+                        <option value="">Delivered</option>
+                    </select>
+                </div><br>
+                <div>
+                    <button class="btn btn-danger">Update Status</button>
+                </div>
+            </form>
+            
+        </div>
+    </div>
     <div class="card2">
         <div class="card2header">  
-            <div class="flex"><h6>Nyeri</h6> To <h6>Kitui</h6></div> 
+            <div class="flex"><h6>Nyeri</h6> <h6>To </h6><h6>Kitui</h6></div> 
             <a class="btn btn-primary">Delivered</a>
         </div>
-        <h6>{{Date| date }}</h6>
+        <h6>{{Date | date }}</h6>
         <h6>Parcel ID:</h6>
         <h6>Parcel Description</h6>
-        <!-- <h6>From</h6> -->
         <h6>To:</h6>
-        <h6>Phone Number</h6>
+        <div class="flex" style="justify-content: space-between;"><h6>Phone Number</h6>
+            <button class="btn btn-warning" (click)="view()">View</button>
+        </div>
     </div>
 
     <div class="card2">
         <div class="card2header">  
-            <div class="flex"><h6>Nyeri</h6> To <h6>Kitui</h6></div> 
+            <div class="flex"><h6>Nyeri</h6><h6> To </h6><h6>Kitui</h6></div> 
             <a class="btn btn-primary">Delivered</a>
         </div>
         <h6>{{Date| date }}</h6>
         <h6>Parcel ID:</h6>
         <h6>Parcel Description</h6>
-        <!-- <h6>From</h6> -->
         <h6>To:</h6>
-        <h6>Phone Number</h6>
+        <div class="flex" style="justify-content: space-between;"><h6>Phone Number</h6>
+            <button class="btn btn-warning">View</button>
+        </div>
     </div>
 </div>

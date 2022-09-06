@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-incoming',
@@ -6,8 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./incoming.component.css']
 })
 export class IncomingComponent implements OnInit {
+  Date = new Date()
 
-  constructor() { }
+  onLogout(){
+    localStorage.clear()
+    this.router.navigate([''])
+  }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }

@@ -1,7 +1,7 @@
 <div class="main">
     <div class="loginDiv">
         <div><h2>LOGIN HERE</h2></div><br>
-        <form #logform="ngForm">
+        <form #logform="ngForm" (ngSubmit)="onLogin(logform.value)">
             <div>
                 <label for="email">Input Email</label><br>
                 <input type="email" ngModel required name="email" placeholder="Email">

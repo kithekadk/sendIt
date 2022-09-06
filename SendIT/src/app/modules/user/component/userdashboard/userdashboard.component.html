@@ -1,1 +1,14 @@
-<p>userdashboard works!</p>
+<div class="flex">
+    <div class="dashboard">
+        <div style="padding:20px;">Welcome User</div>
+        <div class="options">
+            <h3>Dashboard</h3>
+                <li routerLink="/user/received"><h4><i class="fa-solid fa-indent"></i> &nbsp; Incoming</h4></li>
+                <li routerLink="/user/sent"><h4><i class="fa-solid fa-outdent"></i> &nbsp; Outgoing</h4></li><br>
+        </div>
+        <div style="padding:20px; cursor:pointer;">
+            <div><i class="fa-sharp fa-solid fa-circle-user"></i> &nbsp; My Profile</div> 
+        </div>
+    </div>
+    <router-outlet></router-outlet>
+</div>

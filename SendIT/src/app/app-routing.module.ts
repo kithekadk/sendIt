@@ -6,6 +6,8 @@ const routes: Routes = [
     .then(m => m.SharedModule)},
   {path:'', loadChildren:()=>import('./modules/admin/admin.module')
     .then(m => m.AdminModule)},
+  {path:'', loadChildren:()=>import('./modules/user/user.module')
+    .then(m => m.UserModule)},
 ];
 
 @NgModule({

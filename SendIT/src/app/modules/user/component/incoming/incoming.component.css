@@ -1,0 +1,40 @@
+.navbar{
+    background-color: #191341;
+    width: 83.5vw;
+    display: flex;
+    align-items: center;
+    margin-left: 0.5vw;
+}
+.flex{
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+    gap:20px;
+}
+.search{
+    margin-left: 1vw;
+    width:23vw;
+}
+.card2{
+    background-color: #191341;
+    color:white;
+    border-radius: 5px;
+    width:43vw;
+    margin-top: 0.5vw;
+    margin-left: 0.5vw;
+    padding-left:20px;
+    padding-bottom:10px;
+    cursor: pointer;
+}
+.card2header{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    padding-right:20px;
+    padding-top:10px;
+}
+.options{
+    margin-top: 0.5vw;
+    margin-left: 0.5vw;
+
+}

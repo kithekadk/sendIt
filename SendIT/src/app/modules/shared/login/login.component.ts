@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-// import {data} from '../interfaces/interfaces'
-export interface data{
-  email: string;
-  password: string
-}
+import {data} from '../interfaces/interfaces'
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,5 +12,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  onLogin(input:data){
+    
+  }
 }
