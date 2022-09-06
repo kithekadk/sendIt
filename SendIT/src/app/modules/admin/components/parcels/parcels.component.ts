@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-parcels',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./parcels.component.css']
 })
 export class ParcelsComponent implements OnInit {
+Date = new Date()
 
-  constructor() { }
+onLogout(){
+  localStorage.clear()
+  this.router.navigate([''])
+}
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
-Date = new Date()
+
 }

@@ -1,0 +1,41 @@
+.main{
+    width: 84.5vw;
+    margin-top: 0.5vw;
+    margin-left: 0.5vw;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+.formDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #0A0A2E;
+    padding: 20px;
+    width: 38vw;
+}
+input{
+    width:33vw;
+}
+.flex{
+    gap:1vw
+}
+input{
+    padding-left: 5px;
+}
+.navbar{
+    background-color: #191341;
+    width: 84.5vw;
+    display: flex;
+    align-items: center;
+    margin-left: 0.5vw;
+    color: white;
+    padding-right:15px;
+}
+.heading{
+    padding-left: 20px;
+}

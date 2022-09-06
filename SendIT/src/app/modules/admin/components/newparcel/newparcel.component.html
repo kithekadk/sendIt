@@ -1,1 +1,71 @@
-<p>newparcel works!</p>
+<div class="navbar">
+    <!-- <input type="text" class="search" placeholder="Search Client here..."> -->
+    <div class="heading">CREATE NEW</div>
+    <div class="flex">
+        <h6 style="color: white; justify-content: center;">{{Date| date }} </h6>
+        <a class="btn btn-danger" (click)="onLogout()">Logout</a>
+    </div>
+</div>
+<div class="main">
+    <div class="formDiv">
+        <h2>Create Parcel Order</h2>
+        <form class="form">
+            <div class="flex">
+                <div>
+                    <label>From</label><br>
+                    <input style="width:16vw;" type="text" name="from"/>
+                    <p></p>
+                </div>
+                <div>
+                    <label>Sender Location</label><br>
+                    <input style="width:16vw;" type="text" name="senderLocation"/>
+                    <p></p>
+                </div>
+            </div>
+            <div class="flex">
+                <div>
+                    <label>Parcel Weight</label><br>
+                    <input style="width:16vw;" type="number" name="parcelWeight"/>
+                    <p></p>
+                </div>
+                <div>
+                    <label>Price</label><br>
+                    <input style="width:16vw;" type="number" name="price"/>
+                </div>
+            </div>
+            <div>
+                <label>Parcel Description</label><br>
+                <input type="text" name="parcelDescription"/>
+                <p></p>
+            </div>
+            <div class="flex">
+                <div>
+                    <label>Receiver Location</label><br>
+                    <input style="width:16vw;" type="text" name="receiverLocation"/>
+                    <p></p>
+                </div>
+
+                <div>
+                    <label for="">Receiver Phone No</label><br>
+                    <input style="width:16vw;" type="number" name="receiverPhoneNo"/>
+                    <p></p>
+                </div>
+            </div>  
+
+            <div>
+                <label for="">Receiver Email</label><br>
+                <input type="email" name="receiverEmail"/>
+                <p></p>
+            </div>
+            
+            <div>
+                <label for="">Delivery Date</label><br>
+                <input type="date" name="deliveryDate"/>
+                <p></p>
+            </div>
+            <div>
+                <input class="btn btn-primary" type="submit" value="SUBMIT">
+            </div>
+        </form>
+    </div>
+</div>

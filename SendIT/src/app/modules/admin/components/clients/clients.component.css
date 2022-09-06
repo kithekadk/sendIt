@@ -1,0 +1,21 @@
+.navbar{
+    background-color: #191341;
+    width: 84.5vw;
+    display: flex;
+    align-items: center;
+    margin-left: 0.5vw;
+}
+.flex{
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+    gap:20px;
+}
+.search{
+    margin-left: 1vw;
+    width:23vw;
+}
+
+.tableDiv{
+    padding:20px
+}
