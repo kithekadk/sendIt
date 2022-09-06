@@ -1,0 +1,17 @@
+<div class="flex">
+    <div class="dashboard">
+        <div style="padding:20px;">Welcome Admin</div>
+        <div class="options">
+            <h3>Dashboard</h3>
+                <li routerLink="/admin/parcels"><h4><i class="fa-solid fa-truck"></i> &nbsp; Parcels</h4></li>
+                <li routerLink="/admin/clients"><h4><i class="fa-solid fa-users"></i> &nbsp; Clients</h4></li><br>
+                <button routerLink="/admin/new" class="btn btn-primary"><i style="font-size: 20px;" class="fa-solid fa-circle-plus"></i>
+                     &nbsp; Create Parcel
+                </button>
+        </div>
+        <div style="padding:20px; cursor:pointer;">
+            <div><i class="fa-sharp fa-solid fa-circle-user"></i> &nbsp; My Profile</div> 
+        </div>
+    </div>
+    <router-outlet></router-outlet>
+</div>

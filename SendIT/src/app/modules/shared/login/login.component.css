@@ -1,0 +1,27 @@
+.main{
+    display: flex;
+    background-color: #191341;
+    justify-content: center;
+    height:87vh;
+    align-items: center;
+}
+img{
+    width:25vw;
+    height: 60vh;
+}
+
+.loginDiv{
+    background-color: #0A0A2E;
+    padding: 40px;
+    color:white;
+    width:25vw;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+input, button{
+    width:20vw
+}
