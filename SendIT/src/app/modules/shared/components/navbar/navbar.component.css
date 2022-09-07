@@ -11,11 +11,15 @@
 }
 a{
     text-decoration: none;
+    color: white;
+    padding: 3px;
 }
 a:hover{
     color: white ;
     text-underline-offset:inherit;
+    border-radius: 5px;
+    border:white solid 2px
 }
 h1{
-    color: green;
+    color: rgb(20, 219, 20);
 }

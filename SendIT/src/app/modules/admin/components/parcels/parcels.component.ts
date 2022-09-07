@@ -19,19 +19,20 @@ viewOne = false
   constructor(private router:Router) { }
 
   ngOnInit(): void {
-    let loader= new Loader({
-      apiKey:'AIzaSyCTmVHTqmMqYwglOHEpKV2S_QUKtzQAA2k'
-    })
 
-    loader.load().then(()=>{
-      new google.maps.Map(document.getElementById('map') as HTMLDivElement,{
-        center:{lat: 51.2345, lng:6.78333},
-        zoom:8
-      })
-    })
   }
 
 view(){
   this.viewOne = !this.viewOne
+  let loader = new Loader({
+    apiKey:'AIzaSyCTmVHTqmMqYwglOHEpKV2S_QUKtzQAA2k'
+  })
+
+  loader.load().then(()=>{
+    new google.maps.Map(document.getElementById('map') as HTMLDivElement,{
+      center:{lat: 51.2345, lng:6.78333},
+      zoom:8
+    })
+  })
 }
 }

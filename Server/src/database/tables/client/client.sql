@@ -6,4 +6,5 @@ email VARCHAR(200) NOT NULL UNIQUE,
 phoneNumber INT, 
 location VARCHAR(200) NOT NULL, 
 password VARCHAR(200) NOT NULL,
-welcome VARCHAR(200) DEFAULT 'NO')
+welcome VARCHAR(200) DEFAULT 'NO',
+role VARCHAR(200) DEFAULT 'user')

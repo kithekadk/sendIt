@@ -54,7 +54,7 @@
     color:white;
     
 }
-#map{
+.maps,#map{
     width:40vw;
     max-height: 45vh;
 }

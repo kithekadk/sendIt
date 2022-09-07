@@ -11,10 +11,18 @@
         <thead>
             <tr>
                 <th scope="col">Client ID</th>
+                <th scope="col">Full Name</th>
                 <th scope="col">Email</th>
-                <th scope="col">Location</th>
-                <th scope="col">Order Status</th>
+                <th scope="col">Phone Number</th>
             </tr>
         </thead>
+        <tbody>
+            <tr *ngFor="let user of users$|async">
+                <td scope="col">{{user.clientID}}</td>
+                <td scope="col">{{user.fullName}}</td>
+                <td scope="col">{{user.email}}</td>
+                <td scope="col">{{user.phoneNumber}}</td>
+            </tr>
+        </tbody>
     </table>
 </div>

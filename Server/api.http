@@ -3,9 +3,22 @@ Content-Type: application/json
 
 {
     "fullName":"Daniel Kitheka",
-    "userName":"Dantez",
-    "email":"kkinyidk@gmail.com",
+    "userName":"Daniel",
+    "email":"dk1@gmail.com",
     "phoneNumber":"0712345678",
     "location":"Nyeri, Kenya",
     "password":"12345678"
 }
+
+###
+POST http://localhost:4400/user/login
+Content-Type: application/json
+
+{
+    "email":"dk1@gmail.com",
+    "password":"12345678"
+}
+
+###
+GET http://localhost:4400/user/getUsers
+Content-Type: application/json
