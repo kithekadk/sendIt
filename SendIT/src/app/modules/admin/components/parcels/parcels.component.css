@@ -3,11 +3,12 @@
     width: 84.5vw;
     display: flex;
     align-items: center;
-    margin-left: 0.5vw;
+    padding-right: 0.5vw; 
+    position: fixed;
+    margin-left: 15.5vw;
 }
 .flex{
     display: flex;
-    /* justify-content: center; */
     align-items: center;
     margin-right: 15px;
     gap:20px;
@@ -34,6 +35,11 @@
     padding-left:20px;
     padding-bottom:10px;
     cursor: pointer;
+    
+}
+.body-container{
+    margin-top:16.4vh;
+    margin-left: 15vw;
 }
 .card2header{
     display: flex;
@@ -43,13 +49,17 @@
     padding-top:10px;
 }
 .options{
+    
+    position: fixed;
     margin-top: 0.5vw;
     margin-left: 0.5vw;
+    top: 8vh;
+    margin-left: 15.5vw;
 
 }
 .update{
-    position: absolute;
-    right: 20px;
+    position: fixed;
+    right: 5px;
     background-color: #191341;
     color:white;
     
@@ -66,5 +76,6 @@
     padding:20px;
 }
 .updateStatus{
-    height: 30vh;
+    height: 38vh;
+    padding:30px;
 }

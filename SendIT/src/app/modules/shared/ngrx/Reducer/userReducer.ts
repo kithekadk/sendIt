@@ -1,12 +1,12 @@
 import { createFeatureSelector, createReducer, createSelector, on } from "@ngrx/store";
-import { loginMessage, user1 } from "src/app/interfaces/interfaces";
+import { loginMessage, user, user1 } from "src/app/interfaces/interfaces";
 import * as Actions from '../Actions/userActions'
 
 
 export interface userState{
     clientID: number
     client:user1 | null
-    users: user1[]
+    users: user[]
     userError: string
     useraddMessage:string
     userAdderror:string

@@ -3,7 +3,7 @@
     width: 84.5vw;
     display: flex;
     align-items: center;
-    margin-left: 0.5vw;
+    margin-left: 15.5vw;
 }
 .flex{
     display: flex;
@@ -17,5 +17,6 @@
 }
 
 .tableDiv{
-    padding:20px
+    padding:20px;
+    margin-left:15.5vw;
 }

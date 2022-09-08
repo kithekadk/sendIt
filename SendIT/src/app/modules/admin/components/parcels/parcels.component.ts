@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { getParcels, parcelState } from 'src/app/modules/shared/ngrx/Reducer/parcelReducer';
+import * as Actions from '../../../shared/ngrx/Actions/parcelActions'
 
 @Component({
   selector: 'app-parcels',
@@ -11,6 +14,7 @@ export class ParcelsComponent implements OnInit {
   Date = new Date();
   viewOne = false;
 
+
   @ViewChild(MapInfoWindow) infoWindow: MapInfoWindow | undefined;
 
   display: any;
@@ -19,10 +23,16 @@ export class ParcelsComponent implements OnInit {
     lng: 36.946,
   };
   zoom = 6;
+  filter=''
 
-  constructor(private router: Router) {}
-
+  constructor(private router: Router, private store: Store<parcelState>) {}
+  parcels$ = this.store.select(getParcels)
+    
+  
   ngOnInit(): void {
+    this.store.dispatch(Actions.loadParcels())
+
+  
     this.markerPositions = this.markerPositions.concat([
       {
         lat: -0.4577,

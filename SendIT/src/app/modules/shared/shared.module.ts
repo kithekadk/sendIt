@@ -14,6 +14,7 @@ import { userReducer } from './ngrx/Reducer/userReducer';
 import { SearchPipe } from './custompipes/search.pipe';
 import { parcelEffects } from './ngrx/Effects/parcelEffects';
 import { parcelReducer } from './ngrx/Reducer/parcelReducer';
+import { SearchparcelPipe } from './custompipes/searchparcel.pipe';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { parcelReducer } from './ngrx/Reducer/parcelReducer';
     HomepageComponent,
     LoginComponent,
     RegisterComponent,
-    SearchPipe
+    SearchPipe,
+    SearchparcelPipe
   ],
   imports: [
     CommonModule,
@@ -34,7 +36,8 @@ import { parcelReducer } from './ngrx/Reducer/parcelReducer';
     StoreModule.forFeature('parcel', parcelReducer),  
   ],
   exports: [
-    SearchPipe
+    SearchPipe,
+    SearchparcelPipe
   ]
 })
 export class SharedModule { }

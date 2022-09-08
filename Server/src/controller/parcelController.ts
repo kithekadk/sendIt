@@ -35,3 +35,15 @@ export const createParcel = async(req:customParcel, res:Response)=>{
         res.json({error:error})
     }
 }
+
+export const fetchParcels = async (req:customParcel, res:Response)=>{
+    try {
+        const pool = await mssql.connect(sqlConfig)
+        const parcels =(await pool.request()
+        .execute('fetchParcels')).recordset
+
+        return res.json(parcels)
+    } catch (error) {
+        res.json({error:error}) 
+    }
+}

@@ -1,7 +1,7 @@
 .main{
     width: 84.5vw;
     margin-top: 0.5vw;
-    margin-left: 0.5vw;
+    margin-left: 15.5vw;
     color: white;
     display: flex;
     flex-direction: column;
@@ -32,7 +32,7 @@ input{
     width: 84.5vw;
     display: flex;
     align-items: center;
-    margin-left: 0.5vw;
+    margin-left: 15.5vw;
     color: white;
     padding-right:15px;
 }

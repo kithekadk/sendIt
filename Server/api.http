@@ -38,3 +38,8 @@ Content-Type: application/json
         "receiverEmail":"string",
         "deliveryDate":"2213321"
 }
+
+
+###
+GET http://localhost:4400/parcel/allparcels
+Content-Type: application/json

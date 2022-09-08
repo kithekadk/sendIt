@@ -35,5 +35,7 @@ form!: FormGroup
 
   createParcel(){
     this.store.dispatch(parcelActions.createParcel({parcel:{...this.form.value}}))
+    this.store.dispatch(parcelActions.loadParcels())
+    this.router.navigate(['/admin/parcels'])
   }
 }

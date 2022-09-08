@@ -46,9 +46,23 @@ export class ApiService {
     return res.role
   }))
   }
-
+/**
+ * 
+ * @param parcel 
+ * 
+ * ******************************
+ * @all about parcels
+ */
   createParcel(parcel:parcel):Observable<{message:string}>{
     return this.http.post<{message:string}>('http://localhost:4400/parcel/create',parcel)
+  }
+
+  getAllParcels(){
+    return this.http.get<parcel[]>('http://localhost:4400/parcel/allparcels').pipe(
+      map((res)=>{
+        return res
+      })
+    )
   }
 
 }

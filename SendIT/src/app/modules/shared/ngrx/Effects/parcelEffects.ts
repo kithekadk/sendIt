@@ -29,4 +29,16 @@ export class parcelEffects {
       )
     );
   });
+
+  loadParcels = createEffect(() => {
+    return this.actions.pipe(
+      ofType(parcelActions.loadParcels),
+      mergeMap(() =>
+        this.api.getAllParcels().pipe(
+          map(parcels => parcelActions.loadParcelsSuccess({parcels})),
+          catchError(error => of(parcelActions.loadParcelsFailure({ error:error })))
+        )
+      )
+    );
+  });
 }

@@ -8,4 +8,6 @@ export interface parcel{
     receiverPhone:number
     receiverEmail:string
     deliveryDate:string
+    parcelID:number
+    status:string
 }

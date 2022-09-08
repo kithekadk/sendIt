@@ -10,4 +10,4 @@
 		status VARCHAR(200) DEFAULT 'In Transit',
 		isArrived VARCHAR(200) DEFAULT 'no',
 		isDelivered VARCHAR(200) DEFAULT 'no',
-		isDeleted BIT DEFAULT 1)
+		isDeleted BIT DEFAULT 0)
