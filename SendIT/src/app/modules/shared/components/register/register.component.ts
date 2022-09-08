@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, MinLengthValidator, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { user } from 'src/app/interfaces/interfaces';
+import { Action, Store } from '@ngrx/store';
+import { signUpUser, userState } from '../../ngrx/Reducer/userReducer';
+import * as UserActions from '../../ngrx/Actions/userActions'
 import { ApiService } from 'src/app/services/api.service';
+import { map } from 'rxjs';
+import { Actions } from '@ngrx/effects';
 
 @Component({
   selector: 'app-register',
@@ -10,9 +14,9 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
-  constructor(private fb:FormBuilder, private api:ApiService,
-              private router:Router) { }
+created=false
+  constructor(private fb:FormBuilder, private store:Store<userState>,
+              private router:Router ,private action$:Actions) { }
   form! : FormGroup
   ngOnInit(): void {
     this.form=this.fb.group({
@@ -25,13 +29,15 @@ export class RegisterComponent implements OnInit {
     })
   }
 
+
   onRegister(){
-    const client={
-      form : this.form.value
-    }
-    this.api.createUser(client.form).subscribe((res)=>{
-      
+    
+    this.store.dispatch(UserActions.addUser({newUser:{...this.form.value}}))
+    this.created=true
+    setTimeout(() => {
       this.router.navigate(['/login'])
-    })
-  }
+    }, 1500);
+    
+
+}
 }

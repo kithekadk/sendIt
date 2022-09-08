@@ -19,7 +19,7 @@ export class ClientsComponent implements OnInit {
 
   constructor(private router:Router, private store:Store<userState>) { }
 
-users$=this.store.select(getUsers)
+ users$=this.store.select(getUsers)
 
   ngOnInit(): void {
     this.store.dispatch(Actions.loadUsers())

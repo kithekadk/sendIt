@@ -1,7 +1,5 @@
-import { state } from "@angular/animations";
-// import { Actions } from "@ngrx/effects";
-import { createAction, createFeatureSelector, createReducer, createSelector, on } from "@ngrx/store";
-import { user1 } from "src/app/interfaces/interfaces";
+import { createFeatureSelector, createReducer, createSelector, on } from "@ngrx/store";
+import { loginMessage, user1 } from "src/app/interfaces/interfaces";
 import * as Actions from '../Actions/userActions'
 
 
@@ -10,14 +8,32 @@ export interface userState{
     client:user1 | null
     users: user1[]
     userError: string
-    
+    useraddMessage:string
+    userAdderror:string
+
+    loginSuccess:string
+    loginFailure:string
+
+
+    roleCheckSuccess: string
+    roleCheckFailure:string
+
 }
 
 const initialState: userState={
     clientID: 0,
     client:null,
     users: [],
-    userError:''
+    userError:'',
+    useraddMessage: '',
+    userAdderror: '',
+
+    loginSuccess: '',
+    loginFailure: '',
+
+    roleCheckSuccess:'',
+    roleCheckFailure:'',
+
 }
 
 const getUsersFeatureState = createFeatureSelector<userState>('user')
@@ -38,15 +54,51 @@ export const getClient = createSelector(
     (state, id)=>state.users.find(client=>client.clientID === id)
 )
 
+export const signUpUser = createSelector(
+    getUsersFeatureState,
+    state=>state.client
+)
+
+export const getToken = createSelector(
+    getUsersFeatureState,
+    state=>state.loginSuccess
+)
+
 export const userReducer= createReducer(
     initialState,
-    on(createAction('ON_LOAD'), (state):userState=>{
-        return {...state, users:state.users}
-    }),
+
     on(Actions.getUsersSuccess, (state, action):userState=>{
         return {...state, users:action.users}
     }),
     on(Actions.getUsersFailure, (state, action):userState=>{
         return {...state, userError:action.error}
+    }),
+
+    /**
+     * Register user status check
+     */
+    on(Actions.addUserSuccess, (state, action):userState=>{
+        return {...state, useraddMessage:action.addUsuccess}
+    }),
+    on(Actions.addUserFailure, (state, action):userState=>{
+        return {...state, userAdderror:action.error}
+    }),
+    /**
+     * Login User status check
+     */
+    on(Actions.loginUserSuccess, (state, action):userState=>{
+        return {...state, loginSuccess:action.loginMessage}   
+    }),
+    on(Actions.loginUserFailure, (state, action):userState=>{
+        return {...state, loginFailure:action.error}   
+    }),
+    /**
+     * Check role status check
+     */
+    on(Actions.loadRoleSuccess, (state, action):userState=>{
+        return {...state, roleCheckSuccess:action.role}
+    }),
+    on(Actions.loadRoleFailure, (state, action):userState=>{
+        return {...state, roleCheckFailure:action.error}
     })
 )

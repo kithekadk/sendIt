@@ -6,7 +6,8 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { ParcelsComponent } from './components/parcels/parcels.component';
 import { ClientsComponent } from './components/clients/clients.component';
 import { NewparcelComponent } from './components/newparcel/newparcel.component';
-
+import { GoogleMapsModule } from '@angular/google-maps';
+// import {AgmCoreModule} from '@agm/core'
 
 @NgModule({
   declarations: [
@@ -17,7 +18,11 @@ import { NewparcelComponent } from './components/newparcel/newparcel.component';
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    // AgmCoreModule.forRoot({
+    //   apiKey: 'YOUR_GOOGLE_MAPS_API_KEY_GOES_HERE'
+    // })
+    GoogleMapsModule
   ]
 })
 export class AdminModule { }

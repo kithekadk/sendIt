@@ -1,8 +1,12 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
-import { loginMessage,UserInfo, user } from '../interfaces/interfaces';
+import { catchError, map, Observable, of } from 'rxjs';
+import { loginMessage,UserInfo, user, userReg } from '../interfaces/interfaces';
 import { data } from '../modules/shared/interfaces/interfaces';
+
+export interface message{
+  message:string
+}
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +15,9 @@ export class ApiService {
 
   constructor(private http:HttpClient) { }
 
-  createUser(client: user){
-    return this.http.post<user>('http://localhost:4400/user/create', client);
+  createUser(client: userReg):Observable<{message:string}>{
+    return this.http.post<{message:string}>('http://localhost:4400/user/create', client)
+      
   }
 
   getUsers(){

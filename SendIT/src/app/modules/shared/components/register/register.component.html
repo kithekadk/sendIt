@@ -2,6 +2,7 @@
 <div class="main">
     <div class="formDiv">
         <h2>CREATE ACCOUNT</h2>
+        <p *ngIf="created" style="color:rgb(17, 245, 17)">Account created Successfully</p>
         <form [formGroup]="form" (ngSubmit)="onRegister()">
             <div class="form-group">
                 <div>

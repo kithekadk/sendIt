@@ -8,6 +8,15 @@ export interface user{
     password:string
     welcome:string
 }
+
+export interface userReg{
+    fullName: string
+    userName: string
+    email: string
+    phoneNumber: number
+    location: string
+    password:string
+}
 export interface user1{
     clientID: number
     fullName: string

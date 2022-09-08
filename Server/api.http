@@ -3,8 +3,8 @@ Content-Type: application/json
 
 {
     "fullName":"Daniel Kitheka",
-    "userName":"Daniel",
-    "email":"dk1@gmail.com",
+    "userName":"Daegfdfesssnsssisael",
+    "email":"dksfdssfargsss1@gmail.com",
     "phoneNumber":"0712345678",
     "location":"Nyeri, Kenya",
     "password":"12345678"
@@ -15,7 +15,7 @@ POST http://localhost:4400/user/login
 Content-Type: application/json
 
 {
-    "email":"dk1@gmail.com",
+    "email":"kakinyidk@gmail.com",
     "password":"12345678"
 }
 
