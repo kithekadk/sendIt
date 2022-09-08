@@ -22,3 +22,19 @@ Content-Type: application/json
 ###
 GET http://localhost:4400/user/getUsers
 Content-Type: application/json
+
+###
+POST http://localhost:4400/parcel/create
+Content-Type: application/json
+
+{
+        "sender":"string",
+        "senderLocation":"string",
+        "parcelWeight":"2",
+        "price":"200",
+        "parcelDescription":"string",
+        "receiverLocation":"string",
+        "receiverPhone":"244141",
+        "receiverEmail":"string",
+        "deliveryDate":"2213321"
+}

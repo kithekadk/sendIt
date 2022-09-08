@@ -9,58 +9,58 @@
 <div class="main">
     <div class="formDiv">
         <h2>Create Parcel Order</h2>
-        <form class="form">
+        <form class="form" [formGroup]="form" (ngSubmit)="createParcel()">
             <div class="flex">
                 <div>
                     <label>From</label><br>
-                    <input style="width:16vw;" type="text" name="from"/>
+                    <input style="width:16vw;" type="text" formControlName="sender"/>
                     <p></p>
                 </div>
                 <div>
                     <label>Sender Location</label><br>
-                    <input style="width:16vw;" type="text" name="senderLocation"/>
+                    <input style="width:16vw;" type="text" formControlName="senderLocation"/>
                     <p></p>
                 </div>
             </div>
             <div class="flex">
                 <div>
                     <label>Parcel Weight</label><br>
-                    <input style="width:16vw;" type="number" name="parcelWeight"/>
+                    <input style="width:16vw;" type="number" formControlName="parcelWeight"/>
                     <p></p>
                 </div>
                 <div>
                     <label>Price</label><br>
-                    <input style="width:16vw;" type="number" name="price"/>
+                    <input style="width:16vw;" type="number" formControlName="price"/>
                 </div>
             </div>
             <div>
                 <label>Parcel Description</label><br>
-                <input type="text" name="parcelDescription"/>
+                <input type="text" formControlName="parcelDescription"/>
                 <p></p>
             </div>
             <div class="flex">
                 <div>
                     <label>Receiver Location</label><br>
-                    <input style="width:16vw;" type="text" name="receiverLocation"/>
+                    <input style="width:16vw;" type="text" formControlName="receiverLocation"/>
                     <p></p>
                 </div>
 
                 <div>
                     <label for="">Receiver Phone No</label><br>
-                    <input style="width:16vw;" type="number" name="receiverPhoneNo"/>
+                    <input style="width:16vw;" type="number" formControlName="receiverPhone"/>
                     <p></p>
                 </div>
             </div>  
 
             <div>
                 <label for="">Receiver Email</label><br>
-                <input type="email" name="receiverEmail"/>
+                <input type="email" formControlName="receiverEmail"/>
                 <p></p>
             </div>
             
             <div>
                 <label for="">Delivery Date</label><br>
-                <input type="date" name="deliveryDate"/>
+                <input type="date" formControlName="deliveryDate"/>
                 <p></p>
             </div>
             <div>

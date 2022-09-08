@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
 import { loginMessage,UserInfo, user, userReg } from '../interfaces/interfaces';
+import { parcel } from '../interfaces/parcelInterfaces';
 import { data } from '../modules/shared/interfaces/interfaces';
 
 export interface message{
@@ -44,6 +45,10 @@ export class ApiService {
       localStorage.setItem('userName', res.userName)
     return res.role
   }))
+  }
+
+  createParcel(parcel:parcel):Observable<{message:string}>{
+    return this.http.post<{message:string}>('http://localhost:4400/parcel/create',parcel)
   }
 
 }

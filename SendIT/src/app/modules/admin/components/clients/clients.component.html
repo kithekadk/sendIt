@@ -1,5 +1,5 @@
 <div class="navbar">
-    <input type="text" class="search" placeholder="Search Client here...">
+    <input type="text" class="search" placeholder="Search Client here..." [(ngModel)]="filter">
     <div class="flex">
         <h6 style="color: white; justify-content: center;">{{Date| date }} </h6>
         <a class="btn btn-danger" (click)="onLogout()">Logout</a>
@@ -7,7 +7,7 @@
 </div>
 
 <div class="tableDiv">
-    <table class="table">
+    <table class="table" *ngIf="users$ | async as users">
         <thead>
             <tr>
                 <th scope="col">Client ID</th>
@@ -17,7 +17,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let user of users$|async">
+            <tr *ngFor="let user of users | search:filter;">
                 <td scope="col">{{user.clientID}}</td>
                 <td scope="col">{{user.fullName}}</td>
                 <td scope="col">{{user.email}}</td>

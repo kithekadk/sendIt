@@ -35,7 +35,7 @@ props<{error:string}>()
 )
 
 /**
- * Removing a user
+ * LOGIN a user
  */
 
 export const loginUser = createAction('loginUser',

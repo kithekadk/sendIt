@@ -1,14 +1,25 @@
-CREATE PROCEDURE getClients
-AS
-BEGIN
+	CREATE PROCEDURE getClients
+	AS
+	BEGIN
+	DECLARE @PageNumber AS INT
+	DECLARE @RowsOfPage AS INT
+	DECLARE @MaxTablePage  AS FLOAT 
+	SET @PageNumber=1
+	SET @RowsOfPage=100
 	IF EXISTS( SELECT * FROM dbo.CLIENTS WHERE role='user')
-		BEGIN
-			SELECT clientID, fullName, email, phoneNumber FROM dbo.CLIENTS WHERE role='user' ORDER BY clientID
-			OFFSET 0 ROWS
-			FETCH NEXT 5 ROWS ONLY;
-		END
-	ELSE
-		BEGIN
-			RAISERROR('No users Currently',11,1)
-		END
-END
+
+		SELECT @MaxTablePage = COUNT(*) FROM dbo.CLIENTS
+		SET @MaxTablePage = CEILING(@MaxTablePage/@RowsOfPage)
+		IF @MaxTablePage >= @PageNumber
+
+			BEGIN
+				SELECT clientID, fullName, email, phoneNumber FROM dbo.CLIENTS WHERE role='user' ORDER BY clientID
+					OFFSET (@PageNumber-1)*@RowsOfPage ROWS
+					FETCH NEXT @RowsOfPage ROWS ONLY
+					SET @PageNumber = @PageNumber + 1
+			END
+		ELSE
+			BEGIN
+				RAISERROR('No users Currently',11,1)
+			END
+	END

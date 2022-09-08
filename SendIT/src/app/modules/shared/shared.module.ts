@@ -11,6 +11,9 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { userEffects } from './ngrx/Effects/userEffects';
 import { userReducer } from './ngrx/Reducer/userReducer';
+import { SearchPipe } from './custompipes/search.pipe';
+import { parcelEffects } from './ngrx/Effects/parcelEffects';
+import { parcelReducer } from './ngrx/Reducer/parcelReducer';
 
 
 @NgModule({
@@ -18,15 +21,20 @@ import { userReducer } from './ngrx/Reducer/userReducer';
     NavbarComponent,
     HomepageComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    SearchPipe
   ],
   imports: [
     CommonModule,
     SharedRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    EffectsModule.forFeature([userEffects]),
+    EffectsModule.forFeature([userEffects, parcelEffects]),
     StoreModule.forFeature('user', userReducer),  
+    StoreModule.forFeature('parcel', parcelReducer),  
+  ],
+  exports: [
+    SearchPipe
   ]
 })
 export class SharedModule { }

@@ -15,7 +15,7 @@ import { getUsers} from '../../../shared/ngrx/Reducer/userReducer'
 })
 export class ClientsComponent implements OnInit {
   Date = new Date()
-
+  filter=''
 
   constructor(private router:Router, private store:Store<userState>) { }
 
