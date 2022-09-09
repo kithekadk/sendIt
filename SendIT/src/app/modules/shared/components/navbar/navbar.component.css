@@ -3,7 +3,8 @@
     padding-left: 20px;
     padding-right: 20px;
     background-color: #0A0A2E;
-
+    position: fixed;
+    width:100vw ;
 }
 .navbar div{
     display: flex;

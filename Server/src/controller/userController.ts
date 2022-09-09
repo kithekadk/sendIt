@@ -11,7 +11,7 @@ import { userValidator } from "../helpers/user/userValidator";
 
 export const registerUser = async(req:customUser, res:Response)=>{
 try {
-    const {fullName, userName, email, phoneNumber, location, password}=req.body
+    const {fullName, userName, email, phoneNumber, location, password,lat,lng}=req.body
 
     const {error, value}= userValidator.validate(req.body)
     const hashedPwd = await bcrypt.hash(password,8)
@@ -28,6 +28,8 @@ try {
     .input('email', mssql.VarChar, email)
     .input('phoneNumber', mssql.Numeric, phoneNumber)
     .input('location', mssql.VarChar, location)
+    .input('lat', mssql.Numeric, lat)
+    .input('lng', mssql.Numeric, lng)
     .input('password', mssql.VarChar, hashedPwd)
     .execute('createUser')
 
@@ -40,6 +42,7 @@ try {
     else{
         res.status(501).json({message: 'internal server error'})
     }
+    
     
 }
 

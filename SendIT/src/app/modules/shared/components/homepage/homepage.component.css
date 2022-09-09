@@ -8,6 +8,35 @@
 .card{
     padding: 20px;
 }
-img{
+/* img{
+
     height: 80vh;
+} */
+#services{
+    background-color: #191341;
 }
+.services-container{
+    padding:5px 20px;
+    color: white;
+    text-align: center;
+}
+.dispServices{
+    padding: 20px;
+    text-align: center;
+    color: white;
+    display: flex;
+    padding: 20px;
+    justify-content: center;
+    gap:10px;
+}
+.cards{
+    background-color: white;
+    padding:20px;
+    color:black;
+    z-index: 0;
+    border-radius: 5px;
+}
+.btn{
+    width:20vw;
+}
+

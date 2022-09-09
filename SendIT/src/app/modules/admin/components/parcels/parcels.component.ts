@@ -27,7 +27,8 @@ export class ParcelsComponent implements OnInit {
 
   constructor(private router: Router, private store: Store<parcelState>) {}
   parcels$ = this.store.select(getParcels)
-    
+  
+  
   
   ngOnInit(): void {
     this.store.dispatch(Actions.loadParcels())

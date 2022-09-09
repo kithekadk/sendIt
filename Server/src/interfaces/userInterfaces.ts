@@ -6,6 +6,8 @@ export interface customUser{
         email:string
         phoneNumber:number
         location:string
+        lat:number
+        lng:number
         password:string
     }
 }
