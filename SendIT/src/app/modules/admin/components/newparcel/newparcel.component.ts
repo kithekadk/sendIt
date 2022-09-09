@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { map } from 'rxjs';
 import { parcelState } from 'src/app/modules/shared/ngrx/Reducer/parcelReducer';
+import { getUsers } from 'src/app/modules/shared/ngrx/Reducer/userReducer';
 import * as parcelActions from '../../../shared/ngrx/Actions/parcelActions'
+import * as userActions from '../../../shared/ngrx/Actions/userActions';
 
 @Component({
   selector: 'app-newparcel',
@@ -12,6 +15,7 @@ import * as parcelActions from '../../../shared/ngrx/Actions/parcelActions'
 })
 export class NewparcelComponent implements OnInit {
   Date = new Date()
+  filled = false
 
   onLogout(){
     localStorage.clear()
@@ -31,11 +35,23 @@ form!: FormGroup
       receiverEmail: [null, [Validators.required]],
       deliveryDate: [null, [Validators.required]]
     })
+
+    this.store.dispatch(userActions.loadUsers())
   }
 
+  userEmails$ = this.store.select(getUsers)
+  emails$ = this.userEmails$.pipe().pipe(
+    map(users => users.filter(user => user.email))
+  )
+    
+  
   createParcel(){
     this.store.dispatch(parcelActions.createParcel({parcel:{...this.form.value}}))
     this.store.dispatch(parcelActions.loadParcels())
-    this.router.navigate(['/admin/parcels'])
+    this.filled=true
+    setTimeout(() => {
+      this.router.navigate(['/admin/parcels'])
+    }, 1500);
+    
   }
 }

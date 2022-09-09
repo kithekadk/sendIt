@@ -10,59 +10,83 @@
     <div class="formDiv">
         <h2>Create Parcel Order</h2>
         <form class="form" [formGroup]="form" (ngSubmit)="createParcel()">
+            <p *ngIf="filled" style="color: rgb(17, 245, 17);">Parcel Order created successfully</p>
             <div class="flex">
                 <div>
-                    <label>From</label><br>
-                    <input style="width:16vw;" type="text" formControlName="sender"/>
-                    <p></p>
+                    <label>Sender Email</label><br>
+                    <select style="width:16vw;"  type="text" formControlName="sender">
+                    <option selected>--Select sender email--</option>
+                    <option *ngFor="let email of emails$|async">{{email.email}}</option>
+                    </select>
+                    <p style="color: red;" *ngIf="!form.get('sender')!.valid && form.get('sender')!.touched">
+                        Confirm selection
+                    </p>
                 </div>
                 <div>
                     <label>Sender Location</label><br>
                     <input style="width:16vw;" type="text" formControlName="senderLocation"/>
-                    <p></p>
+                    <p style="color: red;" *ngIf="!form.get('senderLocation')!.valid && form.get('senderLocation')!.touched">
+                        Input valid Location
+                    </p>
                 </div>
             </div>
             <div class="flex">
                 <div>
                     <label>Parcel Weight</label><br>
                     <input style="width:16vw;" type="number" formControlName="parcelWeight"/>
-                    <p></p>
+                    <p style="color: red;" *ngIf="!form.get('parcelWeight')!.valid && form.get('parcelWeight')!.touched">
+                        Input valid Location
+                    </p>
                 </div>
                 <div>
                     <label>Price</label><br>
                     <input style="width:16vw;" type="number" formControlName="price"/>
+                    <p style="color: red;" *ngIf="!form.get('price')!.valid && form.get('price')!.touched">
+                        Input valid Location
+                    </p>
                 </div>
             </div>
             <div>
                 <label>Parcel Description</label><br>
                 <input type="text" formControlName="parcelDescription"/>
-                <p></p>
+                <p style="color: red;" *ngIf="!form.get('parcelDescription')!.valid && form.get('parcelDescription')!.touched">
+                    Input valid Location
+                </p>
             </div>
             <div class="flex">
                 <div>
                     <label>Receiver Location</label><br>
                     <input style="width:16vw;" type="text" formControlName="receiverLocation"/>
-                    <p></p>
+                    <p style="color: red;" *ngIf="!form.get('receiverLocation')!.valid && form.get('receiverLocation')!.touched">
+                        Input valid Location
+                    </p>
                 </div>
 
                 <div>
                     <label for="">Receiver Phone No</label><br>
                     <input style="width:16vw;" type="number" formControlName="receiverPhone"/>
-                    <p></p>
+                    <p style="color: red;" *ngIf="!form.get('receiverPhone')!.valid && form.get('receiverPhone')!.touched">
+                        Input valid Location
+                    </p>
                 </div>
             </div>  
 
             <div>
                 <label for="">Receiver Email</label><br>
                 <input type="email" formControlName="receiverEmail"/>
-                <p></p>
+                <p style="color: red;" *ngIf="!form.get('receiverEmail')!.valid && form.get('receiverEmail')!.touched">
+                    Input valid Location
+                </p>
             </div>
             
             <div>
                 <label for="">Delivery Date</label><br>
                 <input type="date" formControlName="deliveryDate"/>
-                <p></p>
-            </div>
+                <p style="color: red;" *ngIf="!form.get('deliveryDate')!.valid && form.get('deliveryDate')!.touched">
+                    Input valid Location
+                </p>
+            </div><br>
+
             <div>
                 <input class="btn btn-primary" type="submit" value="SUBMIT">
             </div>

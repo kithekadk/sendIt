@@ -1,21 +1,61 @@
 <div class="main">
-    <div class="loginDiv">
-        <div><h2>LOGIN HERE</h2></div><br>
-        <form #logform="ngForm" (ngSubmit)="onLogin(logform.value)">
-            <div>
-                <label for="email">Input Email</label><br>
-                <input type="email" ngModel required name="email" placeholder="Email">
-            </div>
-            <div>
-                <label for="password">Input Password</label><br>
-                <input type="password" ngModel required name="password" placeholder="Password">
-            </div><br>
-            <div>
-                <button type="submit" class="btn btn-primary">Sign In</button>
-            </div>
-        </form>
-    </div>
-    <div>
-        <img src="https://media.istockphoto.com/photos/yellow-paper-bubble-envelope-on-table-picture-id1342798601?b=1&k=20&m=1342798601&s=170667a&w=0&h=CagRu1JOrCSvCOOiwu3GjpPwbQfC6F918ZdQvhCtpdc=" alt="">
-    </div>
+  <div class="loginDiv">
+    <div><h2>LOGIN HERE</h2></div>
+    <br />
+
+    <form #logform="ngForm" (ngSubmit)="onLogin(logform.value)">
+      <div>
+        <label for="email">Input Email</label><br />
+        <input
+          type="email"
+          name="email"
+          required
+          [(ngModel)]="input.email"
+          #email="ngModel"
+          placeholder="Email"
+        />
+
+        <div *ngIf="email.invalid && (email.dirty || email.touched)">
+          <p *ngIf="email.errors?.['required']" style="color: red">
+            Email is required.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <label for="password">Input Password</label><br />
+        <input
+          type="password"
+          minlength="8"
+          [(ngModel)]="input.password"
+          #password="ngModel"
+          required
+          name="password"
+          placeholder="Password"
+        />
+
+        <div *ngIf="password.invalid && (password.dirty || password.touched)">
+          <p
+            *ngIf="password.errors?.['required']"
+            style="color: rgb(255, 0, 0)"
+          >
+            Password is required.
+          </p>
+          <div *ngIf="password.errors?.['minlength']" style="color: red">
+            At least 8 characters long.
+          </div>
+        </div>
+      </div>
+      <br />
+      <div>
+        <button type="submit" class="btn btn-primary">Sign In</button>
+      </div>
+    </form>
+  </div>
+  <div>
+    <img
+      src="https://media.istockphoto.com/photos/yellow-paper-bubble-envelope-on-table-picture-id1342798601?b=1&k=20&m=1342798601&s=170667a&w=0&h=CagRu1JOrCSvCOOiwu3GjpPwbQfC6F918ZdQvhCtpdc="
+      alt=""
+    />
+  </div>
 </div>

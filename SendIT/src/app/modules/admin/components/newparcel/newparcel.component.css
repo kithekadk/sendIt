@@ -8,6 +8,7 @@
     justify-content: center;
     align-items: center;
     padding: 15px;
+    height:90.5vh;
 }
 .formDiv{
     display: flex;
@@ -22,7 +23,8 @@ input{
     width:33vw;
 }
 .flex{
-    gap:1vw
+    gap:1vw;
+    flex-wrap: wrap;
 }
 input{
     padding-left: 5px;

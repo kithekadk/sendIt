@@ -7,6 +7,7 @@ export interface userState{
     clientID: number
     client:user1 | null
     users: user[]
+
     userError: string
     useraddMessage:string
     userAdderror:string
@@ -87,7 +88,7 @@ export const userReducer= createReducer(
      * Login User status check
      */
     on(Actions.loginUserSuccess, (state, action):userState=>{
-        return {...state, loginSuccess:action.loginMessage}   
+        return {...state,loginSuccess:action.loginMessage}   
     }),
     on(Actions.loginUserFailure, (state, action):userState=>{
         return {...state, loginFailure:action.error}   

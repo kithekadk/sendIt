@@ -47,7 +47,7 @@ export const loginUser = createAction('loginUser', props<{ logins: data }>());
 
 export const loginUserSuccess = createAction(
   'loginUserSuccess',
-  props<{ loginMessage: string }>()
+  props<{ loginMessage: string}>()
 );
 
 export const loginUserFailure = createAction(

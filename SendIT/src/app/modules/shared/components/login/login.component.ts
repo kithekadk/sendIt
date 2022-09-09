@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { map } from 'rxjs';
-import { ApiService } from 'src/app/services/api.service';
 import {data} from '../../interfaces/interfaces'
 import { loadRole, loginUser } from '../../ngrx/Actions/userActions';
-import { getToken, getUsers, userState } from '../../ngrx/Reducer/userReducer';
+import { getToken, userState } from '../../ngrx/Reducer/userReducer';
 
 @Component({
   selector: 'app-login',
@@ -13,12 +11,19 @@ import { getToken, getUsers, userState } from '../../ngrx/Reducer/userReducer';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+login = true
+filled = false
 
   constructor(private router:Router, private store:Store<userState>) { }
+
+
+input={email: '', password: ''}
 
   ngOnInit(): void {
   }
   onLogin(input:data){
+
+    // if 
       this.store.select(getToken).subscribe(res=>{
       let token=res
       localStorage.setItem("token", token)
@@ -27,10 +32,13 @@ export class LoginComponent implements OnInit {
     })
     
     this.store.dispatch(loginUser({logins:{...input}}))
-
+    this.login = false
+    this.filled = true
     
     setTimeout(() => {
+      
       this.redirect() 
+      
     }, 500);
   }
 
@@ -40,7 +48,8 @@ export class LoginComponent implements OnInit {
   redirect(){
     let role = localStorage.getItem('role')
     if ( role == 'user'){
-      
+      this.login = false
+      this.filled = true
       this.router.navigate(['/user/received']);
 
       localStorage.setItem('isLoggedIn', 'true')

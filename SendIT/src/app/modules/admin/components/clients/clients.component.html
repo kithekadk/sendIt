@@ -17,7 +17,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let user of users | search:filter;">
+            <tr *ngFor="let user of users | search:filter | paginate :{itemsPerPage:5,currentPage:pageNumber};">
                 <td scope="col">{{user.clientID}}</td>
                 <td scope="col">{{user.fullName}}</td>
                 <td scope="col">{{user.email}}</td>
@@ -25,4 +25,5 @@
             </tr>
         </tbody>
     </table>
+    <pagination-controls (pageChange)="pageNumber = $event"></pagination-controls>
 </div>

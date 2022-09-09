@@ -9,7 +9,7 @@ import { NewparcelComponent } from './components/newparcel/newparcel.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
-
+import {NgxPaginationModule } from 'ngx-pagination'
 
 @NgModule({
   declarations: [
@@ -25,7 +25,8 @@ import { SharedModule } from '../shared/shared.module';
     FormsModule,
     GoogleMapsModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ]
 })
 export class AdminModule { }
