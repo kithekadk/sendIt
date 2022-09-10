@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 87vh;
+    min-height: 100vh;
 }
 .formDiv{
     background-color: #0A0A2E;

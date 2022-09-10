@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,13 +8,14 @@ import { Observable } from 'rxjs';
 export class HideloginGuard implements CanActivate {
   constructor(private router:Router){}
   canActivate(){
-    if (localStorage.getItem('token')){
-      this.router.navigate(['/']);
+    if (localStorage.length<=1){
       return true
-    }else{
-      this.router.navigate(['/login']);
-      return false
-    }
+  }else{
+     this.router.navigate(['/'])
+     localStorage.clear()
+     return false
   }
+ 
   
+}
 }

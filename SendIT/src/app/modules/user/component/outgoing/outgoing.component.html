@@ -5,15 +5,16 @@
         <a class="btn btn-danger" (click)="onLogout()">Logout</a>
     </div>
 </div>
-<div>
-    <div class="card2">
+<div *ngIf="myParcels$|async as parcels">
+    <div class="card2" *ngFor="let parcel of parcels">
         <div class="card2header">  
-            <div class="flex"> <h6>From</h6> <h6>Kitui</h6></div> 
-            <a class="btn btn-danger">Pending</a>
+            <div class="flex"><h6>To: {{parcel.senderLocation}}</h6></div> 
+            <a class="btn btn-primary">{{parcel.status}}</a>
         </div>
-        <h6>{{Date| date }}</h6>
-        <h6>Parcel ID:</h6>
-        <h6>Receiver Email:</h6>
-        <div class="flex" style="justify-content: space-between;"><h6>Phone Number</h6><button class="btn btn-warning">View</button></div>
+        <h6>Parcel ID:{{parcel.parcelID}}</h6>
+        <h6>Sender Email: {{parcel.sender}}</h6>
+        <div class="flex" style="justify-content: space-between;"><h6>{{parcel.parcelDescription}}</h6>
+            <button class="btn btn-warning">View</button>
+        </div>
     </div>
 </div>

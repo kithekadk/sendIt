@@ -2,7 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { getParcels, parcelState } from 'src/app/modules/shared/ngrx/Reducer/parcelReducer';
+import { map } from 'rxjs';
+import { getOneParcel, getParcels, parcelState } from 'src/app/modules/shared/ngrx/Reducer/parcelReducer';
+import { getUsers } from 'src/app/modules/shared/ngrx/Reducer/userReducer';
 import * as Actions from '../../../shared/ngrx/Actions/parcelActions'
 
 @Component({
@@ -26,31 +28,51 @@ export class ParcelsComponent implements OnInit {
   filter=''
 
   constructor(private router: Router, private store: Store<parcelState>) {}
+
+  /**
+   * fetching all parcels
+   */
   parcels$ = this.store.select(getParcels)
-  
-  
+  parcels2$ = this.store.select(getParcels)
   
   ngOnInit(): void {
     this.store.dispatch(Actions.loadParcels())
 
-  
-    this.markerPositions = this.markerPositions.concat([
-      {
-        lat: -0.4577,
-        lng: 36.946,
-      },
-      {
-        lat: -0.7577,
-        lng: 34.946
-      }
-    ]);
+    this.store.select(getUsers).subscribe((res)=>{      
+      const coords = res.map((user)=>({
+        lat: user.lat,
+        lng: user.lng,
+      }))      
+      this.markerPositions = coords.concat([
+        {lat: -0.4577, lng: 36.946}
+      ])
+    })
+
   }
 
   onLogout() {
     localStorage.clear();
     this.router.navigate(['']);
   }
+/**
+ * 
+ * @param filtering by parcel status
+ * @returns filtered data
+ */
+  filterStatus(status:string) {
+    this.parcels2$ = this.parcels$.pipe(
+      map( parcels=>{
+        let parcel = parcels.filter(el=>el.status === status || el.status=='')
+          return parcel
+      })
+    )
+    return this.parcels2$
+  }
 
+  /**
+   * 
+   * @param displaying the map
+   */
   moveMap(event: google.maps.MapMouseEvent) {
     if (event.latLng != null) this.center = event.latLng.toJSON();
   }
@@ -68,8 +90,19 @@ export class ParcelsComponent implements OnInit {
   openInfoWindow(marker: MapMarker) {
     if (this.infoWindow != undefined) this.infoWindow.open(marker);
   }
-
+/**
+ * toggle view on click
+ */
   view() {
     this.viewOne = !this.viewOne;
+  }
+
+  /**
+   * get one parcel check and delete
+   */
+
+  deleteParcel(){
+    this.store.select(getOneParcel)
+    
   }
 }

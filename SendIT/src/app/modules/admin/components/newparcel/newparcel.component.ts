@@ -36,6 +36,12 @@ form!: FormGroup
       deliveryDate: [null, [Validators.required]]
     })
 
+    this.form.get('parcelWeight')!.valueChanges.subscribe(res=>{
+      this.form.get('price')!.setValue(res*350)
+      
+      
+    })
+    
     this.store.dispatch(userActions.loadUsers())
   }
 
@@ -48,6 +54,7 @@ form!: FormGroup
   createParcel(){
     this.store.dispatch(parcelActions.createParcel({parcel:{...this.form.value}}))
     this.store.dispatch(parcelActions.loadParcels())
+    console.log(this.form.value);
     this.filled=true
     setTimeout(() => {
       this.router.navigate(['/admin/parcels'])

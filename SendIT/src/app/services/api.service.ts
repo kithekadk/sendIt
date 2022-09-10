@@ -42,7 +42,7 @@ export class ApiService {
       
     }).pipe(map((res)=>{
       localStorage.setItem('role', res.role)      
-      localStorage.setItem('userName', res.userName)
+      localStorage.setItem('email', res.email)
     return res.role
   }))
   }

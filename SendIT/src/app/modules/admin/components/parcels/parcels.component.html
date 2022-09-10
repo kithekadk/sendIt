@@ -1,75 +1,92 @@
 <div class="navbar">
-        <input type="text" class="search" placeholder="Search parcel here..." [(ngModel)]="filter">
-        <div class="flex">
-            <h6 style="color: white; justify-content: center;">{{Date| date }} </h6>
-            <a class="btn btn-danger" (click)="onLogout()">Logout</a>
-        </div>
+  <input
+    type="text"
+    class="search"
+    placeholder="Search by ID..."
+    [(ngModel)]="filter"
+  />
+  <div class="flex">
+    <h6 style="color: white; justify-content: center">{{ Date | date }}</h6>
+    <a class="btn btn-danger" (click)="onLogout()">Logout</a>
+  </div>
 </div>
 
 <div class="flex options">
-    <div class="card card-header">All Parcels</div>
-    <div class="card card-header">In Transit</div>
-    <div class="card card-header">Awaiting Pickup</div>
-    <div class="card card-header">Delivered Parcels</div>
+  <div class="card card-header">All Parcels</div>
+  <div class="card card-header" (click)="filterStatus('In Transit')">
+    In Transit
+  </div>
+  <div class="card card-header" (click)="filterStatus('Awaiting Pickup')">
+    Awaiting Pickup
+  </div>
+  <div class="card card-header" (click)="filterStatus('Delivered')">
+    Delivered Parcels
+  </div>
 </div>
 <div class="body-container">
-    <div *ngIf="viewOne"class="update">
-        <div class="maps">
-            <h3 style="padding-left: 20px;">Navigation</h3>
-            <div>
-                <google-map height="40vh"
-                    width="40vw;"
-                    [center]="center"
-                    [zoom]="zoom"
-                    (mapClick)="moveMap($event)"
-                    (mapMousemove)="move($event)">
-                    <map-marker  #marker="mapMarker"
-                        *ngFor="let markerPosition of markerPositions"
-                        [position]="markerPosition"
-                        (mapClick)="openInfoWindow(marker)">
-                    </map-marker>
-                    <map-info-window>Info Window content</map-info-window>
-                </google-map>
+  <div *ngIf="viewOne" class="update">
+    <div class="maps">
+      <h3 style="padding-left: 20px">Navigation</h3>
+      <div>
+        <google-map
+          height="40vh"
+          width="40vw;"
+          [center]="center"
+          [zoom]="zoom"
+          (mapClick)="moveMap($event)"
+          (mapMousemove)="move($event)"
+        >
+          <map-marker
+            #marker="mapMarker"
+            *ngFor="let markerPosition of markerPositions"
+            [position]="markerPosition"
+            (mapClick)="openInfoWindow(marker)"
+          >
+          </map-marker>
+          <map-info-window>Info Window content</map-info-window>
+        </google-map>
 
-                <!-- <div>Latitude: {{display?.lat}}
+        <!-- <div>Latitude: {{display?.lat}}
                Longitude: {{display?.lng}}</div> -->
-            </div>
-
-        </div>
-        <div class="updateStatus">
-            <h3>Update Status</h3>
-            <form class="form">
-                <div>
-                    <label for="">Status</label><br>
-                    <select name="" id="">
-                        <option value="">Select an option</option>
-                        <option value="">In Transit</option>
-                        <option value="">Awaiting Pick-up</option>
-                        <option value="">Delivered</option>
-                    </select>
-                </div><br>
-                <div>
-                    <button class="btn btn-danger">Update Status</button>
-                </div>
-            </form>
-            
-        </div>
+      </div>
     </div>
-
-    <div *ngIf="parcels$|async as parcels">
-        <div class="card2" *ngFor="let parcel of parcels|searchparcel:filter;">
-            <div class="card2header">      
-                <div class="flex"><h6>{{parcel.sender}}</h6> <h6>To </h6><h6>{{parcel.receiverLocation}}</h6></div> 
-                <a class="btn btn-primary">{{parcel.status}}</a>
-            </div>
-            <h6>{{Date | date }}</h6>
-            <h6>Parcel ID:{{parcel.parcelID}}</h6>
-            <h6>Parcel Description: {{parcel.parcelDescription}}</h6>
-            <h6>To: {{parcel.receiverEmail}}</h6>
-            <div class="flex" style="justify-content: space-between;"><h6>Phone Number: {{parcel.receiverPhone}}</h6>
-                <button class="btn btn-warning" (click)="view()">View</button>
-            </div>
+    <div class="updateStatus">
+      <h3>Update Status</h3>
+      <form class="form">
+        <div>
+          <label for="">Status</label><br />
+          <select name="" id="">
+            <option value="">Select an option</option>
+            <option value="">In Transit</option>
+            <option value="">Awaiting Pick-up</option>
+            <option value="">Delivered</option>
+          </select>
         </div>
+        <br />
+        <div>
+          <button class="btn btn-danger">Update Status</button>
+        </div>
+      </form>
     </div>
+  </div>
 
+  <div *ngIf="parcels2$ | async as parcels2">
+    <div class="card2" *ngFor="let parcel of parcels2 | searchparcel: filter">
+      <div class="card2header">
+        <div class="flex">{{ parcel.receiverEmail }}</div>
+        <div>
+          <i style="font-size: 20px; color: red" class="fa-solid fa-trash"></i>
+          &nbsp;
+          <a class="btn btn-primary">{{ parcel.status }}</a>
+        </div>
+      </div>
+      <h6>Parcel ID:{{ parcel.parcelID }}</h6>
+      <div class="flex" style="justify-content: space-between">
+        <h6>Phone Number: {{ parcel.receiverPhone }}</h6>
+        <div>
+          <button class="btn btn-warning" (click)="view()">View</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

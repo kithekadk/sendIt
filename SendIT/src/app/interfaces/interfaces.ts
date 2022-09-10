@@ -7,6 +7,8 @@ export interface user{
     location: string
     password:string
     welcome:string
+    lat:-0.4577,
+    lng:36.946,
 }
 
 export interface userReg{

@@ -15,6 +15,7 @@ import { SearchPipe } from './custompipes/search.pipe';
 import { parcelEffects } from './ngrx/Effects/parcelEffects';
 import { parcelReducer } from './ngrx/Reducer/parcelReducer';
 import { SearchparcelPipe } from './custompipes/searchparcel.pipe';
+import { ContainerDirective } from './CustomDirectives/customDirectives';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { SearchparcelPipe } from './custompipes/searchparcel.pipe';
     LoginComponent,
     RegisterComponent,
     SearchPipe,
-    SearchparcelPipe
+    SearchparcelPipe,
+    ContainerDirective
   ],
   imports: [
     CommonModule,

@@ -6,13 +6,13 @@ import { parcel } from 'src/app/interfaces/parcelInterfaces';
 })
 export class SearchparcelPipe implements PipeTransform {
 
-  transform(value: parcel[], email: string ): parcel[] {
-    if(!value || email === ''){
+  transform(value: parcel[], id: number|string ): parcel[] {
+    if(!value || id === ''){
       return value;
     }
     const filtered:parcel[]=[]
     for(let item of value){
-      if(item.sender.toLowerCase().includes(email.toLowerCase()) ){
+      if((item.parcelID+'').includes((id.toString)()) ){
               filtered.push(item);
             }
     }

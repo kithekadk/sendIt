@@ -41,6 +41,17 @@ export const getParcels = createSelector(
     state=>state.loadParcSuccess
 )
 
+export const getparcelID = createSelector(
+    getParcelsFeatureState,
+    state => state.parcelID
+)
+
+export const getOneParcel = createSelector(
+    getParcelsFeatureState,
+    getparcelID,
+    (state, id) => state.parcels.find((parcel) => parcel.parcelID === id)
+  );
+  
 export const parcelReducer= createReducer(
    initialParcelState,
     on(Actions.createParcelSuccess, (state, action):parcelState=>{
