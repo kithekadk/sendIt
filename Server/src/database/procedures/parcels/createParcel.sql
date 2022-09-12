@@ -1,6 +1,7 @@
 
 	CREATE PROCEDURE createParcel (	@sender VARCHAR(200),
-									@senderLocation VARCHAR(200), 
+									@lat INT,
+									@lng INT,
 									@parcelWeight INT,
 									@price INT,
 									@parcelDescription VARCHAR(200),
@@ -11,7 +12,8 @@
 	AS
 	BEGIN
 		INSERT INTO dbo.PARCELS (sender,
-								senderLocation, 
+								lat,
+								lng,
 								parcelWeight,
 								price,
 								parcelDescription,
@@ -22,7 +24,8 @@
 								)
 									
 					VALUES(	@sender,
-							@senderLocation, 
+							@lat INT,
+							@lng INT,
 							@parcelWeight,
 							@price,
 							@parcelDescription,

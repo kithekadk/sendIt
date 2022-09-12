@@ -10,6 +10,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import {NgxPaginationModule } from 'ngx-pagination'
+// import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import {NgxPaginationModule } from 'ngx-pagination'
     SharedModule,
     ReactiveFormsModule,
     NgxPaginationModule,
+    // GooglePlaceModule
    
   ]
 })

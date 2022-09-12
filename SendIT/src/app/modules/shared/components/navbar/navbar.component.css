@@ -24,3 +24,10 @@ a:hover{
 h1{
     color: rgb(20, 219, 20);
 }
+
+@media screen and (max-width:935px) {
+button{
+    display:none
+}
+
+}

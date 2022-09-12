@@ -19,9 +19,7 @@ export class NewparcelComponent implements OnInit {
   receiverAddress: string = '';
   receiverLatitude: string = '';
   receiverLongitude: string = '';
-  receiverAddress1: string = '';
-  receiverLatitude1: string = '';
-  receiverLongitude1: string = '';
+  
 
   AddressChange(address: any) {
     this.receiverAddress = address.formatted_address;
