@@ -12,6 +12,7 @@ import { getToken, userState } from '../../ngrx/Reducer/userReducer';
 })
 export class LoginComponent implements OnInit {
 login = true
+missing=false
 filled = false
 error = 'Logged In successfully'
 close(){
@@ -42,9 +43,9 @@ input={email: '', password: ''}
           this.redirect() 
           
         }, 1500);
-        }
-    else{
+        }else{
       this.filled = false
+      this.missing = true
     }
   
   }

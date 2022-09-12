@@ -25,6 +25,9 @@
     text-align: center;
 
 }
+.status{
+    background-color:  #191341;
+}
 .card2{
     background-color: #191341;
     color:white;
@@ -79,6 +82,7 @@
 .updateStatus{
     height: 38vh;
     padding:30px;
+    background-color:  #191341;
 }
 @media screen and (max-width:935px) {
     .options{

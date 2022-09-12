@@ -13,6 +13,7 @@ import { environment } from '../environments/environment'
 import { SearchPipe } from './modules/shared/custompipes/search.pipe';
 import { SharedModule } from './modules/shared/shared.module';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { NotfoundComponent } from './notfound/notfound.component';
     HttpClientModule,
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    SharedModule
+    SharedModule,
+    GooglePlaceModule
 
   ],
   providers: [SearchPipe],

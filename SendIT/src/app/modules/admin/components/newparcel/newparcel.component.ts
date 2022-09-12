@@ -50,6 +50,7 @@ export class NewparcelComponent implements OnInit {
   constructor(private router:Router, private fb:FormBuilder, 
     private store:Store<parcelState>) { }
 form!: FormGroup
+missing=false
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -100,14 +101,19 @@ form!: FormGroup
       console.log('no support for geolocation')
     }
   }
+
   createParcel(){
-    this.store.dispatch(parcelActions.createParcel({parcel:{...this.form.value}}))
-    this.store.dispatch(parcelActions.loadParcels())
-    console.log(this.form.value);
-    this.filled=true
-    setTimeout(() => {
-      this.router.navigate(['/admin/parcels'])
-    }, 1500);
-    
+    if(this.form){
+      this.store.dispatch(parcelActions.createParcel({parcel:{...this.form.value}}))
+      this.store.dispatch(parcelActions.loadParcels())
+      console.log(this.form.value);
+      this.filled=true
+      setTimeout(() => {
+        this.router.navigate(['/admin/parcels'])
+      }, 1500);  
+    }
+    else{
+      this.missing=true
+    }
   }
 }

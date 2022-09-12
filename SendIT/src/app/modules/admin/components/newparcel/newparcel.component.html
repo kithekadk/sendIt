@@ -10,6 +10,7 @@
   <div class="formDiv">
     <h2>Create Parcel Order</h2>
     <form class="form" [formGroup]="form" (ngSubmit)="createParcel()" *ngIf="emails$ | async as emails">
+      <p *ngIf="missing"  style="background-color: red"></p>
       <p *ngIf="filled" style="color: rgb(17, 245, 17)">
         Parcel Order created successfully
       </p>
@@ -151,7 +152,7 @@
       <br />
 
       <div>
-        <input class="btn btn-primary" type="submit" value="SUBMIT" />
+        <input class="btn btn-primary" type="submit" value="SUBMIT" [disabled] = form.invalid/>
         <!-- <input class="btn btn-danger" type="reset" value="Reset"  
         data-toggle="modal" data-target="#myModal"/> -->
       </div>

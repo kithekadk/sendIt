@@ -42,7 +42,8 @@ import { DynamicComponent } from './components/dynamic/dynamic.component';
   exports: [
     SearchPipe,
     SearchparcelPipe,
-    DynamicComponent
+    DynamicComponent,
+    NavbarComponent
   ]
 })
 export class SharedModule { }

@@ -2,7 +2,7 @@
   <input
     type="text"
     class="search"
-    placeholder="Search by ID..."
+    placeholder="Search by Email..."
     [(ngModel)]="filter"
   />
   <div class="flex">
@@ -51,7 +51,7 @@
       <div class="updateStatus">
         <h3>Update Status</h3>
         <form class="form">
-          <div>
+          <div class="status">
             <label for="">Status</label><br />
             <select name="" id="">
               <option value="">Select an option</option>
@@ -82,7 +82,7 @@
             <a class="btn btn-primary">{{ parcel.status }}</a>
           </div>
         </div>
-        <h6>Parcel ID:{{ parcel.parcelID }}</h6>
+        <!-- <h6>Parcel ID:{{ parcel.parcelID }}</h6> -->
         <div class="flex" style="justify-content: space-between">
           <h6>Phone Number: {{ parcel.receiverPhone }}</h6>
           <div>
