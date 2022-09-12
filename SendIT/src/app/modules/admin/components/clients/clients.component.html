@@ -12,16 +12,16 @@
             <tr>
                 <th scope="col">Client ID</th>
                 <th scope="col">Full Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Phone Number</th>
+                <th scope="col" class="hidethis">Email</th>
+                <th scope="col" class="hidethis">Phone Number</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let user of users | search:filter | paginate :{itemsPerPage:5,currentPage:pageNumber};">
                 <td scope="col">{{user.clientID}}</td>
                 <td scope="col">{{user.fullName}}</td>
-                <td scope="col">{{user.email}}</td>
-                <td scope="col">{{user.phoneNumber}}</td>
+                <td scope="col" class="hidethis">{{user.email}}</td>
+                <td scope="col" class="hidethis">{{user.phoneNumber}}</td>
             </tr>
         </tbody>
     </table>

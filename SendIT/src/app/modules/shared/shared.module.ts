@@ -16,6 +16,7 @@ import { parcelEffects } from './ngrx/Effects/parcelEffects';
 import { parcelReducer } from './ngrx/Reducer/parcelReducer';
 import { SearchparcelPipe } from './custompipes/searchparcel.pipe';
 import { ContainerDirective } from './CustomDirectives/customDirectives';
+import { DynamicComponent } from './components/dynamic/dynamic.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { ContainerDirective } from './CustomDirectives/customDirectives';
     RegisterComponent,
     SearchPipe,
     SearchparcelPipe,
-    ContainerDirective
+    ContainerDirective,
+    DynamicComponent
   ],
   imports: [
     CommonModule,

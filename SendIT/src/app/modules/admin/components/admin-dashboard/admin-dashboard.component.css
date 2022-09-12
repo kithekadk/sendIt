@@ -11,7 +11,7 @@
 }
 .options{
     background-color: #0A0A2E;
-    padding:20px;
+    padding:10px;
 }
 li{
     list-style-type:none;
@@ -21,4 +21,47 @@ li{
 li:hover{
     background-color: rgb(32, 142, 175);
     border-radius: 5px;
+}
+
+@media screen and (max-width:935px) {
+   .dashboard{
+    display: flex;
+    flex-wrap: wrap;
+    width:100vw;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 24vh;
+    
+   } 
+   h3{
+    display: none;
+   }
+
+   .options{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: #0A0A2E;
+    padding:0px;
+    gap:5px;
+    flex-wrap: wrap;
+}
+li{
+    list-style-type:none;
+    cursor:pointer;
+    padding:5px;
+}
+li:hover{
+    background-color: rgb(32, 142, 175);
+    border-radius: 2px;
+}
+.btn{
+    padding: 3px;
+    margin:3px;
+}
+.profile{
+    display: none;
+}
+
 }

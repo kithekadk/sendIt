@@ -23,3 +23,19 @@
 .pagination-controls{
     bottom:10px;
 }
+
+
+@media screen and (max-width:935px) {
+   .hidethis,h6{
+    display: none;
+   }
+    .tableDiv{
+        padding:20px;
+        margin-top:26.5vw;
+        margin-left: 0.5vw;
+    }
+    .search{
+        margin-left: 1vw;
+        width:30vw;
+    }
+}

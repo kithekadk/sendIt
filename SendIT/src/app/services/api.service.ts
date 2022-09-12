@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
 import { loginMessage,UserInfo, user, userReg } from '../interfaces/interfaces';
-import { parcel } from '../interfaces/parcelInterfaces';
+import { candidates, MapPlace, parcel, place } from '../interfaces/parcelInterfaces';
 import { data } from '../modules/shared/interfaces/interfaces';
 
 export interface message{
@@ -65,4 +65,24 @@ export class ApiService {
     )
   }
 
+
+  /**
+   * using places api
+   */
+   loadPlaces(search: string): Observable<MapPlace> {
+    return this.http.get<MapPlace>(
+      'https://maps.googleapis.com/maps/api/place/findplacefromtext/json',
+      {
+        params: {
+          input: search,
+          inputtype: 'textquery',
+          key: 'AIzaSyBuvVn5bGQtP3kSYSewu9Gb6_jZ7ySO75A'
+        }
+      }
+    )
+  }
+
+  setLocation(place:place):Observable<{message:string}>{
+    return this.http.post<{message:string}>('http://localhost:4400/user/setlocation',place)
+  }
 }

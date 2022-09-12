@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@ng-select/ng-select": "^9.0.2",
+    "axios": "^0.27.2"
+  }
+}

@@ -1,15 +1,16 @@
 import { Request, Response } from "express";
 import { customParcel } from "../interfaces/parcelInterfaces";
-import mssql from 'mssql'
+import mssql, { RequestError } from 'mssql'
 import { sqlConfig } from "../config/config";
 
 
 export const createParcel = async(req:customParcel, res:Response)=>{
     try {
         const {sender,
-            senderLocation, 
             parcelWeight,
             price,
+            lat,
+            lng,
             parcelDescription,
             receiverLocation,
             receiverPhone,
@@ -19,9 +20,10 @@ export const createParcel = async(req:customParcel, res:Response)=>{
             const pool = await mssql.connect(sqlConfig)
             await pool.request()
             .input('sender', mssql.VarChar, sender)
-            .input('senderLocation', mssql.VarChar, senderLocation)
             .input('parcelWeight', mssql.Numeric, parcelWeight)
             .input('price', mssql.Numeric, price)
+            .input('lat', mssql.Numeric, lat)
+            .input('lng', mssql.Numeric, lng)
             .input('parcelDescription', mssql.VarChar, parcelDescription)
             .input('receiverLocation', mssql.VarChar, receiverLocation)
             .input('receiverPhone', mssql.Numeric, receiverPhone)
@@ -32,7 +34,10 @@ export const createParcel = async(req:customParcel, res:Response)=>{
             return res.json({message:'Parcel order created successfully'})
 
     } catch (error) {
-        res.json({error:error})
+        if(error instanceof RequestError){
+            res.json({error:error})
+        }
+        
     }
 }
 

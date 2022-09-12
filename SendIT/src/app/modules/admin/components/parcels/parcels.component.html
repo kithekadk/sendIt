@@ -20,7 +20,7 @@
     Awaiting Pickup
   </div>
   <div class="card card-header" (click)="filterStatus('Delivered')">
-    Delivered Parcels
+    Delivered
   </div>
 </div>
 <div class="body-container">
@@ -46,47 +46,49 @@
           <map-info-window>Info Window content</map-info-window>
         </google-map>
 
-        <!-- <div>Latitude: {{display?.lat}}
-               Longitude: {{display?.lng}}</div> -->
+        <div>Latitude: {{ display?.lat }} Longitude: {{ display?.lng }}</div>
       </div>
-    </div>
-    <div class="updateStatus">
-      <h3>Update Status</h3>
-      <form class="form">
-        <div>
-          <label for="">Status</label><br />
-          <select name="" id="">
-            <option value="">Select an option</option>
-            <option value="">In Transit</option>
-            <option value="">Awaiting Pick-up</option>
-            <option value="">Delivered</option>
-          </select>
-        </div>
-        <br />
-        <div>
-          <button class="btn btn-danger">Update Status</button>
-        </div>
-      </form>
+      <div class="updateStatus">
+        <h3>Update Status</h3>
+        <form class="form">
+          <div>
+            <label for="">Status</label><br />
+            <select name="" id="">
+              <option value="">Select an option</option>
+              <option value="">In Transit</option>
+              <option value="">Awaiting Pick-up</option>
+              <option value="">Delivered</option>
+            </select>
+          </div>
+          <br />
+          <div>
+            <button class="btn btn-danger">Update Status</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 
   <div *ngIf="parcels2$ | async as parcels2">
-    <div class="card2" *ngFor="let parcel of parcels2 | searchparcel: filter">
-      <div class="card2header">
-        <div class="flex">{{ parcel.receiverEmail }}</div>
-        <div>
-          <i style="font-size: 20px; color: red" class="fa-solid fa-trash"></i>
-          &nbsp;
-          <a class="btn btn-primary">{{ parcel.status }}</a>
+      <div class="card2" *ngFor="let parcel of parcels2 | searchparcel: filter; let i = index">
+        <div class="card2header">
+          <div class="flex">{{ parcel.receiverEmail }}</div>
+          <div>
+            <i (click)="deleteParcel(i)"
+              style="font-size: 20px; color: red"
+              class="fa-solid fa-trash"
+            ></i>
+            &nbsp;
+            <a class="btn btn-primary">{{ parcel.status }}</a>
+          </div>
         </div>
-      </div>
-      <h6>Parcel ID:{{ parcel.parcelID }}</h6>
-      <div class="flex" style="justify-content: space-between">
-        <h6>Phone Number: {{ parcel.receiverPhone }}</h6>
-        <div>
-          <button class="btn btn-warning" (click)="view()">View</button>
+        <h6>Parcel ID:{{ parcel.parcelID }}</h6>
+        <div class="flex" style="justify-content: space-between">
+          <h6>Phone Number: {{ parcel.receiverPhone }}</h6>
+          <div>
+            <button class="btn btn-warning" (click)="view()">View</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 </div>

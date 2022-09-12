@@ -1,4 +1,6 @@
-export interface customUser{
+import { Request } from "express"
+
+export interface customUser extends Request{
     body:{
         clientID:string
         fullName:string
@@ -19,6 +21,8 @@ export interface User{
     phoneNumber:number
     location:string
     password:string
+    lat:number
+    lng:number
     role:string,
     iat:number,
     exp:number

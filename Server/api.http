@@ -3,8 +3,8 @@ Content-Type: application/json
 
 {
     "fullName":"Daniel Kitheka",
-    "userName":"Dan",
-    "email":"kakinyidk@gmail.com",
+    "userName":"Dan1",
+    "email":"kakinyidk1@gmail.com",
     "phoneNumber":"12345678",
     "location":"Nyeri, Kenya",
     "password":"12345678"
@@ -15,7 +15,7 @@ POST http://localhost:4400/user/login
 Content-Type: application/json
 
 {
-    "email":"kakinyidk@gmail.com",
+    "email":"kakinyidk1@gmail.com", 
     "password":"12345678"
 }
 
@@ -29,9 +29,10 @@ Content-Type: application/json
 
 {
         "sender":"string",
-        "senderLocation":"string",
         "parcelWeight":"2",
         "price":"200",
+        "lat":"-1.567",
+        "lng":"36.45",
         "parcelDescription":"string",
         "receiverLocation":"string",
         "receiverPhone":"244141",
@@ -43,3 +44,18 @@ Content-Type: application/json
 ###
 GET http://localhost:4400/parcel/allparcels
 Content-Type: application/json
+
+###
+GET http://localhost:4400/user/check
+Content-Type: application/json
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRJRCI6MTAwMiwiZnVsbE5hbWUiOiJEYW5pZWwgS2l0aGVrYSIsInVzZXJOYW1lIjoiRGFuMSIsImVtYWlsIjoia2FraW55aWRrMUBnbWFpbC5jb20iLCJwaG9uZU51bWJlciI6MTIzNDU2NzgsImxvY2F0aW9uIjoiTnllcmksIEtlbnlhIiwibGF0IjoxLCJsbmciOjMwLCJ3ZWxjb21lIjoiTk8iLCJyb2xlIjoidXNlciIsImlhdCI6MTY2MjkzMTI0NiwiZXhwIjoxNjYyOTMxNTQ2fQ.rtoiGHnp4zByYcGegnEX0KsUVjN49mRIoKOaFbZ-zog
+
+###
+POST http://localhost:4400/user/setLocation
+Content-Type: application/json
+
+{
+    "email":"kakinyidk1@gmail.com",
+    "lat":12.234,
+    "lng":33.27
+}

@@ -114,3 +114,24 @@ export const getClients = async (req: customUser, res:Response)=>{
         }
     }
 }
+
+export const setLocation= async(req:customUser, res:Response)=>{
+    try {
+        const {email, lat, lng}= req.body
+
+        const pool = await mssql.connect(sqlConfig)
+        await pool.request()
+        .input('email', mssql.VarChar, email)
+        .input('lat', mssql.Numeric, lat)
+        .input('lng', mssql.Numeric, lng)
+        .execute('setLocation')
+
+        return res.json({message:'location set successfully'})
+
+
+    } catch (error) {
+        if(error instanceof RequestError){
+            res.json({message: error.message})
+        }
+    }
+}

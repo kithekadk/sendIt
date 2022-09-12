@@ -26,7 +26,8 @@ import {NgxPaginationModule } from 'ngx-pagination'
     GoogleMapsModule,
     SharedModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+   
   ]
 })
 export class AdminModule { }

@@ -24,6 +24,7 @@ export class ParcelsComponent implements OnInit {
     lat: -0.4577,
     lng: 36.946,
   };
+
   zoom = 6;
   filter=''
 
@@ -43,7 +44,8 @@ export class ParcelsComponent implements OnInit {
         lat: user.lat,
         lng: user.lng,
       }))      
-      this.markerPositions = coords.concat([
+      this.markerPositions = coords
+      .concat([
         {lat: -0.4577, lng: 36.946}
       ])
     })
@@ -54,16 +56,18 @@ export class ParcelsComponent implements OnInit {
     localStorage.clear();
     this.router.navigate(['']);
   }
+
+
 /**
  * 
- * @param filtering by parcel status
- * @returns filtered data
+ *  filtering by parcel status
+ * filtered data
  */
   filterStatus(status:string) {
     this.parcels2$ = this.parcels$.pipe(
       map( parcels=>{
         let parcel = parcels.filter(el=>el.status === status || el.status=='')
-          return parcel
+        return parcel
       })
     )
     return this.parcels2$
@@ -84,9 +88,9 @@ export class ParcelsComponent implements OnInit {
   };
   markerPositions: google.maps.LatLngLiteral[] = [];
 
-  addMarker(event: google.maps.MapMouseEvent) {
-    if (event.latLng != null) this.markerPositions.push(event.latLng.toJSON());
-  }
+  // addMarker(event: google.maps.MapMouseEvent) {
+  //   if (event.latLng != null) this.markerPositions.push(event.latLng.toJSON());
+  // }
   openInfoWindow(marker: MapMarker) {
     if (this.infoWindow != undefined) this.infoWindow.open(marker);
   }
@@ -101,8 +105,13 @@ export class ParcelsComponent implements OnInit {
    * get one parcel check and delete
    */
 
-  deleteParcel(){
-    this.store.select(getOneParcel)
+  deleteParcel(index:number){
+    console.log(index);
+    
+    this.store.select(getOneParcel).subscribe(res=>{
+      console.log(res);
+      
+    })
     
   }
 }
