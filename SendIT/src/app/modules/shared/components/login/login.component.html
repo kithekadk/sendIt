@@ -2,7 +2,7 @@
   <div class="loginDiv">
     <div><h2>LOGIN HERE</h2></div>
     <br />
-
+    <app-dynamic *ngIf="filled" [message]=error (close)="close()"></app-dynamic>
     <form #logform="ngForm" (ngSubmit)="onLogin(logform.value)">
       <div>
         <label for="email">Input Email</label><br />
@@ -48,7 +48,7 @@
       </div>
       <br />
       <div>
-        <button type="submit" class="btn btn-primary">Sign In</button>
+        <button type="submit" class="btn btn-primary" >Sign In</button>
       </div>
     </form>
   </div>

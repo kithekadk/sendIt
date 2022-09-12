@@ -5,7 +5,6 @@
     background-image: url("https://static9.depositphotos.com/1364641/1127/i/450/depositphotos_11279506-stock-photo-types-of-transport-of-transporting.jpg");
     height: 100vh;
     background-position: center center;
-    /* background-repeat: no-repeat; */
     background-size: cover;
 }
 .mask{
@@ -58,6 +57,7 @@ h1{
     color:black;
     border-radius: 5px;
     border-radius: 10px;
+    padding:0px 100px; 
 }
 .btn{
     width:20vw;
@@ -89,4 +89,36 @@ a{
     display: flex;
     flex-wrap: wrap;
     gap:100px;
+}
+
+@media screen and (max-width:935px) {
+    h1{
+        font-size: 30px;
+        color:black;
+    }
+    .card{
+        padding: 3px;
+    }
+    .flex{
+        justify-content: center;
+        padding: 5px;
+        flex-wrap: wrap;
+    }
+    #about{
+        padding: 10px 10px;
+    
+    }
+    .cards2{
+        background-color: white;
+        color:black;
+        border-radius: 5px;
+        border-radius: 10px;
+        padding:5px 10px; 
+    }
+    .btn{
+        width:30vw;
+    }
+    .homecard{
+        padding-top: 20vh;
+    }
 }

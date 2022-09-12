@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import {data} from '../../interfaces/interfaces'
@@ -13,7 +13,10 @@ import { getToken, userState } from '../../ngrx/Reducer/userReducer';
 export class LoginComponent implements OnInit {
 login = true
 filled = false
-
+error = 'Logged In successfully'
+close(){
+  this.login=true
+}
   constructor(private router:Router, private store:Store<userState>) { }
 
 
@@ -23,23 +26,27 @@ input={email: '', password: ''}
   }
   onLogin(input:data){
 
-    // if 
       this.store.select(getToken).subscribe(res=>{
       let token=res
       localStorage.setItem("token", token)
       this.checkRole()
       return token
     })
-    
-    this.store.dispatch(loginUser({logins:{...input}}))
-    this.login = false
-    this.filled = true
-    
-    setTimeout(() => {
-      
-      this.redirect() 
-      
-    }, 500);
+    if(input.email !=='' && input.password !==''){
+      this.store.dispatch(loginUser({logins:{...input}}))
+        this.login = false
+        this.filled = true
+        
+        setTimeout(() => {
+          
+          this.redirect() 
+          
+        }, 1500);
+        }
+    else{
+      this.filled = false
+    }
+  
   }
 
   checkRole(){

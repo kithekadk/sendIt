@@ -28,7 +28,7 @@ import { DynamicComponent } from './components/dynamic/dynamic.component';
     SearchPipe,
     SearchparcelPipe,
     ContainerDirective,
-    DynamicComponent
+    DynamicComponent,
   ],
   imports: [
     CommonModule,
@@ -41,7 +41,8 @@ import { DynamicComponent } from './components/dynamic/dynamic.component';
   ],
   exports: [
     SearchPipe,
-    SearchparcelPipe
+    SearchparcelPipe,
+    DynamicComponent
   ]
 })
 export class SharedModule { }

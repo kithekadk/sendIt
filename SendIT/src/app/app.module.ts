@@ -11,11 +11,14 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment'
 import { SearchPipe } from './modules/shared/custompipes/search.pipe';
+import { SharedModule } from './modules/shared/shared.module';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +29,7 @@ import { SearchPipe } from './modules/shared/custompipes/search.pipe';
     HttpClientModule,
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    SharedModule
 
   ],
   providers: [SearchPipe],

@@ -35,7 +35,7 @@ export class NewparcelComponent implements OnInit {
     this.router.navigate([''])
   }
   constructor(private router:Router, private fb:FormBuilder, 
-    private store:Store<parcelState>, private service:ApiService) { }
+    private store:Store<parcelState>) { }
 form!: FormGroup
 
   ngOnInit(): void {
@@ -68,15 +68,6 @@ form!: FormGroup
     finalize(() => {})
   )
 
-
-  // loadPlaces(e: any) {
-  //   console.log('search place event', typeof e, e);
-  //   this.isLoading = true;
-  //   this.places$ = this.service
-  //     .loadPlaces(e)
-  //     .pipe(map(x => x["candidate"]))
-  //     .pipe(tap(() => (this.isLoading = false)));
-  // }
 
   callApi(Longitude:number, Latitude:number){
     const url = `https://api-adresse.data.gouv.fr/reverse/?lon=${Longitude}%lat=${Latitude}`
