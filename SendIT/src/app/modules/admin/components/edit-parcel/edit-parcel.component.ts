@@ -89,6 +89,7 @@ filled = false
   updateParcel(){
     this.store.dispatch(ParcelActions.editParcel({id:this.id,parcel:{...this.form.value}}))
     this.filled = true
+    this.store.dispatch(ParcelActions.loadParcels())
     this.router.navigate(['/admin/parcels'])
   }
 

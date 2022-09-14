@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { map,  } from 'rxjs';
 import { getParcels, parcelState } from 'src/app/modules/shared/ngrx/Reducer/parcelReducer';
 import { getUsers } from 'src/app/modules/shared/ngrx/Reducer/userReducer';
+import { ApiService } from 'src/app/services/api.service';
 import * as ParcelActions from '../../../shared/ngrx/Actions/parcelActions'
 
 @Component({
@@ -34,7 +35,8 @@ export class ViewOneComponent implements OnInit {
   filter=''
   filter2 =''
 
-  constructor(private router: Router, private store: Store<parcelState>, private route:ActivatedRoute) {}
+  constructor(private router: Router, private store: Store<parcelState>, private route:ActivatedRoute,
+    private api:ApiService) {}
 
   /**
    * fetching all parcels
@@ -42,44 +44,35 @@ export class ViewOneComponent implements OnInit {
   oneParcel$ = this.store.select(getParcels)
   oneParcel2$ = this.store.select(getParcels)
 
-  getmyParcel(){
-    this.oneParcel$ = this.oneParcel2$.pipe(
-      map(res=>{
-        console.log(res);
-        
-        let parcel = res.filter(el=>el.parcelID==this.id)
-        console.log(parcel);
-        
-        return parcel
-      })
-    )
-    return this.oneParcel$
-  }
-  
+
+  markerPositions: google.maps.LatLngLiteral[] = [];
   ngOnInit(): void {
     
     this.store.dispatch(ParcelActions.loadParcels())
     this.route.params.subscribe(params=>{
       this.id=Number(params['id']) 
-      console.log(typeof this.id);
-      
+   
     })
     this.getmyParcel()
     
-  this.store.select(getUsers).subscribe((res)=>{      
-      const coords = res.map((user)=>({
-        lat: user.lat,
-        lng: user.lng,
-      }))      
-      this.markerPositions = coords
-      .concat([
-        {lat: -0.4577, lng: 36.946}
-      ])
-    })
-
   }
 
-
+  getmyParcel(){
+    this.oneParcel$ = this.oneParcel2$.pipe(
+      map(res=>{
+        
+        let parcel = res.filter(el=>el.parcelID==this.id)
+      console.log(parcel);
+        const coords = res.map((user)=>({
+        lat: user.lat,
+        lng: user.lng,
+      })) 
+        this.markerPositions = coords
+        return parcel
+      })
+    )
+    return this.oneParcel$
+  }
 
 
   /**
@@ -95,7 +88,7 @@ export class ViewOneComponent implements OnInit {
   markerOptions: google.maps.MarkerOptions = {
     draggable: false,
   };
-  markerPositions: google.maps.LatLngLiteral[] = [];
+
 
   // addMarker(event: google.maps.MapMouseEvent) {
   //   if (event.latLng != null) this.markerPositions.push(event.latLng.toJSON());

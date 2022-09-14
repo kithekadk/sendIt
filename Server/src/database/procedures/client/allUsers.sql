@@ -13,7 +13,7 @@
 		IF @MaxTablePage >= @PageNumber
 
 			BEGIN
-				SELECT clientID, fullName, email, phoneNumber FROM dbo.CLIENTS WHERE role='user' ORDER BY clientID
+				SELECT clientID, fullName, email, phoneNumber, lat, lng FROM dbo.CLIENTS WHERE role='user' ORDER BY clientID
 					OFFSET (@PageNumber-1)*@RowsOfPage ROWS
 					FETCH NEXT @RowsOfPage ROWS ONLY
 					SET @PageNumber = @PageNumber + 1

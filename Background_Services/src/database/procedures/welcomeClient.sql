@@ -1,0 +1,12 @@
+CREATE PROCEDURE WelcomeEmail
+AS
+BEGIN
+	IF EXISTS (SELECT * FROM dbo.CLIENTS WHERE welcome='NO')
+	BEGIN
+		SELECT * FROM dbo.CLIENTS WHERE welcome='NO'
+	END
+	ELSE
+	BEGIN
+		RAISERROR('No new user currently',11,1)
+	END
+END

@@ -1,0 +1,12 @@
+CREATE PROCEDURE WelcomeEmailSent
+AS
+BEGIN
+	IF EXISTS (SELECT * FROM dbo.CLIENTS WHERE welcome='NO')
+	BEGIN
+		UPDATE dbo.CLIENTS SET welcome='YES' WHERE welcome='NO'
+	END
+	ELSE
+	BEGIN
+		RAISERROR('No new user currently',11,1)
+	END
+END
