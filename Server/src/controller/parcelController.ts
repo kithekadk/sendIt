@@ -52,3 +52,60 @@ export const fetchParcels = async (req:customParcel, res:Response)=>{
         res.json({error:error}) 
     }
 }
+
+export const deleteParcels = async (req: customParcel, res: Response)=>{
+    try{
+        const parcelID = req.params.parcelID
+
+        const pool = await mssql.connect(sqlConfig)
+        await pool.request()
+        .input('parcelID', mssql.Numeric, parcelID)
+        .execute('deleteParcel')
+
+        return res.json({message:'Parcel deleted successfully'})
+    } catch(error){
+        if(error instanceof RequestError){
+            res.json({message: error})
+        }
+    }
+}
+
+export const updateParcel = async(req: customParcel, res:Response)=>{
+    try {
+        const parcelID= req.params.parcelID
+        const {
+            sender,
+            parcelWeight,
+            price,
+            lat,
+            lng,
+            parcelDescription,
+            receiverLocation,
+            receiverPhone,
+            receiverEmail,
+            deliveryDate}= req.body
+        
+            const pool = await mssql.connect(sqlConfig)
+            await pool.request()
+            .input('parcelID', mssql.Numeric, parcelID)
+            .input('sender', mssql.VarChar, sender)
+            .input('parcelWeight', mssql.Numeric, parcelWeight)
+            .input('price', mssql.Numeric, price)
+            .input('lat', mssql.Numeric, lat)
+            .input('lng', mssql.Numeric, lng)
+            .input('parcelDescription', mssql.VarChar, parcelDescription)
+            .input('receiverLocation', mssql.VarChar, receiverLocation)
+            .input('receiverPhone', mssql.Numeric, receiverPhone)
+            .input('receiverEmail', mssql.VarChar, receiverEmail)
+            .input('deliveryDate', mssql.VarChar, deliveryDate)
+            .execute('updateParcel')
+
+            return res.json({message:'Parcel updated successfully'})
+    } catch (error) {
+        if(error instanceof RequestError){
+            res.json({message: error})
+        }
+        console.log(error);
+        
+    }
+}

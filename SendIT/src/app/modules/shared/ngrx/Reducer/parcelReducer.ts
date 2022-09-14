@@ -14,6 +14,12 @@ export interface parcelState{
 
     loadParcSuccess:parcel[]
     loadParcFailure:string
+
+    deletParcelSuccess:string
+    deletParcelFailure: string
+
+    editParcelSuccess:string
+    editParcelFailure:string
 }
 
 const initialParcelState: parcelState={
@@ -26,6 +32,12 @@ const initialParcelState: parcelState={
 
     loadParcSuccess: [],
     loadParcFailure: "",
+
+    deletParcelSuccess:'',
+    deletParcelFailure: '',
+
+    editParcelSuccess: '',
+    editParcelFailure: '',
 }
 
 const getParcelsFeatureState = createFeatureSelector<parcelState>('parcel')
@@ -46,11 +58,20 @@ export const getparcelID = createSelector(
     state => state.parcelID
 )
 
+export const deleteParcel = createSelector(
+    getParcelsFeatureState,
+    state=>state.deletParcelSuccess
+)
+
+export const editParcel = createSelector(
+    getParcelsFeatureState,
+    state=>state.editParcelSuccess
+)
+
 export const getOneParcel = createSelector(
     getParcelsFeatureState,
     getparcelID,
-    (state, id) => state.parcels.find((parcel) => parcel.parcelID === id)
-  );
+    (state, id) => state.parcels.find(el =>el.parcelID === id))
   
 export const parcelReducer= createReducer(
    initialParcelState,
@@ -70,6 +91,24 @@ export const parcelReducer= createReducer(
     }),
     on(Actions.loadParcelsFailure, (state, action):parcelState=>{
         return{...state, loadParcFailure:action.error}
+    }),
+    /**
+     * delete parcel
+     */
+    on(Actions.delParcelSuccess, (state, action):parcelState=>{
+        return{...state, deletParcelSuccess:action.message}
+    }),
+    on(Actions.delParcelFailure, (state, action):parcelState => {
+        return{...state, deletParcelFailure: action.error}
+    }),
+    /**
+     * update parcel
+     */
+
+    on(Actions.editParcelSuccess, (state, action):parcelState => {
+        return{...state, editParcelSuccess: action.message}
+    }),
+    on(Actions.editParcelFailure, (state, action):parcelState => {
+        return{...state, editParcelFailure:action.error}
     })
-    
 )

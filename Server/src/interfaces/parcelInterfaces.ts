@@ -2,6 +2,7 @@ import { Request } from "express"
 
 export interface customParcel extends  Request{
     body:{
+        parcelID:number
         sender:string
         senderLocation:string
         parcelWeight:string

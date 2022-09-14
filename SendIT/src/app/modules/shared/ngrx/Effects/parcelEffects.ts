@@ -35,8 +35,42 @@ export class parcelEffects {
       ofType(parcelActions.loadParcels),
       mergeMap(() =>
         this.api.getAllParcels().pipe(
-          map(parcels => parcelActions.loadParcelsSuccess({parcels})),
-          catchError(error => of(parcelActions.loadParcelsFailure({ error:error })))
+          map((parcels) => parcelActions.loadParcelsSuccess({ parcels })),
+          catchError((error) =>
+            of(parcelActions.loadParcelsFailure({ error: error }))
+          )
+        )
+      )
+    );
+  });
+
+  delParcel = createEffect(() => {
+    return this.actions.pipe(
+      ofType(parcelActions.deleteParcel),
+      mergeMap((action) =>
+        this.api.deleteParcel(action.id).pipe(
+          map((message) =>
+            parcelActions.delParcelSuccess({ message: message.message })
+          ),
+          catchError((error) =>
+            of(parcelActions.delParcelFailure({ error: error }))
+          )
+        )
+      )
+    );
+  });
+
+  editParcel = createEffect(() => {
+    return this.actions.pipe(
+      ofType(parcelActions.editParcel),
+      mergeMap((action) =>
+        this.api.editParcel(action.id, action.parcel).pipe(
+          map((message) =>
+            parcelActions.editParcelSuccess({ message: message.message })
+          ),
+          catchError((error) =>
+            of(parcelActions.editParcelFailure({ error: error }))
+          )
         )
       )
     );

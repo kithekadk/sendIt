@@ -3,6 +3,7 @@ import { MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs';
+import { parcel } from 'src/app/interfaces/parcelInterfaces';
 import { getOneParcel, getParcels, parcelState } from 'src/app/modules/shared/ngrx/Reducer/parcelReducer';
 import { getUsers } from 'src/app/modules/shared/ngrx/Reducer/userReducer';
 import * as Actions from '../../../shared/ngrx/Actions/parcelActions'
@@ -27,6 +28,7 @@ export class ParcelsComponent implements OnInit {
 
   zoom = 6;
   filter=''
+  filter2 =''
 
   constructor(private router: Router, private store: Store<parcelState>) {}
 
@@ -35,6 +37,7 @@ export class ParcelsComponent implements OnInit {
    */
   parcels$ = this.store.select(getParcels)
   parcels2$ = this.store.select(getParcels)
+  oneParcel$ = this.store.select(getOneParcel)
   
   ngOnInit(): void {
     this.store.dispatch(Actions.loadParcels())
@@ -97,21 +100,24 @@ export class ParcelsComponent implements OnInit {
 /**
  * toggle view on click
  */
-  view() {
+  view(id:number) {
+
     this.viewOne = !this.viewOne;
+    this.oneParcel(id)
   }
 
   /**
-   * get one parcel check and delete
+   *  delete a parcel
    */
 
-  deleteParcel(index:number){
-    console.log(index);
-    
-    this.store.select(getOneParcel).subscribe(res=>{
-      console.log(res);
-      
-    })
-    
+  deleteParcel(id:number){    
+    this.store.dispatch(Actions.deleteParcel({id:id}))
+    this.store.dispatch(Actions.loadParcels())
+  }
+
+  oneParcel(id:number){
+    this.store.dispatch(Actions.SelectedId({parcelID:id}))
+
+    this.router.navigate([`/admin/view/${id}`])
   }
 }

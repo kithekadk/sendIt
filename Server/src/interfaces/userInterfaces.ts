@@ -11,6 +11,7 @@ export interface customUser extends Request{
         lat:number
         lng:number
         password:string
+        StatementType:string
     }
 }
 
@@ -21,6 +22,7 @@ export interface User{
     phoneNumber:number
     location:string
     password:string
+    StatementType:string
     lat:number
     lng:number
     role:string,

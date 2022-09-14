@@ -85,4 +85,17 @@ export class ApiService {
   setLocation(place:place):Observable<{message:string}>{
     return this.http.post<{message:string}>('http://localhost:4400/user/setlocation',place)
   }
+
+  deleteParcel(parcelID:number):Observable<{message:string}>{
+    return this.http.get<{message:string}>(`http://localhost:4400/parcel/delete/${parcelID}`).pipe(
+      map((res)=>{
+        return res
+      })
+    )
+  }
+
+  editParcel(parcelID:number, parcel:parcel):Observable<{message:string}>{
+    return this.http.put<{message:string}>(`http://localhost:4400/parcel/update/${parcelID}`, parcel)
+  }
 }
+

@@ -13,16 +13,13 @@
     margin-right: 15px;
     gap:20px;
 }
-.search{
-    margin-left: 1vw;
-    width:23vw;
-}
 .card{
-    width:15vw;
+    width:40vw;
     background-color: #191341;
     color:white;
     border-radius: 5px;
-    text-align: center;
+    text-align: left;
+    margin-left: 20px;
 
 }
 .status{
@@ -62,10 +59,12 @@
 
 }
 .update{
-    position: fixed;
+    display: flex;
+    margin-left:15.5vw;
     right: 5px;
     background-color: #191341;
     color:white;
+    margin-top: 10vh;
     
 }
 .displaysection{
@@ -74,11 +73,11 @@
 }
 .maps,#map{
     width:40vw;
-    max-height: 45vh;
+    min-height: 45vh;
 }
 .mapDisplay{
     width:40vw;
-    max-height: 45vh;
+    min-height: 45vh;
 }
 .form{
     padding:20px;
@@ -87,6 +86,10 @@
     height: 38vh;
     padding:30px;
     background-color:  #191341;
+}
+.heading{
+    color:white;
+    padding-left: 20px;
 }
 @media screen and (max-width:935px) {
     .options{

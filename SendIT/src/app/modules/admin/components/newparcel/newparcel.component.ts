@@ -76,8 +76,6 @@ missing=false
   userEmails$ = this.store.select(getUsers)
   emails$ = this.userEmails$.pipe(
     map(users => users.filter(user => user.email))
-  ).pipe(
-    finalize(() => {})
   )
 
 
@@ -104,14 +102,11 @@ missing=false
     if(this.form){
       this.store.dispatch(parcelActions.createParcel({parcel:{...this.form.value}}))
       this.store.dispatch(parcelActions.loadParcels())
-      console.log(this.form.value);
       this.filled=true
-      setTimeout(() => {
-        this.router.navigate(['/admin/parcels'])
-      }, 1500);  
+      
+      this.store.dispatch(parcelActions.loadParcels())
+      this.router.navigate(['/admin/parcels'])
     }
-    else{
-      this.missing=true
-    }
+   
   }
 }

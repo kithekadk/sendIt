@@ -1,0 +1,66 @@
+<div class="navbar">
+    <div class="heading">MORE...</div>
+    <div class="flex">
+      <h6 style="color: white; justify-content: center">{{ Date | date }}</h6>
+      <a class="btn btn-danger" (click)="onLogout()">Logout</a>
+    </div>
+  </div>
+<div class="update">
+  <div class="parcelDetails" *ngIf="oneParcel$ | async as parcel3">
+    <h2>PARCEL DESCRIPTION</h2>
+    <div *ngFor="let parcel of parcel3" class="card">
+
+      <div>parcel ID:{{ parcel.parcelID }}</div>
+      <div>Sender:{{ parcel.receiverEmail }}</div>
+      <div>Receiver:{{ parcel.receiverEmail }}</div>
+      <div>Receiver Location:{{ parcel.receiverLocation }}</div>
+      <div>Receiver Phone:{{ parcel.receiverPhone }}</div>
+      <div>parcel Weight:{{ parcel.parcelWeight }}</div>
+      <div>parcel Price:{{ parcel.price }}</div>
+      <div>parcel Description:{{ parcel.parcelDescription }}</div>
+      <div>Delivery Date:{{ parcel.deliveryDate }}</div>
+    </div>
+  </div>
+  <div class="maps">
+    <h3 style="padding-left: 20px">Navigation</h3>
+    <div>
+      <google-map
+        height="40vh"
+        width="40vw;"
+        [center]="center"
+        [zoom]="zoom"
+        (mapClick)="moveMap($event)"
+        (mapMousemove)="move($event)"
+      >
+        <map-marker
+          #marker="mapMarker"
+          *ngFor="let markerPosition of markerPositions"
+          [position]="markerPosition"
+          (mapClick)="openInfoWindow(marker)"
+        >
+        </map-marker>
+        <map-info-window>Info Window content</map-info-window>
+      </google-map>
+
+      <!-- <div>Latitude: {{ display?.lat }} Longitude: {{ display?.lng }}</div> -->
+    </div>
+    <div class="updateStatus">
+      <h3>Update Status</h3>
+      <form class="form">
+        <div class="status">
+          <label for="">Status</label><br />
+          <select name="" id="">
+            <option value="">Select an option</option>
+            <option value="">In Transit</option>
+            <option value="">Awaiting Pick-up</option>
+            <option value="">Delivered</option>
+          </select>
+        </div>
+        <br />
+        <div>
+          <button class="btn btn-danger">Update Status</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

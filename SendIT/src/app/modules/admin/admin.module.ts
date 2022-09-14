@@ -9,7 +9,9 @@ import { NewparcelComponent } from './components/newparcel/newparcel.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
-import {NgxPaginationModule } from 'ngx-pagination'
+import {NgxPaginationModule } from 'ngx-pagination';
+import { EditParcelComponent } from './components/edit-parcel/edit-parcel.component';
+import { ViewOneComponent } from './components/view-one/view-one.component'
 // import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 
 @NgModule({
@@ -18,6 +20,8 @@ import {NgxPaginationModule } from 'ngx-pagination'
     ParcelsComponent,
     ClientsComponent,
     NewparcelComponent,
+    EditParcelComponent,
+    ViewOneComponent,
     
   ],
   imports: [

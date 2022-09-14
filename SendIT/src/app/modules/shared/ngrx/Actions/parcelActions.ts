@@ -31,3 +31,39 @@ export const loadParcelsFailure = createAction(
   'loadParcelsFailure',
   props<{ error: string }>()
 );
+
+
+/**
+ * get one parcel
+ */
+
+export const SelectedId = createAction('getOneParcel',
+props<{parcelID:number}>()
+)
+/**
+ * Deleting a parcel
+ */
+export const deleteParcel = createAction('deleteParcel',
+props<{id:number}>()
+)
+export const delParcelSuccess = createAction(
+  'delParcelSuccess',
+  props<{message: string}>()
+)
+export const delParcelFailure = createAction(
+  'delParcelFailure',
+  props<{error: string}>()
+)
+
+/**
+ * EDITING A PARCEL
+ */
+export const editParcel = createAction('editParcel',
+props<{id:number, parcel:parcel}>()
+)
+export const editParcelSuccess = createAction('editParcelSuccess',
+props<{message: string}>()
+)
+export const editParcelFailure = createAction('editParcelFailure',
+props<{error: string}>()
+)
