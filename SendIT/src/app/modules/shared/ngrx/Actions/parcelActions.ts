@@ -67,3 +67,16 @@ props<{message: string}>()
 export const editParcelFailure = createAction('editParcelFailure',
 props<{error: string}>()
 )
+
+/**
+ * UPDATING PARCEL STATUS E.G DELIVERED
+ */
+export const  reviseStatus = createAction('reviseStatus',
+props<{id:number, status:string}>()
+)
+export const reviseStatusSuccess = createAction('reviseStatusSuccess',
+props<{message: string}>()
+)
+export const reviseStatusFailure = createAction('reviseStatusFailure',
+props<{error: string}>()
+)

@@ -2,7 +2,8 @@ import { Request, Response } from "express";
 import { customParcel } from "../interfaces/parcelInterfaces";
 import mssql, { RequestError } from 'mssql'
 import { sqlConfig } from "../config/config";
-
+import Connection from "../databaseHelpers/dbhelpers";
+const db= new Connection
 
 export const createParcel = async(req:customParcel, res:Response)=>{
     try {
@@ -11,29 +12,31 @@ export const createParcel = async(req:customParcel, res:Response)=>{
             price,
             lat,
             lng,
+            senderLat,
+            senderLng,
             parcelDescription,
             receiverLocation,
             receiverPhone,
             receiverEmail,
             deliveryDate}= req.body
-        
-            const pool = await mssql.connect(sqlConfig)
-            await pool.request()
-            .input('sender', mssql.VarChar, sender)
-            .input('parcelWeight', mssql.Numeric, parcelWeight)
-            .input('price', mssql.Numeric, price)
-            .input('lat', mssql.Numeric, lat)
-            .input('lng', mssql.Numeric, lng)
-            .input('parcelDescription', mssql.VarChar, parcelDescription)
-            .input('receiverLocation', mssql.VarChar, receiverLocation)
-            .input('receiverPhone', mssql.Numeric, receiverPhone)
-            .input('receiverEmail', mssql.VarChar, receiverEmail)
-            .input('deliveryDate', mssql.VarChar, deliveryDate)
-            .execute('createParcel')
 
+        db.exec('createParcel', {sender,
+            parcelWeight,
+            price,
+            lat,
+            lng,
+            senderLat,
+            senderLng,
+            parcelDescription,
+            receiverLocation,
+            receiverPhone,
+            receiverEmail,
+            deliveryDate})
             return res.json({message:'Parcel order created successfully'})
 
     } catch (error) {
+        console.log(error);
+        
         if(error instanceof RequestError){
             res.json({error:error})
         }
@@ -43,11 +46,9 @@ export const createParcel = async(req:customParcel, res:Response)=>{
 
 export const fetchParcels = async (req:customParcel, res:Response)=>{
     try {
-        const pool = await mssql.connect(sqlConfig)
-        const parcels =(await pool.request()
-        .execute('fetchParcels')).recordset
+        const {recordset} = await db.exec('fetchParcels')
 
-        return res.json(parcels)
+        return res.json(recordset)
     } catch (error) {
         res.json({error:error}) 
     }
@@ -56,12 +57,8 @@ export const fetchParcels = async (req:customParcel, res:Response)=>{
 export const deleteParcels = async (req: customParcel, res: Response)=>{
     try{
         const parcelID = req.params.parcelID
-
-        const pool = await mssql.connect(sqlConfig)
-        await pool.request()
-        .input('parcelID', mssql.Numeric, parcelID)
-        .execute('deleteParcel')
-
+        db.exec('deleteParcel',{parcelID})
+       
         return res.json({message:'Parcel deleted successfully'})
     } catch(error){
         if(error instanceof RequestError){
@@ -79,33 +76,55 @@ export const updateParcel = async(req: customParcel, res:Response)=>{
             price,
             lat,
             lng,
+            senderLat,
+            senderLng,
             parcelDescription,
             receiverLocation,
             receiverPhone,
             receiverEmail,
             deliveryDate}= req.body
         
-            const pool = await mssql.connect(sqlConfig)
-            await pool.request()
-            .input('parcelID', mssql.Numeric, parcelID)
-            .input('sender', mssql.VarChar, sender)
-            .input('parcelWeight', mssql.Numeric, parcelWeight)
-            .input('price', mssql.Numeric, price)
-            .input('lat', mssql.Numeric, lat)
-            .input('lng', mssql.Numeric, lng)
-            .input('parcelDescription', mssql.VarChar, parcelDescription)
-            .input('receiverLocation', mssql.VarChar, receiverLocation)
-            .input('receiverPhone', mssql.Numeric, receiverPhone)
-            .input('receiverEmail', mssql.VarChar, receiverEmail)
-            .input('deliveryDate', mssql.VarChar, deliveryDate)
-            .execute('updateParcel')
-
-            return res.json({message:'Parcel updated successfully'})
+        db.exec('updateParcel',{
+            parcelID,
+            sender,
+            parcelWeight,
+            price,
+            lat,
+            lng,
+            senderLat,
+            senderLng,
+            parcelDescription,
+            receiverLocation,
+            receiverPhone,
+            receiverEmail,
+            deliveryDate
+        })
+        return res.json({message:'Parcel updated successfully'})
     } catch (error) {
         if(error instanceof RequestError){
             res.json({message: error})
         }
         console.log(error);
         
+    }
+}
+
+export const updateParcelStatus = async(req:customParcel, res:Response)=>{
+    try {
+        const parcelID= req.params.parcelID
+        const {status}=req.body
+
+        db.exec('updateStatus',{
+            parcelID,
+            status
+        })
+        return res.json({message:'Parcel updated successfully...'})
+    } catch (error) {
+        if(error instanceof RequestError){
+            res.json({message: error.message})
+        }
+        else{
+            res.json({message:error})
+        }
     }
 }

@@ -65,23 +65,6 @@ export class ApiService {
     )
   }
 
-
-  /**
-   * using places api
-   */
-   loadPlaces(search: string): Observable<MapPlace> {
-    return this.http.get<MapPlace>(
-      'https://maps.googleapis.com/maps/api/place/findplacefromtext/json',
-      {
-        params: {
-          input: search,
-          inputtype: 'textquery',
-          key: 'AIzaSyBuvVn5bGQtP3kSYSewu9Gb6_jZ7ySO75A'
-        }
-      }
-    )
-  }
-
   setLocation(place:place):Observable<{message:string}>{
     return this.http.post<{message:string}>('http://localhost:4400/user/setlocation',place)
   }
@@ -97,5 +80,11 @@ export class ApiService {
   editParcel(parcelID:number, parcel:parcel):Observable<{message:string}>{
     return this.http.put<{message:string}>(`http://localhost:4400/parcel/update/${parcelID}`, parcel)
   }
+
+
+  updateParcelStatus(parcelID:number, status:string):Observable<{message:string}>{
+    return this.http.put<{message:string}>(`http://localhost:4400/parcel/updateStatus/${parcelID}`, status)
+  }
+
 }
 

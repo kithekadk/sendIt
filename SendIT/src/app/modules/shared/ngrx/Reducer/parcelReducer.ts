@@ -20,6 +20,9 @@ export interface parcelState{
 
     editParcelSuccess:string
     editParcelFailure:string
+
+    reviseStatusSuccess:string
+    reviseStatusFailure:string
 }
 
 const initialParcelState: parcelState={
@@ -38,6 +41,9 @@ const initialParcelState: parcelState={
 
     editParcelSuccess: '',
     editParcelFailure: '',
+
+    reviseStatusSuccess:'',
+    reviseStatusFailure: '',
 }
 
 const getParcelsFeatureState = createFeatureSelector<parcelState>('parcel')
@@ -110,5 +116,16 @@ export const parcelReducer= createReducer(
     }),
     on(Actions.editParcelFailure, (state, action):parcelState => {
         return{...state, editParcelFailure:action.error}
+    }),
+    /**
+     * revising status eg delivered
+     */
+    on(Actions.reviseStatusSuccess, (state, action):parcelState => {
+        return{...state, reviseStatusSuccess: action.message}
+    }),
+    on(Actions.reviseStatusFailure, (state, action):parcelState => {
+        return{...state, reviseStatusFailure:action.error}
     })
+
+
 )

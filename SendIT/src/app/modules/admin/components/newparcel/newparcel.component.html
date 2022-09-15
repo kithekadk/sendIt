@@ -83,14 +83,8 @@
         <div>
           <label>Receiver Location</label><br />  
           
-            <input class="form-control" formControlName="receiverLocation" ngx-google-places-autocomplete (onAddressChange)="AddressChange($event)" />
+            <input formControlName="receiverLocation" style="width: 16vw" ngx-google-places-autocomplete (onAddressChange)="AddressChange($event)" />
        
-          <!-- <select style="width: 16vw" type="text" formControlName="receiverLocation">
-            <option selected>--Select receiver location--</option>
-            <option *ngFor="let email of emails">
-              {{ email.email }}
-            </option>
-          </select> -->
           <p
             style="color: red"
             *ngIf="
@@ -106,7 +100,7 @@
           <label for="">Receiver Phone No</label><br />
           <input
             style="width: 16vw"
-            type="number"
+            type="tel"
             formControlName="receiverPhone"
             minlength="10"
           />

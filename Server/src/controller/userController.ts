@@ -7,7 +7,8 @@ import bcrypt from 'bcrypt'
 import  jwt  from "jsonwebtoken";
 import { ExtendedUser } from "../middleware/verifyToken";
 import { userValidator } from "../helpers/user/userValidator";
-
+import Connection from "../databaseHelpers/dbhelpers";
+const db = new Connection
 
 export const registerUser = async(req:customUser, res:Response)=>{
 try {
@@ -20,7 +21,9 @@ try {
             message:error.details[0].message
         })
     }
-
+    // db.exec('createUser',{
+    //     fullName, userName, email, phoneNumber, location,hashedPwd  
+    // })
     const pool = await mssql.connect(sqlConfig)
     await pool.request()
     .input('fullName', mssql.VarChar, fullName)
@@ -39,9 +42,7 @@ try {
     }
     else{
         res.status(501).json({message: 'internal server error'})
-    }
-    
-    
+    }   
 }
 
 }
@@ -98,13 +99,7 @@ export const checkUserRole = async(req:ExtendedUser, res:Response)=>{
 //Fetching all clients
 export const getClients = async (req: customUser, res:Response)=>{
     try {
-
-
-        const pool = await mssql.connect(sqlConfig)
-        const users=(await pool.request()
-
-        .execute('getClients')).recordset
-
+        const users = (await db.exec('getClients')).recordset
         return res.status(201).json(
             users
         )
@@ -114,22 +109,19 @@ export const getClients = async (req: customUser, res:Response)=>{
         }
     }
 }
-
+/**]
+ * Listening to users location
+ */
 export const setLocation= async(req:customUser, res:Response)=>{
     try {
         const {email, lat, lng}= req.body
-
-        const pool = await mssql.connect(sqlConfig)
-        await pool.request()
-        .input('email', mssql.VarChar, email)
-        .input('lat', mssql.Numeric, lat)
-        .input('lng', mssql.Numeric, lng)
-        .execute('setLocation')
+        db.exec('setLocation',{
+            email, lat, lng
+        })
 
         return res.json({message:'location set successfully'})
 
-
-    } catch (error) {
+        } catch (error) {
         if(error instanceof RequestError){
             res.json({message: error.message})
         }

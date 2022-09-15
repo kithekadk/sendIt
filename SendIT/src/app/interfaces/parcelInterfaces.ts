@@ -5,6 +5,8 @@ export interface parcel{
     price:string
     lat:number
     lng:number
+    senderLat:number
+    senderLng:number
     parcelDescription:string
     receiverLocation:string
     receiverPhone:number

@@ -69,13 +69,16 @@ export class ParcelsComponent implements OnInit {
   filterStatus(status:string) {
     this.parcels2$ = this.parcels$.pipe(
       map( parcels=>{
-        let parcel = parcels.filter(el=>el.status === status || el.status=='')
+        let parcel = parcels.filter(el=>el.status === status || el.status==='')
         return parcel
       })
     )
     return this.parcels2$
   }
 
+  toAll(){
+    this.router.navigate(['/admin/parcels'])
+  }
   /**
    * 
    * @param displaying the map

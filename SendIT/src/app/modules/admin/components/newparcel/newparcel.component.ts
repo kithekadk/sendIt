@@ -17,8 +17,8 @@ import * as userActions from '../../../shared/ngrx/Actions/userActions';
 })
 export class NewparcelComponent implements OnInit {
   receiverAddress: string = '';
-  receiverLatitude: string = '';
-  receiverLongitude: string = '';
+  receiverLatitude!: number;
+  receiverLongitude!: number;
   
 
   AddressChange(address: any) {
@@ -55,6 +55,8 @@ missing=false
       sender: [null, [Validators.required]],
       lat: [null, [Validators.required]],
       lng: [null, [Validators.required]],
+      senderLat: [null, [Validators.required]],
+      senderLng: [null, [Validators.required]],
       parcelWeight: [null, [Validators.required]],
       price: [null, [Validators.required]],
       parcelDescription: [null, [Validators.required]],
@@ -66,7 +68,9 @@ missing=false
 
     this.form.get('parcelWeight')!.valueChanges.subscribe(res=>{
       this.form.get('price')!.setValue(res*350)
-      
+    this.form.get('senderLat')?.setValue(this.receiverLatitude)
+    this.form.get('senderLng')?.setValue(this.receiverLongitude)
+
     })
     
     this.store.dispatch(userActions.loadUsers())
@@ -100,6 +104,8 @@ missing=false
 
   createParcel(){
     if(this.form){
+      console.log(this.form.value);
+      
       this.store.dispatch(parcelActions.createParcel({parcel:{...this.form.value}}))
       this.store.dispatch(parcelActions.loadParcels())
       this.filled=true

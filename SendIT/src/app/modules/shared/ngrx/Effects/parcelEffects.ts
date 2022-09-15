@@ -75,4 +75,20 @@ export class parcelEffects {
       )
     );
   });
+
+  updateParcelStatus = createEffect(() => {
+    return this.actions.pipe(
+      ofType(parcelActions.reviseStatus),
+      mergeMap((action) =>
+        this.api.updateParcelStatus(action.id, action.status).pipe(
+          map((message) =>
+            parcelActions.reviseStatusSuccess({ message: message.message })
+          ),
+          catchError((error) =>
+            of(parcelActions.reviseStatusFailure({ error: error }))
+          )
+        )
+      )
+    );
+  });
 }

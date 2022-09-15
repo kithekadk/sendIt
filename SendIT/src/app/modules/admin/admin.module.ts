@@ -12,7 +12,7 @@ import { SharedModule } from '../shared/shared.module';
 import {NgxPaginationModule } from 'ngx-pagination';
 import { EditParcelComponent } from './components/edit-parcel/edit-parcel.component';
 import { ViewOneComponent } from './components/view-one/view-one.component'
-// import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 
 @NgModule({
   declarations: [
@@ -32,8 +32,7 @@ import { ViewOneComponent } from './components/view-one/view-one.component'
     SharedModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    // GooglePlaceModule
-   
+    GooglePlaceModule,
   ]
 })
 export class AdminModule { }

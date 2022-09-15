@@ -46,14 +46,14 @@
     </div>
     <div class="updateStatus">
       <h3>Update Status</h3>
-      <form class="form">
+      <form class="form" [formGroup]="form" (ngSubmit)="updateStatus()">
         <div class="status">
           <label for="">Status</label><br />
-          <select name="" id="">
-            <option value="">Select an option</option>
-            <option value="">In Transit</option>
-            <option value="">Awaiting Pick-up</option>
-            <option value="">Delivered</option>
+          <select formControlName="status">
+            <option>Select an option</option>
+            <option>In Transit</option>
+            <option>Awaiting Pick-up</option>
+            <option>Delivered</option>
           </select>
         </div>
         <br />

@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -36,8 +37,8 @@ export class ViewOneComponent implements OnInit {
   filter2 =''
 
   constructor(private router: Router, private store: Store<parcelState>, private route:ActivatedRoute,
-    private api:ApiService) {}
-
+    private fb:FormBuilder) {}
+form!: FormGroup
   /**
    * fetching all parcels
    */
@@ -45,9 +46,13 @@ export class ViewOneComponent implements OnInit {
   oneParcel2$ = this.store.select(getParcels)
 
 
-  markerPositions: google.maps.LatLngLiteral[] = [];
+ 
+
   ngOnInit(): void {
-    
+    this.form = this.fb.group({
+      status:[null, [Validators.required]]
+    })
+
     this.store.dispatch(ParcelActions.loadParcels())
     this.route.params.subscribe(params=>{
       this.id=Number(params['id']) 
@@ -56,18 +61,24 @@ export class ViewOneComponent implements OnInit {
     this.getmyParcel()
     
   }
-
+ markerPositions: google.maps.LatLngLiteral[] = [];
   getmyParcel(){
     this.oneParcel$ = this.oneParcel2$.pipe(
       map(res=>{
         
         let parcel = res.filter(el=>el.parcelID==this.id)
       console.log(parcel);
-        const coords = res.map((user)=>({
+        const coords = parcel.map((user)=>({
         lat: user.lat,
         lng: user.lng,
       })) 
-        this.markerPositions = coords
+        const coordsReceiver = parcel.map((user)=>({
+        lat: user.senderLat,
+        lng: user.senderLng,
+      })) 
+        this.markerPositions = coords.concat(coordsReceiver)
+        console.log(this.markerPositions);
+        
         return parcel
       })
     )
@@ -95,5 +106,13 @@ export class ViewOneComponent implements OnInit {
   // }
   openInfoWindow(marker: MapMarker) {
     if (this.infoWindow != undefined) this.infoWindow.open(marker);
+  }
+
+  /**
+   * UPDATE STATUS
+   */
+  updateStatus(){
+    this.store.dispatch(ParcelActions.reviseStatus({id:this.id, status:{...this.form.value}}))
+    this.store.dispatch(ParcelActions.loadParcels())
   }
 }

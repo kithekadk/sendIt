@@ -31,7 +31,6 @@ created=false
 
 
   onRegister(){
-    
     this.store.dispatch(UserActions.addUser({newUser:{...this.form.value}}))
     this.created=true
     setTimeout(() => {

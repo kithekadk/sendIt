@@ -12,11 +12,11 @@
 </div>
 
 <div class="flex options">
-  <div class="card card-header">All Parcels</div>
+  <div class="card card-header" (click)="filterStatus('')">All Parcels</div>
   <div class="card card-header" (click)="filterStatus('In Transit')">
     In Transit
   </div>
-  <div class="card card-header" (click)="filterStatus('Awaiting Pickup')">
+  <div class="card card-header" (click)="filterStatus('Awaiting Pick-up')">
     Awaiting Pickup
   </div>
   <div class="card card-header" (click)="filterStatus('Delivered')">
@@ -45,12 +45,15 @@
       <div class="flex" style="justify-content: space-between">
         <h6>Phone Number: {{ parcel.receiverPhone }}</h6>
         <div>
-          <i routerLink="/admin/update/{{parcel.parcelID}}"
+          <i
+            routerLink="/admin/update/{{ parcel.parcelID }}"
             style="font-size: 20px; color: rgb(0, 255, 0)"
             class="fa-solid fa-pen-to-square"
           ></i
           >&nbsp;
-          <button class="btn btn-warning" (click)="oneParcel(parcel.parcelID)">View</button>
+          <button class="btn btn-warning" (click)="oneParcel(parcel.parcelID)">
+            View
+          </button>
         </div>
       </div>
     </div>
