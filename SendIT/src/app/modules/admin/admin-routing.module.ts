@@ -5,6 +5,7 @@ import { ClientsComponent } from './components/clients/clients.component';
 import { EditParcelComponent } from './components/edit-parcel/edit-parcel.component';
 import { NewparcelComponent } from './components/newparcel/newparcel.component';
 import { ParcelsComponent } from './components/parcels/parcels.component';
+import { ProfileComponent } from './components/profile/profile.component';
 import { ViewOneComponent } from './components/view-one/view-one.component';
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
     {path:'new', component: NewparcelComponent},
     {path:'update/:id', component: EditParcelComponent},
     {path:'view/:id', component: ViewOneComponent},
+    {path:'profile', component: ProfileComponent}
   ]}
 ];
 

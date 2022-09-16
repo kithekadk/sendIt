@@ -15,7 +15,7 @@ const delivered = async()=>{
     console.log(users);
 
     for (let user of users){
-        ejs.renderFile('templates/delivered.ejs',{name:'project.firstName'}, async(error,data)=>{
+        ejs.renderFile('templates/delivered.ejs',{parcel:user.parcelID}, async(error,data)=>{
             let mailOptions = {
                 from: process.env.EMAIL as string ,
                 to: user.receiverEmail, 

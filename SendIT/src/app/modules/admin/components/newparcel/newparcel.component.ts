@@ -70,6 +70,7 @@ missing=false
       this.form.get('price')?.setValue(res*350)
     this.form.get('senderLat')?.setValue(this.receiverLatitude)
     this.form.get('senderLng')?.setValue(this.receiverLongitude)
+    this.form.get('receiverLocation')?.setValue(this.receiverAddress)
 
     })
     

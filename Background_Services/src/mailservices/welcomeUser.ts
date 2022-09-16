@@ -31,7 +31,7 @@ const welcomeClient = async () => {
         let mailOptions = {
           from: process.env.EMAIL as string,
           to: client.email,
-          subject: "Task Assigned",
+          subject: "Welcome Onboard",
           html: data,
           attachment: [
             {

@@ -67,7 +67,6 @@ form!: FormGroup
       map(res=>{
         
         let parcel = res.filter(el=>el.parcelID==this.id)
-      console.log(parcel);
         const coords = parcel.map((user)=>({
         lat: user.lat,
         lng: user.lng,

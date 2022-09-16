@@ -59,13 +59,13 @@ export const deleteParcels = async (req: customParcel, res: Response)=>{
     try{
         const parcelID = req.params.parcelID
         db.exec('deleteParcel',{parcelID})
-       
+        
         return res.json({message:'Parcel deleted successfully'})
     } catch(error){
         if(error instanceof RequestError){
-            res.json({message: error})
+            res.status(400).json({message:'No parcels with the given ID'})
         }else{
-            res.json({message:error})
+            res.status(501).json({message:'Internal server error'})
         }
     }
 }
