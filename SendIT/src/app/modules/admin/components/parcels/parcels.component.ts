@@ -69,7 +69,7 @@ export class ParcelsComponent implements OnInit {
   filterStatus(status:string) {
     this.parcels2$ = this.parcels$.pipe(
       map( parcels=>{
-        let parcel = parcels.filter(el=>el.status === status || el.status==='')
+        let parcel = parcels.filter(el=>status===''?true:el.status === status || el.status==='')
         return parcel
       })
     )

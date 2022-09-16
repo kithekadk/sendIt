@@ -66,8 +66,8 @@ missing=false
       deliveryDate: [null, [Validators.required]]
     })
 
-    this.form.get('parcelWeight')!.valueChanges.subscribe(res=>{
-      this.form.get('price')!.setValue(res*350)
+    this.form.get('parcelWeight')?.valueChanges.subscribe(res=>{
+      this.form.get('price')?.setValue(res*350)
     this.form.get('senderLat')?.setValue(this.receiverLatitude)
     this.form.get('senderLng')?.setValue(this.receiverLongitude)
 

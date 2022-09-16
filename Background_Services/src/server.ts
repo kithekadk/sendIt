@@ -1,20 +1,25 @@
 import express from 'express'
 import cron from 'node-cron'
+import awaitingPickUp from './mailservices/awaitingPickup'
+import delivered from './mailservices/delivered'
+import orderCreated from './mailservices/orderCreated'
+import welcomeClient from './mailservices/welcomeUser'
 
-import welcomeCLient from './mailservices/welcomeService';
+
 
 const app = express()
 
 const run =() =>{
-    cron.schedule('*/5 * * * * *', async()=>{
+    cron.schedule('*/10 * * * * *', async()=>{
         console.log("cron is running");
-        await welcomeCLient()
-        
+        await awaitingPickUp()
+        await delivered()
+        await orderCreated()
+        await welcomeClient()   
     })
 }
 run()
 
 app.listen(4450,()=>{
-    console.log("mail server started...");
-    
+    console.log("mail server started...");   
 })

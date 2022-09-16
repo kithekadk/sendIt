@@ -1,8 +1,7 @@
-import { Request, Response } from "express";
-import { customParcel } from "../interfaces/parcelInterfaces";
-import mssql, { RequestError } from 'mssql'
-import { sqlConfig } from "../config/config";
+import { Response } from "express";
+import { customParcel } from "../interfaces/parcelInterfaces";;
 import Connection from "../databaseHelpers/dbhelpers";
+import { RequestError } from "mssql";
 const db= new Connection
 
 export const createParcel = async(req:customParcel, res:Response)=>{
@@ -39,6 +38,8 @@ export const createParcel = async(req:customParcel, res:Response)=>{
         
         if(error instanceof RequestError){
             res.json({error:error})
+        }else{
+            res.json({message:error})
         }
         
     }
@@ -63,6 +64,8 @@ export const deleteParcels = async (req: customParcel, res: Response)=>{
     } catch(error){
         if(error instanceof RequestError){
             res.json({message: error})
+        }else{
+            res.json({message:error})
         }
     }
 }
@@ -104,7 +107,9 @@ export const updateParcel = async(req: customParcel, res:Response)=>{
         if(error instanceof RequestError){
             res.json({message: error})
         }
-        console.log(error);
+        else{
+            res.json({message:error})
+        }
         
     }
 }

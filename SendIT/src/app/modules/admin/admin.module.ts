@@ -13,6 +13,7 @@ import {NgxPaginationModule } from 'ngx-pagination';
 import { EditParcelComponent } from './components/edit-parcel/edit-parcel.component';
 import { ViewOneComponent } from './components/view-one/view-one.component'
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { GooglePlaceModule } from "ngx-google-places-autocomplete";
     NewparcelComponent,
     EditParcelComponent,
     ViewOneComponent,
+    ProfileComponent,
     
   ],
   imports: [

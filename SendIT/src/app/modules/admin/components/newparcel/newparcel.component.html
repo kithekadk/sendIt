@@ -100,7 +100,7 @@
           <label for="">Receiver Phone No</label><br />
           <input
             style="width: 16vw"
-            type="tel"
+            type="number"
             formControlName="receiverPhone"
             minlength="10"
           />
@@ -145,7 +145,7 @@
       <br />
 
       <div>
-        <input class="btn btn-primary" type="submit" value="SUBMIT" [disabled] = form.invalid/>
+        <input class="btn btn-primary" type="submit" value="SUBMIT" [disabled] = !form.valid/>
         <!-- <input class="btn btn-danger" type="reset" value="Reset"  
         data-toggle="modal" data-target="#myModal"/> -->
       </div>

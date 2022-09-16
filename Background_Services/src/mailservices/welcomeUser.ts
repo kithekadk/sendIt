@@ -17,7 +17,7 @@ interface client {
   password: string;
 }
 
-const welcomeCLient = async () => {
+const welcomeClient = async () => {
   const pool = await mssql.connect(sqlConfig);
   const clients: client[] = await (
     await pool.request().execute("WelcomeEmail")
@@ -26,9 +26,7 @@ const welcomeCLient = async () => {
   console.log(clients);
 
   for (let client of clients) {
-    ejs.renderFile(
-      "templates/welcomeUser.ejs",
-      { name: client.fullName, client: client.userName },
+    ejs.renderFile('templates/welcomeUser.ejs',{name: client.fullName},
       async (error, data) => {
         let mailOptions = {
           from: process.env.EMAIL as string,
@@ -56,4 +54,4 @@ const welcomeCLient = async () => {
   }
 };
 
-export default welcomeCLient;
+export default welcomeClient;

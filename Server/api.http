@@ -3,8 +3,8 @@ Content-Type: application/json
 
 {
     "fullName":"Daniel Kitheka",
-    "userName":"Dan1",
-    "email":"kakinyidk1@gmail.com",
+    "userName":"Dan12",
+    "email":"abcd_254_001@yopmail.com",
     "phoneNumber":"12345678",
     "location":"Nyeri, Kenya",
     "password":"12345678"
