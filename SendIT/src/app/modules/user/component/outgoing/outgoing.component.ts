@@ -37,4 +37,16 @@ export class OutgoingComponent implements OnInit {
     )
     return this.myParcels$
   }
+
+  oneParcel(id:number){
+    this.store.dispatch(ParcelActions.SelectedId({parcelID:id}))
+
+    this.router.navigate([`/user/view/${id}`])
+  }
+
+  deleteParcel(id:number){    
+    this.store.dispatch(ParcelActions.deleteParcel({id:id}))
+    this.router.navigate([`/user/sent`])
+    this.store.dispatch(ParcelActions.loadParcels())
+  }
 }

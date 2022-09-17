@@ -1,0 +1,130 @@
+.navbar{
+    background-color: #191341;
+    width: 84vw;
+    display: flex;
+    align-items: center;
+    padding-right: 0.5vw; 
+    position: fixed;
+}
+.flex{
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+    gap:20px;
+}
+.card{
+    width:40vw;
+    background-color: #191341;
+    color:white;
+    border-radius: 5px;
+    text-align: left;
+    margin-left: 20px;
+
+}
+.status{
+    background-color:  #191341;
+}
+.card2{
+    background-color: #191341;
+    color:white;
+    border-radius: 5px;
+    width:41.5vw;
+    margin-top: 0.5vw;
+    margin-left: 0.5vw;
+    padding-left:20px;
+    padding-bottom:10px;
+    cursor: pointer;
+    
+}
+.body-container{
+    margin-top:16.4vh;
+    margin-left: 15vw;
+}
+.card2header{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    padding-right:20px;
+    padding-top:10px;
+}
+.options{
+    
+    position: fixed;
+    margin-top: 0.5vw;
+    margin-left: 0.5vw;
+    top: 8vh;
+    margin-left: 15.5vw;
+    cursor: pointer;
+
+}
+.update{
+    display: flex;
+    margin-left:0.3vw;
+    right: 5px;
+    background-color: #191341;
+    color:white;
+    margin-top: 10vh;
+    
+}
+.displaysection{
+    display: flex;
+    flex-wrap: wrap;
+}
+.maps,#map{
+    width:40vw;
+    min-height: 45vh;
+}
+.mapDisplay{
+    width:40vw;
+    min-height: 45vh;
+}
+.form{
+    padding:20px;
+}
+.updateStatus{
+    height: 38vh;
+    padding:30px;
+    background-color:  #191341;
+}
+.heading{
+    color:white;
+    padding-left: 20px;
+}
+@media screen and (max-width:935px) {
+    .options{
+        display: flex;
+        align-items: center;
+        margin-right: 15px;
+        gap:5px;
+        margin-top:15.4vh;
+        margin-left: 0.5vw;
+        flex-wrap: wrap;
+    }
+    .body-container{
+        margin-top:31.4vh;
+        margin-left: 0vw;
+    }
+    .card-header{
+        display: flex;
+        padding:2px;
+        width:20vw;
+        background-color: rgb(32, 142, 175);
+        color:white;
+        border-radius: 5px;
+        text-align: center; 
+        flex-wrap: wrap;
+        height: 50px;
+    }
+    .card2,.card2 div{
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: 0.5vw;
+    }
+    h6{
+        display:none;
+    }
+    .search{
+        margin-left: 1vw;
+        width:30vw;
+    }
+}

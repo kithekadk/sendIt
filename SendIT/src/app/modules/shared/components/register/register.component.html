@@ -48,10 +48,10 @@
                 <div>
                     <label>Password</label><br>
                         <input type="password" formControlName="password" />
-               
                     <p style="color: red;" *ngIf="!form.get('password')!.valid && form.get('password')!.touched">
                         Must be at least 8 characters long
                     </p>
+
                 </div><br>
                 <div>
                     <button type="submit" class="btn btn-primary" [disabled]="form.invalid">SUBMIT</button>

@@ -20,3 +20,51 @@ li:hover{
     background-color: rgb(32, 142, 175);
     border-radius: 5px;
 }
+
+@media screen and (max-width:935px) {
+    .flex{
+        flex-direction: column;
+    }
+    .dashboard{
+     display: flex;
+     flex-wrap: wrap;
+     width:100vw;
+     flex-direction: row;
+     justify-content: center;
+     align-items: center;
+     min-height: 12vh;
+     max-height: 25vh;
+     top: 0;
+     padding: 2px;
+    } 
+    h3{
+     display: none;
+    }
+ 
+    .options{
+     display: flex;
+     flex-direction: row;
+     justify-content: center;
+     background-color: #0A0A2E;
+     padding:0px;
+     gap:5px;
+     flex-wrap: wrap;
+ }
+ li{
+     list-style-type:none;
+     cursor:pointer;
+     padding:5px;
+ }
+ li:hover{
+     background-color: rgb(32, 142, 175);
+     border-radius: 2px;
+ }
+ .btn{
+     padding: 3px;
+     margin:3px;
+ }
+ .profile{
+     display: none;
+ }
+ 
+ }

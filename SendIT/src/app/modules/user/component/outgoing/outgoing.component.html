@@ -9,12 +9,19 @@
     <div class="card2" *ngFor="let parcel of parcels">
         <div class="card2header">  
             <div class="flex"><h6>To:</h6></div> 
-            <a class="btn btn-primary">{{parcel.status}}</a>
+            <div>
+                <i
+                (click)="deleteParcel(parcel.parcelID)"
+                style="font-size: 20px; color: red"
+                class="fa-solid fa-trash"
+                ></i>&nbsp;
+                <a class="btn btn-primary">{{parcel.status}}</a>
+            </div>
         </div>
         <h6>Parcel ID:{{parcel.parcelID}}</h6>
         <h6>Sender Email: {{parcel.sender}}</h6>
         <div class="flex" style="justify-content: space-between;"><h6>{{parcel.parcelDescription}}</h6>
-            <button class="btn btn-warning">View</button>
+            <button class="btn" (click)="oneParcel(parcel.parcelID)" style="background-color: rgb(0, 255, 0)">View</button>
         </div>
     </div>
 </div>

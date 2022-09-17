@@ -5,6 +5,8 @@
         <a class="btn btn-danger" (click)="onLogout()">Logout</a>
     </div>
 </div>
+
+
 <div *ngIf="myParcels$|async as parcels">
     <div class="card2" *ngFor="let parcel of parcels">
         <div class="card2header">  
@@ -14,7 +16,12 @@
         <h6>Parcel ID:{{parcel.parcelID}}</h6>
         <h6>Sender Email: {{parcel.sender}}</h6>
         <div class="flex" style="justify-content: space-between;"><h6>{{parcel.parcelDescription}}</h6>
-            <button class="btn btn-warning">View</button>
+            <button (click)="oneParcel(parcel.parcelID)" style="background-color: rgb(0, 255, 0)">View</button>
         </div>
     </div>
 </div>
+
+
+<ng-template>
+    You Do not have incoming Parcels right now
+</ng-template>

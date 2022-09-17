@@ -38,3 +38,31 @@
     margin-left: 0.5vw;
 
 }
+
+@media screen and (max-width:935px) {
+    .navbar{
+        background-color: #191341;
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        margin-left: 0vw;
+    }
+    .flex{
+        display: flex;
+        align-items: center;
+        margin-right: 0px;
+        gap:20px;
+        padding-right: 20px;
+    }
+    .card2{
+        background-color: #191341;
+        color:white;
+        border-radius: 5px;
+        width:60vw;
+        margin-top: 0.5vw;
+        margin-left: 0.5vw;
+        padding-left:20px;
+        padding-bottom:10px;
+        cursor: pointer;
+    }
+}
