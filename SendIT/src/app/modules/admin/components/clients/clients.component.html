@@ -17,7 +17,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let user of users | search:filter | paginate :{itemsPerPage:5,currentPage:pageNumber};">
+            <tr *ngFor="let user of users | search:filter | paginate :{itemsPerPage:11,currentPage:pageNumber};">
                 <td scope="col">{{user.clientID}}</td>
                 <td scope="col">{{user.fullName}}</td>
                 <td scope="col" class="hidethis">{{user.email}}</td>

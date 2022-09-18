@@ -10,3 +10,4 @@ lng INT DEFAULT 36.78,
 password VARCHAR(200) NOT NULL,
 welcome VARCHAR(200) DEFAULT 'NO',
 role VARCHAR(200) DEFAULT 'user')
+

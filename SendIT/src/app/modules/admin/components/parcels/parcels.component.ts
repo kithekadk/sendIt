@@ -100,14 +100,6 @@ export class ParcelsComponent implements OnInit {
   openInfoWindow(marker: MapMarker) {
     if (this.infoWindow != undefined) this.infoWindow.open(marker);
   }
-/**
- * toggle view on click
- */
-  view(id:number) {
-
-    this.viewOne = !this.viewOne;
-    this.oneParcel(id)
-  }
 
   /**
    *  delete a parcel

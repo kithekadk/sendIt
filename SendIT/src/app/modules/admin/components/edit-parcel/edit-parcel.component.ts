@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import * as ParcelActions from '../../../shared/ngrx/Actions/parcelActions'
 import { getParcels, parcelState } from 'src/app/modules/shared/ngrx/Reducer/parcelReducer';
 import { getUsers } from 'src/app/modules/shared/ngrx/Reducer/userReducer';
-import { finalize, map } from 'rxjs';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-edit-parcel',
@@ -39,11 +39,9 @@ filled = false
     this.loadEmails()
 
     this.store.dispatch(ParcelActions.loadParcels())
-
+    this.userEmails$ = this.store.select(getUsers)
     this.route.params.subscribe(params=>{
       this.id=params['id']
-      console.log(this.id);
-      
     })
     
 
@@ -51,6 +49,8 @@ filled = false
       sender: [null, [Validators.required]],
       lat: [null, [Validators.required]],
       lng: [null, [Validators.required]],
+      senderLat: [null, [Validators.required]],
+      senderLng: [null, [Validators.required]],
       parcelWeight: [null, [Validators.required]],
       price: [null, [Validators.required]],
       parcelDescription: [null, [Validators.required]],
@@ -64,15 +64,19 @@ filled = false
       this.form.get('price')!.setValue(res*350)
       
     })
-    this.store.dispatch(ParcelActions.SelectedId({parcelID:this.id}))
 
     this.store.select(getParcels).subscribe(res=>{
-      res.filter(parcel=>{
+      let thisParcel = res.filter(parcel=>parcel.parcelID==this.id)
+      if(thisParcel){
+        thisParcel.find(parcel=>{
+        parcel.parcelID==this.id        
         if(parcel){
         this.form.patchValue({
           sender: parcel.sender,
           lat: parcel.lat,
           lng:parcel.lng,
+          senderLat:parcel.senderLat,
+          senderLng:parcel.senderLng,
           parcelWeight: parcel.parcelWeight,
           price:parcel.price,
           parcelDescription: parcel.parcelDescription,
@@ -83,6 +87,8 @@ filled = false
         })
       }
       })
+      }
+
 
     })
   }

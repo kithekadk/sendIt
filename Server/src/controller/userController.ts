@@ -1,4 +1,5 @@
-import { Request, Response } from "express";
+import { Response } from "express";
+import {isEmpty} from 'lodash'
 import { customUser, User } from "../interfaces/userInterfaces";
 import mssql, { RequestError } from 'mssql'
 import { sqlConfig } from "../config/config";
@@ -12,27 +13,28 @@ const db = new Connection
 
 export const registerUser = async(req:customUser, res:Response)=>{
 try {
-    const {fullName, userName, email, phoneNumber, location, password}=req.body
+    const {fullName, userName, email, phoneNumber, password}=req.body
 
     const {error, value}= userValidator.validate(req.body)
-    const hashedPwd = await bcrypt.hash(password,8)
     if(error){
         return res.status(400).json({
             message:error.details[0].message
         })
     }
-    // db.exec('createUser',{
-    //     fullName, userName, email, phoneNumber, location,hashedPwd  
-    // })
-    const pool = await mssql.connect(sqlConfig)
-    await pool.request()
-    .input('fullName', mssql.VarChar, fullName)
-    .input('userName', mssql.VarChar, userName)
-    .input('email', mssql.VarChar, email)
-    .input('phoneNumber', mssql.Numeric, phoneNumber)
-    .input('location', mssql.VarChar, location)
-    .input('password', mssql.VarChar, hashedPwd)
-    .execute('createUser')
+    const userNameTaken= (await db.query(`SELECT * FROM dbo.CLIENTS WHERE userName='${userName}'`)).recordset
+    const emailTaken= (await db.query(`SELECT * FROM dbo.CLIENTS WHERE email='${email}'`)).recordset
+
+    if(!isEmpty(userNameTaken)){
+        return res.status(404).json({message: 'This username is taken'})
+    }
+    if(!isEmpty(emailTaken)){
+        return  res.status(404).json({message: 'An account exists with that email'})
+    }
+
+    const hashedPwd = await bcrypt.hash(password,8)
+    db.exec('createUser',{
+        fullName, userName, email, phoneNumber, password:hashedPwd
+    })
 
     return res.json({message: 'Account created successfully'})
 
@@ -58,16 +60,14 @@ export const loginUser = async (req:customUser, res:Response)=>{
             })
         }
 
-        const pool = await mssql.connect(sqlConfig);
-
-        const user:User[] = ( await pool.request()
-        .input('email', mssql.VarChar, email)
-        .execute('loginUser')).recordset
+        const user:User[]=(await db.exec('loginUser',{
+            email
+        })).recordset
 
         const validPassword = await bcrypt.compare(password, user[0].password)
         if (!validPassword){
             return res.status(400).json({
-                message:"invalid password"
+                message:"Invalid password"
             })
         }
         const logins = user.map(item =>{
@@ -100,13 +100,13 @@ export const checkUserRole = async(req:ExtendedUser, res:Response)=>{
 export const getClients = async (req: customUser, res:Response)=>{
     try {
         const users = (await db.exec('getClients')).recordset
-        return res.status(201).json(
+        return res.status(200).json(
             users
         )
     } catch (error) {
-        if(error instanceof RequestError){
-            res.json({message: error.message})
-        }
+ 
+            res.status(500).json({message: 'Internal server error'})
+
     }
 }
 /**]
@@ -122,6 +122,20 @@ export const setLocation= async(req:customUser, res:Response)=>{
         return res.json({message:'location set successfully'})
 
         } catch (error) {
+        res.status(500).json({message: 'Internal server error'})
+    }
+}
+
+export const updateUser = async(req:customUser, res:Response)=>{
+    try {
+        const clientID=req.params.clientID
+        const {fullName, phoneNumber,password}= req.body
+        const hashedPwd = await bcrypt.hash(password,8)
+        db.exec('updateUser',{
+            clientID,fullName, phoneNumber,password:hashedPwd
+        })
+        return res.status(200).json({message:'user updated successfully'})
+    } catch (error) {
         if(error instanceof RequestError){
             res.json({message: error.message})
         }

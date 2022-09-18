@@ -21,6 +21,9 @@ export interface userState {
 
   roleCheckSuccess: string;
   roleCheckFailure: string;
+
+  updateUserSuccess:string;
+  updateUserFailure:string;
 }
 
 const initialState: userState = {
@@ -36,6 +39,9 @@ const initialState: userState = {
 
   roleCheckSuccess: '',
   roleCheckFailure: '',
+
+  updateUserSuccess:'',
+  updateUserFailure:'',
 };
 
 const getUsersFeatureState = createFeatureSelector<userState>('user');
@@ -102,5 +108,14 @@ export const userReducer = createReducer(
   }),
   on(Actions.loadRoleFailure, (state, action): userState => {
     return { ...state, roleCheckFailure: action.error };
-  })
-);
+  }),
+  /**
+   * update user profile
+   */
+  on(Actions.updateUserSuccess, (state, action):userState=>{
+    return {...state, updateUserSuccess:action.message};
+  }),
+  on(Actions.updateUserFailure, (state, action):userState=>{
+    return {...state, updateUserFailure:action.error};
+  }),
+)

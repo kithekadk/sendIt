@@ -2,12 +2,11 @@ import { Request } from "express"
 
 export interface customUser extends Request{
     body:{
-        clientID:string
+        clientID: number
         fullName:string
         userName:string
         email:string
         phoneNumber:number
-        location:string
         lat:number
         lng:number
         password:string

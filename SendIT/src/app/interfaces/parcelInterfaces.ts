@@ -1,4 +1,5 @@
 export interface parcel{
+    find(arg0: (parcel: any) => void): unknown
     sender:string
     // senderLocation:string
     parcelWeight:string

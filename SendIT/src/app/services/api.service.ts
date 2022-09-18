@@ -46,13 +46,7 @@ export class ApiService {
     return res.role
   }))
   }
-/**
- * 
- * @param parcel 
- * 
- * ******************************
- * @all about parcels
- */
+
   createParcel(parcel:parcel):Observable<{message:string}>{
     return this.http.post<{message:string}>('http://localhost:4400/parcel/create',parcel)
   }
@@ -86,5 +80,8 @@ export class ApiService {
     return this.http.put<{message:string}>(`http://localhost:4400/parcel/updateStatus/${parcelID}`, status)
   }
 
+  editUser(userID:number, user:user):Observable<{message:string}>{
+    return this.http.put<{message:string}>(`http://localhost:4400/user/update/${userID}`,user)
+  }
 }
 

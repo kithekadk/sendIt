@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, mergeMap, of } from 'rxjs';
+import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 import * as parcelActions from '../Actions/parcelActions';
 
@@ -20,7 +20,7 @@ export class parcelEffects {
       mergeMap((action) =>
         this.api.createParcel(action.parcel).pipe(
           map((res) =>
-            parcelActions.createParcelSuccess({ message: res.message })
+            parcelActions.createParcelSuccess({message: res.message})
           ),
           catchError((error) =>
             of(parcelActions.createParcelFailure({ error }))
@@ -35,6 +35,7 @@ export class parcelEffects {
       ofType(parcelActions.loadParcels),
       mergeMap(() =>
         this.api.getAllParcels().pipe(
+          tap(res=>res),
           map((parcels) => parcelActions.loadParcelsSuccess({ parcels })),
           catchError((error) =>
             of(parcelActions.loadParcelsFailure({ error: error }))
@@ -49,6 +50,7 @@ export class parcelEffects {
       ofType(parcelActions.deleteParcel),
       mergeMap((action) =>
         this.api.deleteParcel(action.id).pipe(
+          tap(res=>res),
           map((message) =>
             parcelActions.delParcelSuccess({ message: message.message })
           ),

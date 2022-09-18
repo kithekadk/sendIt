@@ -23,9 +23,8 @@ created=false
       fullName: [null,Validators.required],
       userName: [null,Validators.required],
       email: [null,[Validators.required, Validators.email]],
-      phoneNumber: [null,[Validators.minLength(8), Validators.required]],
-      location: [null, Validators.required],
-      password: [null,Validators.required],
+      phoneNumber: [null,Validators.required],
+      password: [null,[Validators.required, Validators.minLength(8)]],
     })
   }
 

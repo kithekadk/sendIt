@@ -26,6 +26,7 @@
                         <p style="color: red;" *ngIf="!form.get('email')!.valid && form.get('email')!.touched">
                             Input valid email
                         </p>
+
                     </div>
                     <div>
                         <label>Phone Number</label><br>
@@ -35,16 +36,7 @@
                         </p>
                     </div>
                 </div>
-                <div>
-                    <label>Location</label><br>
-                        <input type="text" formControlName="location" />
-                    <p style="color: red;" *ngIf="!form.get('location')!.valid && form.get('location')!.touched">
-                        Input valid location
-                    </p>
-                </div>
-                <div>
 
-                </div>
                 <div>
                     <label>Password</label><br>
                         <input type="password" formControlName="password" />

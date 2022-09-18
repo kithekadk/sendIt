@@ -1,6 +1,6 @@
 
 CREATE PROCEDURE createUser (@fullName VARCHAR(200), 
-@userName VARCHAR(200), @email VARCHAR(200) , @phoneNumber VARCHAR(200),
+@userName VARCHAR(200), @email VARCHAR(200) , @phoneNumber INT,
 @location VARCHAR(200), @password VARCHAR(200))
 AS
 BEGIN

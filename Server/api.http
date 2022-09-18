@@ -3,10 +3,9 @@ Content-Type: application/json
 
 {
     "fullName":"Daniel Kitheka",
-    "userName":"Dan12",
-    "email":"abcd_254_001@yopmail.com",
-    "phoneNumber":"12345678",
-    "location":"Nyeri, Kenya",
+    "userName":"Dan123",
+    "email":"abcd_254_003@yopmail.com",
+    "phoneNumber":12345678,
     "password":"12345678"
 }
 
@@ -15,7 +14,7 @@ POST http://localhost:4400/user/login
 Content-Type: application/json
 
 {
-    "email":"kakinyidk1@gmail.com", 
+    "email":"kakinyidk@gmail.com", 
     "password":"12345678"
 }
 
@@ -28,16 +27,16 @@ POST http://localhost:4400/parcel/create
 Content-Type: application/json
 
 {
-        "sender":"dan@gmail.com",
-        "parcelWeight":"2",
-        "price":"200",
+        "sender":"alex123@gmail.com",
+        "parcelWeight":2,
+        "price":200,
         "lat":-1.567,
         "lng":36.45,
         "senderLat":-1.45,
         "senderLng":40.45,
         "parcelDescription":"test",
         "receiverLocation":"test",
-        "receiverPhone":"0745244141",
+        "receiverPhone":"745244141",
         "receiverEmail":"abc@gmail.com",
         "deliveryDate":"22122022"
 }
@@ -63,23 +62,25 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:4400/parcel/delete/22433432
-Content-Type: :application/json
+GET http://localhost:4400/parcel/delete/3024
+Content-Type: application/json
 
 ###
-PUT http://localhost:4400/parcel/update/1006
+PUT http://localhost:4400/parcel/update/3023
 Content-Type: application/json
 
 {       
-        "sender":"abcd@gmail.com",
-        "parcelWeight":"3",
-        "price":"500",
-        "lat":"-1.567",
-        "lng":"36.45",
-        "parcelDescription":"string",
-        "receiverLocation":"string",
-        "receiverPhone":"244141",
-        "receiverEmail":"XYZ@GMAIL.COM",
+        "sender":"xyz@gmail.com",
+        "parcelWeight":3,
+        "price":750,
+        "lat":-1.567,
+        "lng":36.45,
+        "senderLat":-1.45,
+        "senderLng":40.45,
+        "parcelDescription":"Electronics",
+        "receiverLocation":"Nairobi",
+        "receiverPhone":7072441418,
+        "receiverEmail":"abcde@GMAIL.COM",
         "deliveryDate":"2213321"
 }
 
@@ -89,4 +90,14 @@ Content-Type: application/json
 
 {
     "status":"Delivered"
+}
+
+###
+PUT http://localhost:4400/user/update/1
+Content-Type: application/json
+
+{
+    "fullName":"Daniel Kitheka",
+    "phoneNumber":"01234567891",
+    "password":"12345678"
 }

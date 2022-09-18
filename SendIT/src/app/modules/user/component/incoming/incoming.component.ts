@@ -74,4 +74,10 @@ export class IncomingComponent implements OnInit {
 
     this.router.navigate([`/user/view/${id}`])
   }
+
+  deleteParcel(id:number){    
+    this.store.dispatch(ParcelActions.deleteParcel({id:id}))
+    this.router.navigate([`/user/received`])
+    this.store.dispatch(ParcelActions.loadParcels())
+  }
 }

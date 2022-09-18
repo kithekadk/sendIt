@@ -8,7 +8,7 @@
 <div *ngIf="myParcels$|async as parcels">
     <div class="card2" *ngFor="let parcel of parcels">
         <div class="card2header">  
-            <div class="flex"><h6>To:</h6></div> 
+            <div class="flex"><h6>To: {{parcel.receiverEmail}}</h6></div> 
             <div>
                 <i
                 (click)="deleteParcel(parcel.parcelID)"
@@ -19,8 +19,7 @@
             </div>
         </div>
         <h6>Parcel ID:{{parcel.parcelID}}</h6>
-        <h6>Sender Email: {{parcel.sender}}</h6>
-        <div class="flex" style="justify-content: space-between;"><h6>{{parcel.parcelDescription}}</h6>
+        <div class="flex" style="justify-content: space-between;"><h6>Description: {{parcel.parcelDescription}}</h6>
             <button class="btn" (click)="oneParcel(parcel.parcelID)" style="background-color: rgb(0, 255, 0)">View</button>
         </div>
     </div>

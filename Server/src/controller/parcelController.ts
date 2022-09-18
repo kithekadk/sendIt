@@ -1,7 +1,9 @@
 import { Response } from "express";
+import { RequestError } from "mssql";
+import {isEmpty} from 'lodash'
 import { customParcel } from "../interfaces/parcelInterfaces";;
 import Connection from "../databaseHelpers/dbhelpers";
-import { RequestError } from "mssql";
+
 const db= new Connection
 
 export const createParcel = async(req:customParcel, res:Response)=>{
@@ -18,8 +20,8 @@ export const createParcel = async(req:customParcel, res:Response)=>{
             receiverPhone,
             receiverEmail,
             deliveryDate}= req.body
-
-        db.exec('createParcel', {sender,
+        
+        db.exec('createUpdateParcel', {sender,
             parcelWeight,
             price,
             lat,
@@ -31,15 +33,14 @@ export const createParcel = async(req:customParcel, res:Response)=>{
             receiverPhone,
             receiverEmail,
             deliveryDate})
-            return res.json({message:'Parcel order created successfully'})
+            return res.status(200).json({message:'Parcel order created successfully'})
 
     } catch (error) {
-        console.log(error);
         
         if(error instanceof RequestError){
-            res.json({error:error})
+            res.status(401).json({error:error})
         }else{
-            res.json({message:error})
+            res.status(501).json({message:error})
         }
         
     }
@@ -59,14 +60,17 @@ export const deleteParcels = async (req: customParcel, res: Response)=>{
     try{
         const parcelID = req.params.parcelID
         db.exec('deleteParcel',{parcelID})
-        
-        return res.json({message:'Parcel deleted successfully'})
-    } catch(error){
-        if(error instanceof RequestError){
-            res.status(400).json({message:'No parcels with the given ID'})
-        }else{
-            res.status(501).json({message:'Internal server error'})
+        const parcelExists = (await db.query(`SELECT * FROM dbo.PARCELS WHERE parcelID=${parcelID} AND isDeleted=0`)).recordset
+        console.log(parcelExists);
+         
+        if(isEmpty(parcelExists)){
+            return res.status(404).json({message:'ParcelID not found'})
         }
+
+        return res.status(200).json({message:'Parcel deleted successfully'})
+
+    } catch(error){
+            res.status(500).json({message:'Internal server error'})    
     }
 }
 
@@ -119,7 +123,7 @@ export const updateParcelStatus = async(req:customParcel, res:Response)=>{
         const parcelID= req.params.parcelID
         const {status}=req.body
 
-        db.exec('updateStatus',{
+        db.exec('createUpdateParcel',{
             parcelID,
             status
         })

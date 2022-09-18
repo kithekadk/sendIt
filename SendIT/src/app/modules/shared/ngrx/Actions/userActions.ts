@@ -69,3 +69,21 @@ export const loadRoleFailure = createAction(
   'loadRoleFailure',
   props<{ error: string }>()
 );
+
+/**
+ * UPDATING a user
+ */
+export const updateUser = createAction('updateUser',
+props<{userID:number, user:user}>()
+)
+
+export const updateUserSuccess = createAction('updateUserSuccess',
+props<{message:string}>()
+)
+export const updateUserFailure = createAction('updateUserFailure',
+props<{error:string}>()
+)
+
+export function getUsers(arg0: { id: any; parcel: any; }): any {
+  throw new Error('Function not implemented.');
+}

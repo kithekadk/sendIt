@@ -45,6 +45,9 @@
           <div *ngIf="password.errors?.['minlength']" style="color: red">
             At least 8 characters long.
           </div>
+          <span *ngIf="password.errors?.['serverError']">
+            {{password.errors?.['serverError']}}
+          </span>
         </div>
       </div>
       <br />

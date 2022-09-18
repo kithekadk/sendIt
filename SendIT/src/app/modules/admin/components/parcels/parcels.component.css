@@ -52,14 +52,15 @@
     padding-top:10px;
 }
 .options{
-    
     position: fixed;
-    margin-top: 0.5vw;
+    margin-top: 1vw;
     margin-left: 0.5vw;
     top: 8vh;
-    margin-left: 15.5vw;
+    margin-left: 24.5vw;
     cursor: pointer;
-
+}
+.options div:hover{
+    background-color: rgb(32, 142, 175);
 }
 .update{
     position: fixed;
