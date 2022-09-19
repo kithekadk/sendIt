@@ -8,7 +8,7 @@
 
         <form [formGroup]="form" >
           <p *ngIf="filled" style="color:green;">User profile updated successfully</p>
-          <p *ngIf="error">Password must be atleast 8 characters</p>
+          <p *ngIf="error"  style="color:red;">Password must be atleast 8 characters</p>
           <div>
             <div>
               <label for="">Full names</label><br>

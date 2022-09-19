@@ -1,8 +1,6 @@
 import { Response } from "express";
 import {isEmpty} from 'lodash'
 import { customUser, User } from "../interfaces/userInterfaces";
-import mssql, { RequestError } from 'mssql'
-import { sqlConfig } from "../config/config";
 import { LoginValidator } from "../helpers/user/loginValidator";
 import bcrypt from 'bcrypt'
 import  jwt  from "jsonwebtoken";
@@ -39,12 +37,8 @@ try {
     return res.json({message: 'Account created successfully'})
 
 } catch (error) {
-    if(error instanceof RequestError){
-        res.json({message:error.message})
-    }
-    else{
         res.status(501).json({message: 'internal server error'})
-    }   
+
 }
 
 }
@@ -80,13 +74,7 @@ export const loginUser = async (req:customUser, res:Response)=>{
         })
 
     } catch (error) {
-        if(error instanceof RequestError){
-            res.json({message: error.message})
-        }
-        else{
-            console.log(error);
-            
-        }
+        res.status(501).json({message: 'internal server error'})
     }
 }
 //Checking user role
@@ -136,8 +124,6 @@ export const updateUser = async(req:customUser, res:Response)=>{
         })
         return res.status(200).json({message:'user updated successfully'})
     } catch (error) {
-        if(error instanceof RequestError){
-            res.json({message: error.message})
-        }
+        res.status(501).json({message: 'internal server error'})
     }
 }

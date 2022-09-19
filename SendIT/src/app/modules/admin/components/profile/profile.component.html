@@ -6,6 +6,8 @@
     </div>
     <div class="body">
       <form [formGroup]="form" >
+        <p *ngIf="filled" style="color:green;">User profile updated successfully</p>
+          <p *ngIf="error"  style="color:red;">Password must be atleast 8 characters</p>
         <div>
           <div>
             <label for="">Full names</label><br>
@@ -30,10 +32,10 @@
         </div>
         <div>
           <label for="">Phone number</label><br>
-          <input type="tel" formControlName="phoneNumber"><br>
+          <input type="number" formControlName="phoneNumber"><br>
           <p></p>
         </div>
-        <button class="btn btn-success">Save</button>
+        <button class="btn btn-success" (click)="updateUser()" [disabled]="form.invalid">Save</button>
       </form>
 
       <div *ngFor="let user of user">

@@ -10,7 +10,6 @@ export interface customUser extends Request{
         lat:number
         lng:number
         password:string
-        StatementType:string
     }
 }
 

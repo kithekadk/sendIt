@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, MinLengthValidator, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Action, Store } from '@ngrx/store';
+import { Action, select, Store } from '@ngrx/store';
 import { signUpUser, userState } from '../../ngrx/Reducer/userReducer';
 import * as UserActions from '../../ngrx/Actions/userActions'
 import { ApiService } from 'src/app/services/api.service';
@@ -28,14 +28,24 @@ created=false
     })
   }
 
-
+untouched=false
   onRegister(){
+    if(this.form.untouched){
+      this.untouched=true 
+      setTimeout(() => {
+       this.untouched=false
+      }, 2000);
+      
+      return
+    }
+    
     this.store.dispatch(UserActions.addUser({newUser:{...this.form.value}}))
+
     this.created=true
     setTimeout(() => {
       this.router.navigate(['/login'])
     }, 1500);
-    
+  
 
 }
 }

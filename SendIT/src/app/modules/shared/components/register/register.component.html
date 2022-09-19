@@ -3,6 +3,7 @@
     <div class="formDiv">
         <h2>CREATE ACCOUNT</h2>
         <p *ngIf="created" style="color:rgb(17, 245, 17)">Account created Successfully</p>
+        <p *ngIf="untouched" style="color:red">All fields must be filled</p>
         <form [formGroup]="form" (ngSubmit)="onRegister()">
             <div class="form-group">
                 <div>
@@ -46,7 +47,7 @@
 
                 </div><br>
                 <div>
-                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">SUBMIT</button>
+                    <button type="submit" class="btn btn-primary">SUBMIT</button>
                 </div>
             </div>
         </form>
