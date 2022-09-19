@@ -64,7 +64,7 @@ export class ApiService {
   }
 
   deleteParcel(parcelID:number):Observable<{message:string}>{
-    return this.http.get<{message:string}>(`http://localhost:4400/parcel/delete/${parcelID}`).pipe(
+    return this.http.delete<{message:string}>(`http://localhost:4400/parcel/delete/${parcelID}`).pipe(
       map((res)=>{
         return res
       })

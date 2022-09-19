@@ -107,6 +107,7 @@ export class ParcelsComponent implements OnInit {
 
   deleteParcel(id:number){    
     this.store.dispatch(Actions.deleteParcel({id:id}))
+    this.router.navigate([`/admin/parcels`])
     this.store.dispatch(Actions.loadParcels())
   }
 

@@ -4,10 +4,10 @@ import { verifyToken } from "../middleware/verifyToken";
 
 const userRouter = Router()
 
-userRouter.post('/create',registerUser)
+userRouter.post('/create',verifyToken, registerUser)
 userRouter.post('/login',loginUser)
 userRouter.get('/check',verifyToken, checkUserRole)
-userRouter.get('/getUsers', getClients)
+userRouter.get('/getUsers',verifyToken, getClients)
 userRouter.post('/setLocation', setLocation)
 userRouter.put('/update/:clientID', updateUser)
 

@@ -28,7 +28,7 @@ export const createParcel = async(req:customParcel, res:Response)=>{
                 })
             }
 
-        db.exec('createUpdateParcel', {sender,
+        db.exec('createParcel', {sender,
             parcelWeight,
             price,
             lat,
@@ -103,7 +103,7 @@ export const updateParcel = async(req: customParcel, res:Response)=>{
             return res.status(404).json({message:'ParcelID not found'})
         }
 
-        db.exec('createUpdateParcel',{
+        db.exec('updateParcel',{
             parcelID,
             sender,
             parcelWeight,

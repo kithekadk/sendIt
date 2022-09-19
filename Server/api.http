@@ -1,5 +1,6 @@
 POST http://localhost:4400/user/create
 Content-Type: application/json
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRJRCI6MiwiZnVsbE5hbWUiOiJEYW5pZWwgSyIsInVzZXJOYW1lIjoiRGFuaWVsIiwiZW1haWwiOiJrYWtpbnlpZGtAZ21haWwuY29tIiwicGhvbmVOdW1iZXIiOiIxMjM0NTY3OCIsImxhdCI6MSwibG5nIjozOCwid2VsY29tZSI6IllFUyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY2MzU4OTcxNywiZXhwIjoxNjYzNTkwMDE3fQ.vERBQvNELjdE4LocjAPJikKcu_qOleE5Tca7DDTpbOY
 
 {
     "fullName":"Daniel Kitheka",
@@ -25,6 +26,7 @@ Content-Type: application/json
 ###
 POST http://localhost:4400/parcel/create
 Content-Type: application/json
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRJRCI6MiwiZnVsbE5hbWUiOiJEYW5pZWwgSyIsInVzZXJOYW1lIjoiRGFuaWVsIiwiZW1haWwiOiJrYWtpbnlpZGtAZ21haWwuY29tIiwicGhvbmVOdW1iZXIiOiIxMjM0NTY3OCIsImxhdCI6MSwibG5nIjozOCwid2VsY29tZSI6IllFUyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY2MzU5MDIxOCwiZXhwIjoxNjYzNTkwNTE4fQ.-z1eN5TC5AfA4EFN3g7Ury71rhnPUL6MaJxaBS8Y0uc
 
 {
         "sender":"alex123@gmail.com",
@@ -45,11 +47,12 @@ Content-Type: application/json
 ###
 GET http://localhost:4400/parcel/allparcels
 Content-Type: application/json
+token:
 
 ###
 GET http://localhost:4400/user/check
 Content-Type: application/json
-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRJRCI6MTAwMiwiZnVsbE5hbWUiOiJEYW5pZWwgS2l0aGVrYSIsInVzZXJOYW1lIjoiRGFuMSIsImVtYWlsIjoia2FraW55aWRrMUBnbWFpbC5jb20iLCJwaG9uZU51bWJlciI6MTIzNDU2NzgsImxvY2F0aW9uIjoiTnllcmksIEtlbnlhIiwibGF0IjoxMiwibG5nIjozMywid2VsY29tZSI6Ik5PIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2NjMwOTIxMTIsImV4cCI6MTY2MzA5MjQxMn0.pWS-TLVofYUpAFgiLyTXaiKgcMr8LtY3oG27X2Ufjw8
+token:
 
 ###
 POST http://localhost:4400/user/setLocation
@@ -64,6 +67,7 @@ Content-Type: application/json
 ###
 DELETE http://localhost:4400/parcel/delete/3019
 Content-Type: application/json
+token:
 
 ###
 PUT http://localhost:4400/parcel/update/7
@@ -86,6 +90,7 @@ Content-Type: application/json
 ###
 PUT http://localhost:4400/parcel/updateStatus/3020
 Content-Type: application/json
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRJRCI6MiwiZnVsbE5hbWUiOiJEYW5pZWwgSyIsInVzZXJOYW1lIjoiRGFuaWVsIiwiZW1haWwiOiJrYWtpbnlpZGtAZ21haWwuY29tIiwicGhvbmVOdW1iZXIiOiIxMjM0NTY3OCIsImxhdCI6MSwibG5nIjozOCwid2VsY29tZSI6IllFUyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY2MzU5MDUyOSwiZXhwIjoxNjYzNTkwODI5fQ.cNoBHT8P0jB_KjKJ2p9RVgnX7g7fOFLs0ODLjuhUcL0
 
 {
     "status":"Delivered"
@@ -95,6 +100,7 @@ Content-Type: application/json
 ###
 PUT http://localhost:4400/user/update/2
 Content-Type: application/json
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRJRCI6MiwiZnVsbE5hbWUiOiJEYW5pZWwgSyIsInVzZXJOYW1lIjoiRGFuaWVsIiwiZW1haWwiOiJrYWtpbnlpZGtAZ21haWwuY29tIiwicGhvbmVOdW1iZXIiOiIxMjM0NTY3OCIsImxhdCI6MSwibG5nIjozOCwid2VsY29tZSI6IllFUyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY2MzU5MDUyOSwiZXhwIjoxNjYzNTkwODI5fQ.cNoBHT8P0jB_KjKJ2p9RVgnX7g7fOFLs0ODLjuhUcL0
 
 {
     "fullName":"Daniel K",

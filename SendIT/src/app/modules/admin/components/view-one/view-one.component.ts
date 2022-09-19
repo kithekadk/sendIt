@@ -113,5 +113,6 @@ form!: FormGroup
   updateStatus(){
     this.store.dispatch(ParcelActions.reviseStatus({id:this.id, status:{...this.form.value}}))
     this.store.dispatch(ParcelActions.loadParcels())
+    this.router.navigate(['admin/parcels'])
   }
 }
