@@ -40,8 +40,6 @@ export class UserprofileComponent implements OnInit {
           this.id=thisUser.clientID
           this.form.patchValue({
             fullName:thisUser.fullName,
-            userName: thisUser.userName,
-            email: thisUser.email,
             phoneNumber: thisUser.phoneNumber,
             password: thisUser.password
           })
@@ -52,6 +50,7 @@ filled=false
 error=false
   updateUser(){
     try{
+    const data={...this.form.value}
     this.store.dispatch(UserActions.updateUser({userID:this.id,user:{...this.form.value}}))
     this.filled = true
     this.store.dispatch(UserActions.loadUsers())

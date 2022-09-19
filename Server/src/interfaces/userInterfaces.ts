@@ -6,7 +6,7 @@ export interface customUser extends Request{
         fullName:string
         userName:string
         email:string
-        phoneNumber:number
+        phoneNumber:string
         lat:number
         lng:number
         password:string
@@ -17,10 +17,9 @@ export interface User{
     fullName:string
     userName:string
     email:string
-    phoneNumber:number
+    phoneNumber:string
     location:string
     password:string
-    StatementType:string
     lat:number
     lng:number
     role:string,

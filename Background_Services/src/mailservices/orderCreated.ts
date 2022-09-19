@@ -4,13 +4,14 @@ import { sqlConfig } from '../config/config'
 import dotenv from 'dotenv'
 import sendMail from '../helpers/emailHelpers'
 import {parcel} from '../interfaces/parcel'
+import Connection from '../databaseHelpers/dbhelpers'
+const db= new Connection
 
 dotenv.config()
 
 
 const orderCreated = async()=>{
-    const pool = await mssql.connect(sqlConfig)
-    const users:parcel[]=(await pool.request().execute('ParcelOrderCreated')).recordset
+    const users:parcel[]=(await db.exec('ParcelOrderCreated')).recordset
     console.log(users);
 
     for (let user of users){
@@ -29,7 +30,7 @@ const orderCreated = async()=>{
             }
     try {
         await sendMail (mailOptions);
-        await pool.request().execute('parcelOrderMailSent');
+        db.exec('parcelOrderMailSent');
         console.log("order creation mail sent to user");
     } catch (error) {
         console.log(error)

@@ -4,6 +4,7 @@
         <h2>CREATE ACCOUNT</h2>
         <p *ngIf="created" style="color:rgb(17, 245, 17)">Account created Successfully</p>
         <p *ngIf="untouched" style="color:red">All fields must be filled</p>
+        <div class="alert alert-danger" *ngIf="error">{{error}}</div> 
         <form [formGroup]="form" (ngSubmit)="onRegister()">
             <div class="form-group">
                 <div>

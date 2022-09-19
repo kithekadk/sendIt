@@ -26,7 +26,7 @@ export class ProfileComponent implements OnInit {
       email: [null],
       userName:[null],
       phoneNumber: [null,[Validators.required]],
-      password:[null,[Validators.required,Validators.minLength(8)]]
+      password:['',[Validators.required,Validators.minLength(8)]]
     })
     this.store.dispatch(UserActions.loadUsers())
     this.getUser()

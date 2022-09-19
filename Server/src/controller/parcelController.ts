@@ -3,6 +3,7 @@ import { RequestError } from "mssql";
 import {isEmpty} from 'lodash'
 import { customParcel } from "../interfaces/parcelInterfaces";;
 import Connection from "../databaseHelpers/dbhelpers";
+import { parcelValidator } from "../helpers/parcel/parcelValidator";
 
 const db= new Connection
 
@@ -20,8 +21,14 @@ export const createParcel = async(req:customParcel, res:Response)=>{
             receiverPhone,
             receiverEmail,
             deliveryDate}= req.body
-        
-        db.exec('createUpdateParcel', {sender,
+            const {error, value}= parcelValidator.validate(req.body)
+            if(error){
+                return res.status(400).json({
+                    message:error.details[0].message
+                })
+            }
+
+        db.exec('createParcel', {sender,
             parcelWeight,
             price,
             lat,
@@ -59,14 +66,13 @@ export const fetchParcels = async (req:customParcel, res:Response)=>{
 export const deleteParcels = async (req: customParcel, res: Response)=>{
     try{
         const parcelID = req.params.parcelID
-        db.exec('deleteParcel',{parcelID})
+        
         const parcelExists = (await db.query(`SELECT * FROM dbo.PARCELS WHERE parcelID=${parcelID} AND isDeleted=0`)).recordset
-        console.log(parcelExists);
          
         if(isEmpty(parcelExists)){
             return res.status(404).json({message:'ParcelID not found'})
         }
-
+        db.exec('deleteParcel',{parcelID})
         return res.status(200).json({message:'Parcel deleted successfully'})
 
     } catch(error){
@@ -90,7 +96,13 @@ export const updateParcel = async(req: customParcel, res:Response)=>{
             receiverPhone,
             receiverEmail,
             deliveryDate}= req.body
+
+        const parcelExists = (await db.query(`SELECT * FROM dbo.PARCELS WHERE parcelID=${parcelID} AND isDeleted=0`)).recordset
         
+        if(isEmpty(parcelExists)){
+            return res.status(404).json({message:'ParcelID not found'})
+        }
+
         db.exec('updateParcel',{
             parcelID,
             sender,
@@ -123,7 +135,13 @@ export const updateParcelStatus = async(req:customParcel, res:Response)=>{
         const parcelID= req.params.parcelID
         const {status}=req.body
 
-        db.exec('createUpdateParcel',{
+        const parcelExists = (await db.query(`SELECT * FROM dbo.PARCELS WHERE parcelID=${parcelID} AND isDeleted=0`)).recordset
+        
+        if(isEmpty(parcelExists)){
+            return res.status(404).json({message:'ParcelID not found'})
+        }
+
+        db.exec('updateStatus',{
             parcelID,
             status
         })

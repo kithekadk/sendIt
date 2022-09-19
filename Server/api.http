@@ -3,7 +3,7 @@ Content-Type: application/json
 
 {
     "fullName":"Daniel Kitheka",
-    "userName":"Dan123",
+    "userName":"Dan1234",
     "email":"abcd_254_003@yopmail.com",
     "phoneNumber":12345678,
     "password":"12345678"
@@ -62,11 +62,11 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:4400/parcel/delete/3024
+GET http://localhost:4400/parcel/delete/3020
 Content-Type: application/json
 
 ###
-PUT http://localhost:4400/parcel/update/3023
+PUT http://localhost:4400/parcel/update/7
 Content-Type: application/json
 
 {       
@@ -83,21 +83,21 @@ Content-Type: application/json
         "receiverEmail":"abcde@GMAIL.COM",
         "deliveryDate":"2213321"
 }
-
 ###
-PUT http://localhost:4400/parcel/updateStatus/3
+PUT http://localhost:4400/parcel/updateStatus/3020
 Content-Type: application/json
 
 {
     "status":"Delivered"
 }
 
+
 ###
-PUT http://localhost:4400/user/update/1
+PUT http://localhost:4400/user/update/2
 Content-Type: application/json
 
 {
-    "fullName":"Daniel Kitheka",
-    "phoneNumber":"01234567891",
+    "fullName":"Daniel K",
+    "phoneNumber": 12345678,
     "password":"12345678"
 }

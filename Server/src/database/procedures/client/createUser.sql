@@ -1,7 +1,7 @@
 
-CREATE PROCEDURE createUser (@fullName VARCHAR(200), 
+ALTER PROCEDURE createUser (@fullName VARCHAR(200), 
 @userName VARCHAR(200), @email VARCHAR(200) , @phoneNumber INT,
-@location VARCHAR(200), @password VARCHAR(200))
+@password VARCHAR(200))
 AS
 BEGIN
 
@@ -17,7 +17,7 @@ BEGIN
 		END
 	ELSE 
 		BEGIN
-				INSERT INTO dbo.CLIENTS (fullName, userName, email, phoneNumber, location, password)
-				VALUES (@fullName, @userName, @email, @phoneNumber, @location, @password)
+				INSERT INTO dbo.CLIENTS (fullName, userName, email, phoneNumber, password)
+				VALUES (@fullName, @userName, @email, @phoneNumber, @password)
 		END
 END

@@ -4,14 +4,13 @@ import { sqlConfig } from '../config/config'
 import dotenv from 'dotenv'
 import sendMail from '../helpers/emailHelpers'
 import {parcel} from '../interfaces/parcel'
-
+import Connection from '../databaseHelpers/dbhelpers'
+const db = new Connection
 dotenv.config()
 
 
 const awaitingPickUp = async()=>{
-    const pool = await mssql.connect(sqlConfig)
-    const parcels:parcel[]=(await pool.request()
-        .execute('parcelArrived')).recordset
+    const parcels:parcel[]=(await db.exec('parcelArrived')).recordset
 
     console.log(parcels);
 
@@ -31,7 +30,7 @@ const awaitingPickUp = async()=>{
             }
     try {
         await sendMail (mailOptions);
-        await pool.request().execute('parcelPicked');
+        db.exec('parcelPicked');
         console.log("order arrive mail sent to user");
     } catch (error) {
         console.log(error)

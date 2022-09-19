@@ -72,6 +72,16 @@ export const getToken = createSelector(
   (state) => state.loginSuccess
 );
 
+export const userAdderror= createSelector(
+  getUsersFeatureState,
+  (state)=> state.userAdderror
+)
+export const useraddSuccess = createSelector(
+  getUsersFeatureState,
+  (state)=>state.useraddMessage
+)
+
+
 export const userReducer = createReducer(
   initialState,
 

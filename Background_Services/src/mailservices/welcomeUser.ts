@@ -3,6 +3,9 @@ import mssql, { RequestError } from "mssql";
 import { sqlConfig } from "../config/config";
 import sendMail from "../helpers/emailHelpers";
 import dotenv from "dotenv";
+import Connection from "../databaseHelpers/dbhelpers";
+const db= new Connection
+
 dotenv.config();
 
 interface client {
@@ -18,10 +21,9 @@ interface client {
 }
 
 const welcomeClient = async () => {
-  const pool = await mssql.connect(sqlConfig);
-  const clients: client[] = await (
-    await pool.request().execute("WelcomeEmail")
-  ).recordset;
+  const clients: client[] = (await (
+    db.exec("WelcomeEmail")
+  )).recordset;
 
   console.log(clients);
 
@@ -42,7 +44,7 @@ const welcomeClient = async () => {
         };
         try {
           await sendMail(mailOptions);
-          await pool.request().execute("WelcomeEmailSent");
+          db.exec("WelcomeEmailSent");
           console.log("welcome email sent to client");
         } catch (error) {
           if (error instanceof RequestError) {

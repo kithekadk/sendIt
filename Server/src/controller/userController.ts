@@ -34,7 +34,7 @@ try {
         fullName, userName, email, phoneNumber, password:hashedPwd
     })
 
-    return res.json({message: 'Account created successfully'})
+    return res.status(200).json({message: 'Account created successfully'})
 
 } catch (error) {
         res.status(501).json({message: 'internal server error'})
@@ -53,7 +53,7 @@ export const loginUser = async (req:customUser, res:Response)=>{
                 message: error.details[0].message
             })
         }
-
+        
         const user:User[]=(await db.exec('loginUser',{
             email
         })).recordset
@@ -103,11 +103,16 @@ export const getClients = async (req: customUser, res:Response)=>{
 export const setLocation= async(req:customUser, res:Response)=>{
     try {
         const {email, lat, lng}= req.body
+
+        const emailExists= (await db.query(`SELECT * FROM dbo.CLIENTS WHERE email='${email}'`)).recordset
+
+        if(isEmpty(emailExists)){
+            return res.status(404).json({message: 'User not logged in or does not exist'})
+        }
         db.exec('setLocation',{
             email, lat, lng
         })
-
-        return res.json({message:'location set successfully'})
+        return res.json({message:'Location set successfully'})
 
         } catch (error) {
         res.status(500).json({message: 'Internal server error'})
@@ -118,12 +123,21 @@ export const updateUser = async(req:customUser, res:Response)=>{
     try {
         const clientID=req.params.clientID
         const {fullName, phoneNumber,password}= req.body
+
+        const idExists= (await db.query(`SELECT * FROM dbo.CLIENTS WHERE clientID='${clientID}'`)).recordset
+
+        if(isEmpty(idExists)){
+            return res.status(404).json({message: 'User not found'})
+        }
+
         const hashedPwd = await bcrypt.hash(password,8)
+
+
         db.exec('updateUser',{
             clientID,fullName, phoneNumber,password:hashedPwd
         })
         return res.status(200).json({message:'user updated successfully'})
     } catch (error) {
-        res.status(501).json({message: 'internal server error'})
+        res.status(501).json({message: 'Internal server error'})
     }
 }

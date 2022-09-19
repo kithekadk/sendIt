@@ -10,7 +10,7 @@ BEGIN
 	IF EXISTS(SELECT * FROM dbo.PARCELS WHERE status='Awaiting Pick-up')
 	BEGIN
 		SELECT * FROM dbo.PARCELS 
-		UPDATE dbo.PARCELS SET status= @status WHERE status='Awaiting Pick-up' AND parcelID=@parcelID
+		UPDATE dbo.PARCELS SET status = @status WHERE status='Awaiting Pick-up' AND parcelID=@parcelID
 	END
 	ELSE
 	BEGIN

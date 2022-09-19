@@ -10,12 +10,21 @@ import welcomeClient from './mailservices/welcomeUser'
 const app = express()
 
 const run =() =>{
-    cron.schedule('*/10 * * * * *', async()=>{
-        console.log("cron is running");
-        await awaitingPickUp()
-        await delivered()
+    cron.schedule('*/5 * * * * *', async()=>{
+        console.log("checking new user");
+        await welcomeClient()
+    })
+    cron.schedule('*/5 * * * * *', async()=>{
+        console.log("checking new order");
         await orderCreated()
-        await welcomeClient()   
+    })
+    cron.schedule('*/5 * * * * *', async()=>{
+        console.log("checking arrived orders");
+        await awaitingPickUp()
+    })
+    cron.schedule('*/5 * * * * *', async()=>{
+        console.log("checking delivered");
+        await delivered()
     })
 }
 run()
