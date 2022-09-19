@@ -5,7 +5,7 @@ const parcelRouter = Router()
 
 parcelRouter.post('/create',createParcel)
 parcelRouter.get('/allparcels',fetchParcels)
-parcelRouter.get('/delete/:parcelID',deleteParcels)
+parcelRouter.delete('/delete/:parcelID',deleteParcels)
 parcelRouter.put('/update/:parcelID',updateParcel)
 parcelRouter.put('/updateStatus/:parcelID',updateParcelStatus)
 

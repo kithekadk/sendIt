@@ -8,14 +8,6 @@ import { sqlConfig } from './config/config';
 const app = express()
 app.use(cors())
 app.use(json())
-// app.use(async (req: Request, res: Response, next: NextFunction) => {
-//     const pool = await mssql.connect(sqlConfig);
-//     await pool.request();
-//     req.context = Object.assign(req.context || {}, {
-//         connection: pool
-//     });
-//     res.on('close', pool.close);
-// })
 
 app.use('/user', userRouter)
 app.use('/parcel', parcelRouter)
