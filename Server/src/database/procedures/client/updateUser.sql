@@ -7,7 +7,8 @@ BEGIN
 				UPDATE dbo.CLIENTS SET fullName=@fullName,
 										phoneNumber=@phoneNumber,
 										password=@password,
-										email=@email
+										email=@email,
+										userName=@userName
 										WHERE clientID=@clientID
 		END
 	ELSE 

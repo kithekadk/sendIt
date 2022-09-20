@@ -125,23 +125,31 @@ export const setLocation= async(req:customUser, res:Response)=>{
 
 export const updateUser = async(req:customUser, res:Response)=>{
     try {
-        const clientID=req.params.clientID
-        const {fullName, phoneNumber,password}= req.body
+        const {clientID, fullName, phoneNumber,password,email,userName}= req.body
 
-        const idExists= (await db.query(`SELECT * FROM dbo.CLIENTS WHERE clientID='${clientID}'`)).recordset
-
+        const idExists= (await db.query(`SELECT * FROM dbo.CLIENTS WHERE clientID=${clientID}`)).recordset
+        const userNameTaken= (await db.query(`SELECT * FROM dbo.CLIENTS WHERE userName='${userName}' AND clientID!=${clientID}`)).recordset
+        const emailTaken= (await db.query(`SELECT * FROM dbo.CLIENTS WHERE email='${email}' AND clientID!=${clientID}`)).recordset
+        
         if(isEmpty(idExists)){
             return res.status(404).json({message: 'User not found'})
         }
+        if(!isEmpty(userNameTaken)){
+            return res.status(404).json({message: 'This username is taken'})
+        }
+        if(!isEmpty(emailTaken)){
+            return  res.status(404).json({message: 'An account exists with that email'})
+        }
+        
 
         const hashedPwd = await bcrypt.hash(password,8)
 
         db.exec('updateUser',{
-            clientID,fullName, phoneNumber,password:hashedPwd
+            clientID,fullName, phoneNumber,email, userName, password:hashedPwd
         })
-        return res.status(200).json({message:'user updated successfully'})
+        return res.status(200).json({message:'User updated successfully'})
     } catch (error) {
-        res.status(501).json({message: 'Internal server error'})
+        res.status(501).json({message: error})
     }
 }
 

@@ -22,9 +22,10 @@ export class ProfileComponent implements OnInit {
   id!:number
   ngOnInit(): void {
     this.form=this.fb.group({
+      clientID:[null, [Validators.required]],
       fullName: [null,Validators.required],
-      email: [null],
-      userName:[null],
+      email: [null, Validators.required],
+      userName:[null, Validators.required],
       phoneNumber: [null,[Validators.required]],
       password:['',[Validators.required,Validators.minLength(8)]]
     })
@@ -40,11 +41,11 @@ export class ProfileComponent implements OnInit {
         
         if(admin){
           this.form.patchValue({
+            clientID:admin.clientID,
             fullName:admin.fullName,
             userName: admin.userName,
             email: admin.email,
-            phoneNumber: admin.phoneNumber,
-            password: admin.password
+            phoneNumber: admin.phoneNumber
           })
         }
       })
@@ -52,18 +53,16 @@ export class ProfileComponent implements OnInit {
   filled=false
   error=false
     updateUser(){
-      try{
-      this.store.dispatch(UserActions.updateUser({userID:this.id,user:{...this.form.value}}))
+      console.log(this.form.value);
+      
+      this.store.dispatch(UserActions.updateUser({user:{...this.form.value}}))
       this.filled = true
       this.store.dispatch(UserActions.loadUsers())
-        setTimeout(() => { 
+
         this.router.navigate(['/admin/parcels'])  
-        }, 1500);
-      }catch(error){
+
         this.error=true
       }
-      
-    }
 
 
 }

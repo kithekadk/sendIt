@@ -73,7 +73,7 @@ export const loadRoleFailure = createAction(
  * UPDATING a user
  */
 export const updateUser = createAction('updateUser',
-props<{userID:number, user:user}>()
+props<{user:user}>()
 )
 
 export const updateUserSuccess = createAction('updateUserSuccess',

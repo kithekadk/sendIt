@@ -99,13 +99,16 @@ token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRJRCI6MiwiZnVsbE5hbWUiOiJEY
 
 
 ###
-PUT http://localhost:4400/user/update/25
+PUT http://localhost:4400/user/updateUser
 Content-Type: application/json
 
 {
+    "clientID":25,
     "fullName":"Updated user",
     "phoneNumber": 12345678,
-    "password":"12345678"
+    "password":"12345678",
+    "email":"abcd_254_001@yopmail.com",
+    "userName":"dk123"
 }
 
 ###CHANGE PASSWORD

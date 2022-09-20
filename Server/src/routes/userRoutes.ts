@@ -9,7 +9,7 @@ userRouter.post('/login',loginUser)
 userRouter.get('/check',verifyToken, checkUserRole)
 userRouter.get('/getUsers', getClients)
 userRouter.post('/setLocation', setLocation)
-userRouter.put('/update/:clientID', updateUser)
+userRouter.put('/updateUser', updateUser)
 userRouter.put('/changePassword', changePassword)
 
 export default userRouter

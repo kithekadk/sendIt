@@ -77,7 +77,7 @@ export class userEffects {
     return this.actions.pipe(
       ofType(userActions.updateUser),
       mergeMap((action) =>
-        this.api.editUser(action.userID, action.user).pipe(
+        this.api.editUser(action.user).pipe(
           map((res) => userActions.updateUserSuccess({ message: res.message })),
           catchError((error) => of(userActions.updateUserFailure({ error })))
         )

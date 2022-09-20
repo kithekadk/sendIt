@@ -5,7 +5,7 @@
       <a class="btn btn-danger" routerLink="/admin/parcels">Close</a>
     </div>
     <div class="body">
-      <form [formGroup]="form" >
+      <form [formGroup]="form" (ngSubmit)="updateUser()">
         <p *ngIf="filled" style="color:green;">User profile updated successfully</p>
           <p *ngIf="error"  style="color:red;">Password must be atleast 8 characters</p>
         <div>
@@ -16,12 +16,12 @@
           </div>
           <div>
             <label for="">Email</label><br>
-            <input type="email" formControlName="email" readonly><br>
+            <input type="email" formControlName="email"><br>
             <p></p>
           </div>
           <div>
             <label for="">User name</label><br>
-            <input type="text" formControlName="userName" readonly><br>
+            <input type="text" formControlName="userName"><br>
             <p></p>
           </div>
         </div>
@@ -35,7 +35,7 @@
           <input type="number" formControlName="phoneNumber"><br>
           <p></p>
         </div>
-        <button class="btn btn-success" (click)="updateUser()" [disabled]="form.invalid">Save</button>
+        <button class="btn btn-success" type="submit" [disabled]="form.invalid">Save</button>
       </form>
 
       <div *ngFor="let user of user">
