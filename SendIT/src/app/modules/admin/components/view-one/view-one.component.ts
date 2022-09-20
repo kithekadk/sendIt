@@ -67,6 +67,8 @@ form!: FormGroup
       map(res=>{
         
         let parcel = res.filter(el=>el.parcelID==this.id)
+        console.log(parcel);
+        
         const coords = parcel.map((user)=>({
         lat: user.lat,
         lng: user.lng,
@@ -114,5 +116,6 @@ form!: FormGroup
     this.store.dispatch(ParcelActions.reviseStatus({id:this.id, status:{...this.form.value}}))
     this.store.dispatch(ParcelActions.loadParcels())
     this.router.navigate(['admin/parcels'])
+    this.store.dispatch(ParcelActions.loadParcels())
   }
 }

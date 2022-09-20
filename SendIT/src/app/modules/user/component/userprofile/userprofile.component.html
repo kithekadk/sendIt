@@ -15,7 +15,7 @@
               <input type="text" formControlName="fullName"><br>
               <p></p>
             </div>
-            <!-- <div>
+            <div>
               <label for="">Email</label><br>
               <input type="email" formControlName="email" readonly><br>
               <p></p>
@@ -24,7 +24,7 @@
               <label for="">User name</label><br>
               <input type="text" formControlName="userName" readonly><br>
               <p></p>
-            </div>-->
+            </div>
           </div> 
           <div>
             <label for="">Password</label><br>
@@ -33,7 +33,7 @@
           </div>
           <div>
             <label for="">Phone number</label><br>
-            <input type="text" formControlName="phoneNumber"><br>
+            <input type="number" formControlName="phoneNumber"><br>
             <p></p>
           </div>
           <button class="btn btn-success" (click)="updateUser()" [disabled]="form.invalid">Save</button>

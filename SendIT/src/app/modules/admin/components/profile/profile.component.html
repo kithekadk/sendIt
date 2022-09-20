@@ -6,8 +6,8 @@
     </div>
     <div class="body">
       <form [formGroup]="form" (ngSubmit)="updateUser()">
-        <p *ngIf="filled" style="color:green;">User profile updated successfully</p>
-          <p *ngIf="error"  style="color:red;">Password must be atleast 8 characters</p>
+        <p *ngIf="success" class="alert alert-success" style="color:green;">{{success}}</p>
+          <p *ngIf="error" class="alert alert-danger" style="color:red;">{{error}}</p>
         <div>
           <div>
             <label for="">Full names</label><br>

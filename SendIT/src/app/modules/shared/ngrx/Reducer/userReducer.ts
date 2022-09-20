@@ -95,7 +95,9 @@ export const userLoginFailure = createSelector(
   getUsersFeatureState,
   (state)=> state.loginFailure
 )
-
+/**
+ * change password selectors
+ */
 export const changePassSuccess = createSelector(
   getUsersFeatureState,
   (state)=> state.changePwdSuccess
@@ -106,6 +108,17 @@ export const changePassFailure = createSelector(
   (state)=> state.changePwdFailure
 )
 
+/**
+ * update user profile selectors
+ */
+export const userUpdateSuccess = createSelector(
+  getUsersFeatureState,
+  (state)=>state.updateUserSuccess
+)
+export const userUpdateFailure = createSelector(
+  getUsersFeatureState,
+  (state)=>state.updateUserFailure
+)
 
 
 

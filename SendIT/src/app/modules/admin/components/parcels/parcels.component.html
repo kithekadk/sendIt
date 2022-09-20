@@ -45,7 +45,7 @@
       <div class="flex" style="justify-content: space-between">
         <h6>Receiver Phone No: {{ parcel.receiverPhone }}</h6>
         <div>
-          <i
+          <i *ngIf="parcel.status == 'In Transit'"
             routerLink="/admin/update/{{ parcel.parcelID }}"
             style="font-size: 20px; color: rgb(0, 255, 0)"
             class="fa-solid fa-pen-to-square"

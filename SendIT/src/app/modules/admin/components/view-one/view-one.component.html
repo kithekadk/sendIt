@@ -1,10 +1,10 @@
 <div class="navbar">
-    <div class="heading"><h2>MORE...</h2></div>
-    <div class="flex">
-      <h6 style="color: white; justify-content: center">{{ Date | date }}</h6>
-      <a class="btn btn-danger" (click)="onLogout()">Logout</a>
-    </div>
+  <div class="heading"><h2>MORE...</h2></div>
+  <div class="flex">
+    <h6 style="color: white; justify-content: center">{{ Date | date }}</h6>
+    <a class="btn btn-danger" (click)="onLogout()">Logout</a>
   </div>
+</div>
 <div class="update">
   <div class="parcelDetails" *ngIf="oneParcel$ | async as parcel3">
     <h2>PARCEL DESCRIPTION</h2>
@@ -47,14 +47,28 @@
           <td>{{ parcel.deliveryDate }}</td>
         </tr>
       </table>
+      <div class="updateStatus" *ngIf="parcel.status!='Delivered'">
+        <h3>Update Status</h3>
+        <form class="form" [formGroup]="form" (ngSubmit)="updateStatus()">
+          <div class="status">
+            <label for="">Status</label><br />
+            <select formControlName="status">
+              <option>Awaiting Pick-up</option>
+              <option>Delivered</option>
+              <p></p></select
+            >&nbsp;
+            <button class="btn btn-danger">Update Status</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
   <div class="maps">
     <h3 style="padding-left: 20px">Navigation</h3>
-    <div>
+    <div id="map">
       <google-map
-        height="40vh"
-        width="40vw;"
+        height="82vh"
+        width="39vw;"
         [center]="center"
         [zoom]="zoom"
         (mapClick)="moveMap($event)"
@@ -71,25 +85,6 @@
       </google-map>
 
       <!-- <div>Latitude: {{ display?.lat }} Longitude: {{ display?.lng }}</div> -->
-    </div>
-    <div class="updateStatus">
-      <h3>Update Status</h3>
-      <form class="form" [formGroup]="form" (ngSubmit)="updateStatus()">
-        <div class="status">
-          <label for="">Status</label><br />
-          <select formControlName="status">
-            <option selected>--Select an option--</option>
-            <option>In Transit</option>
-            <option>Awaiting Pick-up</option>
-            <option>Delivered</option>
-            <p ></p>
-          </select>
-        </div>
-        <br />
-        <div>
-          <button class="btn btn-danger">Update Status</button>
-        </div>
-      </form>
     </div>
   </div>
 </div>

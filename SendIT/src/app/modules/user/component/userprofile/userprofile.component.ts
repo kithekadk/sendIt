@@ -20,6 +20,7 @@ export class UserprofileComponent implements OnInit {
   id!:number
   ngOnInit(): void {
     this.form=this.fb.group({
+      clientID: [null,Validators.required],
       fullName: [null,Validators.required],
       email: [null],
       userName:[null],
@@ -42,7 +43,8 @@ export class UserprofileComponent implements OnInit {
             clientID:thisUser.clientID,
             fullName:thisUser.fullName,
             phoneNumber: thisUser.phoneNumber,
-            email: thisUser.email
+            email: thisUser.email,
+            userName: thisUser.userName
           })
         }
       })
@@ -51,6 +53,10 @@ filled=false
 error=false
   updateUser(){
     try{
+      this.form.get('email')?.valueChanges.subscribe((res)=>{
+        localStorage.removeItem('email')
+        localStorage.setItem('email', res)
+      })
     const data={...this.form.value}
     this.store.dispatch(UserActions.updateUser({user:{...this.form.value}}))
     this.filled = true
