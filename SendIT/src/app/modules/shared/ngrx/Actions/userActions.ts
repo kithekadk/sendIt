@@ -1,8 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import {
-  loginMessage,
+  changePwd,
   user,
-  UserInfo,
   userReg,
 } from 'src/app/interfaces/interfaces';
 import { data } from '../../interfaces/interfaces';
@@ -47,7 +46,7 @@ export const loginUser = createAction('loginUser', props<{ logins: data }>());
 
 export const loginUserSuccess = createAction(
   'loginUserSuccess',
-  props<{ loginMessage: string}>()
+  props<{ loginMessage: string, successMsg:string}>()
 );
 
 export const loginUserFailure = createAction(
@@ -84,6 +83,17 @@ export const updateUserFailure = createAction('updateUserFailure',
 props<{error:string}>()
 )
 
-export function getUsers(arg0: { id: any; parcel: any; }): any {
-  throw new Error('Function not implemented.');
-}
+/**
+ * Changing password
+ */
+export const changePassword = createAction('changePassword',
+props<{data:changePwd}>()
+)
+
+export const changePwdSuccess = createAction('changePwdSuccess',
+props<{message:string}>()
+)
+
+export const changePwdFailure = createAction('changePwdFailure',
+props<{error:string}>()
+)

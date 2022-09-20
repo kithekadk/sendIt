@@ -1,5 +1,4 @@
-
-ALTER PROCEDURE updateUser (@clientID INT,@fullName VARCHAR(200), @phoneNumber INT, @password VARCHAR(200))
+ALTER PROCEDURE updateUser (@clientID INT,@fullName VARCHAR(200), @phoneNumber INT, @password VARCHAR(200), @email VARCHAR(200), @userName VARCHAR(200))
 AS
 BEGIN
 
@@ -7,11 +6,12 @@ BEGIN
 		BEGIN
 				UPDATE dbo.CLIENTS SET fullName=@fullName,
 										phoneNumber=@phoneNumber,
-										password=@password
+										password=@password,
+										email=@email
 										WHERE clientID=@clientID
 		END
 	ELSE 
 		BEGIN
-			RAISERROR('No user currently',11,1)
+			RAISERROR('User not found',11,1)
 		END
 END

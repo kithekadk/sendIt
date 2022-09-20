@@ -28,8 +28,7 @@
   <div class="displaysection" *ngIf="parcels2$ | async as parcels2">
     <div
       class="card2"
-      *ngFor="let parcel of parcels2 | searchparcel: filter; let i = index"
-    >
+      *ngFor="let parcel of parcels2 | searchparcel: filter; let i = index">
       <div class="card2header">
         <div class="flex">To:{{ parcel.receiverEmail }}</div>
         <div>
@@ -44,7 +43,7 @@
       </div>
       <h6>Parcel ID:{{ parcel.parcelID }}</h6>
       <div class="flex" style="justify-content: space-between">
-        <h6>Phone Number: {{ parcel.receiverPhone }}</h6>
+        <h6>Receiver Phone No: {{ parcel.receiverPhone }}</h6>
         <div>
           <i
             routerLink="/admin/update/{{ parcel.parcelID }}"

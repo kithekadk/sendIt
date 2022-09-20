@@ -1,5 +1,5 @@
 <div class="navbar">
-    <div class="heading">MORE...</div>
+    <div class="heading"><h2>MORE...</h2></div>
     <div class="flex">
       <h6 style="color: white; justify-content: center">{{ Date | date }}</h6>
       <a class="btn btn-danger" (click)="onLogout()">Logout</a>
@@ -9,16 +9,44 @@
   <div class="parcelDetails" *ngIf="oneParcel$ | async as parcel3">
     <h2>PARCEL DESCRIPTION</h2>
     <div *ngFor="let parcel of parcel3" class="card">
-
-      <div>parcel ID:{{ parcel.parcelID }}</div>
-      <div>Sender:{{ parcel.sender }}</div>
-      <div>Receiver:{{ parcel.receiverEmail }}</div>
-      <div>Receiver Location:{{ parcel.receiverLocation }}</div>
-      <div>Receiver Phone:{{ parcel.receiverPhone }}</div>
-      <div>parcel Weight:{{ parcel.parcelWeight }}</div>
-      <div>parcel Price:{{ parcel.price }}</div>
-      <div>parcel Description:{{ parcel.parcelDescription }}</div>
-      <div>Delivery Date:{{ parcel.deliveryDate }}</div>
+      <table>
+        <tr>
+          <th>Parcel ID</th>
+          <td>{{ parcel.parcelID }}</td>
+        </tr>
+        <tr>
+          <th>Sender</th>
+          <td>{{ parcel.sender }}</td>
+        </tr>
+        <tr>
+          <th>Receiver</th>
+          <td>{{ parcel.receiverEmail }}</td>
+        </tr>
+        <tr>
+          <th>Receiver Location</th>
+          <td>{{ parcel.receiverLocation }}</td>
+        </tr>
+        <tr>
+          <th>Receiver Phone</th>
+          <td>{{ parcel.receiverPhone }}</td>
+        </tr>
+        <tr>
+          <th>Parcel Weight</th>
+          <td>{{ parcel.parcelWeight }}</td>
+        </tr>
+        <tr>
+          <th>Parcel Price</th>
+          <td>{{ parcel.price }}</td>
+        </tr>
+        <tr>
+          <th>Parcel Description</th>
+          <td>{{ parcel.parcelDescription }}</td>
+        </tr>
+        <tr>
+          <th>Delivery Date</th>
+          <td>{{ parcel.deliveryDate }}</td>
+        </tr>
+      </table>
     </div>
   </div>
   <div class="maps">

@@ -2,8 +2,9 @@
   <div class="loginDiv">
     <div><h2>LOGIN HERE</h2></div>
     <br />
-    <app-dynamic *ngIf="filled" [message]=error (close)="close()"></app-dynamic>
-    <p *ngIf="missing">Incorrect credentials</p>
+    <app-dynamic class="alert alert-success" *ngIf="filled" [message]=success (close)="close()"></app-dynamic>
+    <p *ngIf="errorMsg" class="alert alert-danger">{{errorMsg}}</p>
+    <p *ngIf="successChange" class="alert alert-success">{{successChange}}</p>
     <form #logform="ngForm" (ngSubmit)="onLogin(logform.value)">
       <div>
         <label for="email">Input Email</label><br />
@@ -52,7 +53,37 @@
       </div>
       <br />
       <div>
-        <button type="submit" class="btn btn-primary" [disabled] = logform.invalid>Sign In</button>
+        <button type="submit" class="btn btn-primary">Sign In</button><br>
+        <div routerLink="/register"> Don't have an account? <a style="color:rgb(11, 90, 236);">Sign Up</a></div>
+        <a style="color:rgb(11, 90, 236);" (click)="forgotPassword()">Forgot password?</a>
+      </div>
+      <div *ngIf="view">
+        <form [formGroup]="form" (ngSubmit)="onForget()">
+          <table>
+            <tr>
+              <td>
+                <label for="">  Phone number</label>
+              </td>
+              <td>
+                <input style="width:15vw;" type="number" formControlName="phoneNumber">
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <label for="">New Password</label>
+              </td>
+              <td>
+                <input style="width:15vw;" type="text" formControlName="password"><br>
+              </td>
+            </tr>
+          </table>
+        
+          <label for="">Input registered email to proceed</label><br>
+          <input style="width:20vw;" type="email" formControlName="email" placeholder="Input email to reset password">
+          <button type="submit" style="width:5vw;" class="arrow"><i class="fa-sharp fa-solid fa-arrow-right"></i></button>
+
+        </form>
       </div>
     </form>
   </div>

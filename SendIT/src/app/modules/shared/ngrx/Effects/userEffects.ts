@@ -50,7 +50,10 @@ export class userEffects {
         this.api.loginUser(action.logins).pipe(
           tap((res) => localStorage.setItem('token', res.token)),
           map((res) =>
-            userActions.loginUserSuccess({ loginMessage: res.token })
+            userActions.loginUserSuccess({
+              loginMessage: res.token,
+              successMsg: res.message,
+            })
           ),
           catchError((error) => of(userActions.loginUserFailure({ error })))
         )
@@ -77,6 +80,18 @@ export class userEffects {
         this.api.editUser(action.userID, action.user).pipe(
           map((res) => userActions.updateUserSuccess({ message: res.message })),
           catchError((error) => of(userActions.updateUserFailure({ error })))
+        )
+      )
+    );
+  });
+
+  changePassword = createEffect(() => {
+    return this.actions.pipe(
+      ofType(userActions.changePassword),
+      mergeMap((action) =>
+        this.api.changePassword(action.data).pipe(
+          map((message) => userActions.changePwdSuccess({ message: message.message })),
+          catchError((error) => of(userActions.changePwdFailure ({ error })))
         )
       )
     );

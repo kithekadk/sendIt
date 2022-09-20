@@ -32,12 +32,13 @@
     background-color: #191341;
     color:white;
     border-radius: 5px;
-    width:41.5vw;
+    width:41vw;
     margin-top: 0.5vw;
     margin-left: 0.5vw;
     padding-left:20px;
     padding-bottom:10px;
     cursor: pointer;
+    box-shadow: skyblue 5px;
     
 }
 .body-container{

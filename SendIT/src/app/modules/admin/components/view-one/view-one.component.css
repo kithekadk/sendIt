@@ -1,6 +1,6 @@
 .navbar{
     background-color: #191341;
-    width: 84.5vw;
+    width: 84vw;
     display: flex;
     align-items: center;
     padding-right: 0.5vw; 
@@ -20,7 +20,10 @@
     border-radius: 5px;
     text-align: left;
     margin-left: 20px;
-
+    padding:20px;
+}
+tr{
+    height: 40px;
 }
 .status{
     background-color:  #191341;
@@ -90,6 +93,9 @@
 .heading{
     color:white;
     padding-left: 20px;
+}
+.parcelDetails{
+    padding: 5px 20px;
 }
 @media screen and (max-width:935px) {
     .options{

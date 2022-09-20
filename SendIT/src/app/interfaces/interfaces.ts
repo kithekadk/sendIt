@@ -36,3 +36,8 @@ export interface UserInfo{
     email:string
     userName:string
 }
+export interface changePwd{
+    email:string
+    phoneNmber:number
+    password: string
+}

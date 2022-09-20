@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
-import { loginMessage,UserInfo, user, userReg } from '../interfaces/interfaces';
+import { loginMessage,UserInfo, user, userReg, changePwd } from '../interfaces/interfaces';
 import { candidates, MapPlace, parcel, place } from '../interfaces/parcelInterfaces';
 import { data } from '../modules/shared/interfaces/interfaces';
 
@@ -82,6 +82,10 @@ export class ApiService {
 
   editUser(userID:number, user:user):Observable<{message:string}>{
     return this.http.put<{message:string}>(`http://localhost:4400/user/update/${userID}`,user)
+  }
+
+  changePassword(data:changePwd):Observable<{message:string}>{
+    return this.http.put<{message:string}>(`http://localhost:4400/user/changePassword`,data)
   }
 }
 

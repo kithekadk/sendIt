@@ -1,4 +1,4 @@
-import { Response } from "express";
+import { Request, Response } from "express";
 import {isEmpty} from 'lodash'
 import { customUser, User } from "../interfaces/userInterfaces";
 import { LoginValidator } from "../helpers/user/loginValidator";
@@ -53,15 +53,19 @@ export const loginUser = async (req:customUser, res:Response)=>{
                 message: error.details[0].message
             })
         }
+        const emailExists = (await db.query(`SELECT * FROM dbo.CLIENTS WHERE email='${email}'`)).recordset
         
+        if(isEmpty(emailExists)){
+            return res.status(404).json({message:'Login email not recognised'})
+        }
+
         const user:User[]=(await db.exec('loginUser',{
             email
         })).recordset
-
         const validPassword = await bcrypt.compare(password, user[0].password)
         if (!validPassword){
             return res.status(400).json({
-                message:"Invalid password"
+                message:"Incorrect password"
             })
         }
         const logins = user.map(item =>{
@@ -132,12 +136,32 @@ export const updateUser = async(req:customUser, res:Response)=>{
 
         const hashedPwd = await bcrypt.hash(password,8)
 
-
         db.exec('updateUser',{
             clientID,fullName, phoneNumber,password:hashedPwd
         })
         return res.status(200).json({message:'user updated successfully'})
     } catch (error) {
         res.status(501).json({message: 'Internal server error'})
+    }
+}
+
+export const changePassword = async(req:customUser, res:Response)=>{
+    try {
+        const {email,phoneNumber,password}= req.body
+
+        const detailsMatch= (await db.query(`SELECT * FROM dbo.CLIENTS WHERE email='${email}' AND phoneNumber=${phoneNumber}`)).recordset
+
+        if(isEmpty(detailsMatch)){
+            return res.status(404).json({message: 'Credentials mismatch'})
+        }
+        const hashedPwd = await bcrypt.hash(password,8)
+
+        db.exec('changePassword',{
+            email,phoneNumber,password:hashedPwd
+        })
+        return res.status(200).json({message:'Password changed successfully'})
+
+    } catch (error) {
+        res.status(501).json({message: error})
     }
 }

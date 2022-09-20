@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Event, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { finalize, map, Observable, of, tap } from 'rxjs';
+import { map, Observable, of, tap } from 'rxjs';
 import { candidates } from 'src/app/interfaces/parcelInterfaces';
 import { parcelState } from 'src/app/modules/shared/ngrx/Reducer/parcelReducer';
 import { getUsers } from 'src/app/modules/shared/ngrx/Reducer/userReducer';
-import { ApiService } from 'src/app/services/api.service';
 import * as parcelActions from '../../../shared/ngrx/Actions/parcelActions'
 import * as userActions from '../../../shared/ngrx/Actions/userActions';
 
@@ -105,7 +104,7 @@ missing=false
 
   createParcel(){
     if(this.form){
-      console.log(this.form.value);
+      // console.log(this.form.value);
       
       this.store.dispatch(parcelActions.createParcel({parcel:{...this.form.value}}))
       this.store.dispatch(parcelActions.loadParcels())

@@ -7,16 +7,16 @@
     align-items: center;
 }
 img{
-    width:25vw;
-    height: 60vh;
+    width:30vw;
+    height: 75vh;
 }
 
 .loginDiv{
     background-color: #0A0A2E;
     padding: 40px;
     color:white;
-    width:25vw;
-    height: 60vh;
+    width:30vw;
+    height: 75vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,12 +24,24 @@ img{
 }
 
 input, button{
-    width:20vw
+    width:25vw
 }
 
 .btn{
-    padding: 0px;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.flex{
+    display:flex;
+    justify-content: space-around;
+}
+a{
+    cursor: pointer;
+}
+.arrow{
+    background-color: rgb(3, 113, 187);
+    border: none;
+    /* border-radius: 3px; */
+    padding: 3px 0px;
 }

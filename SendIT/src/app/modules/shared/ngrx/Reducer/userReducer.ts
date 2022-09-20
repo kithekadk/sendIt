@@ -24,6 +24,9 @@ export interface userState {
 
   updateUserSuccess:string;
   updateUserFailure:string;
+
+  changePwdSuccess: string;
+  changePwdFailure:string;
 }
 
 const initialState: userState = {
@@ -42,6 +45,9 @@ const initialState: userState = {
 
   updateUserSuccess:'',
   updateUserFailure:'',
+
+  changePwdSuccess: '',
+  changePwdFailure: '',
 };
 
 const getUsersFeatureState = createFeatureSelector<userState>('user');
@@ -81,6 +87,27 @@ export const useraddSuccess = createSelector(
   (state)=>state.useraddMessage
 )
 
+export const userLoginSuccess = createSelector(
+  getUsersFeatureState,
+  (state)=> state.loginSuccess
+)
+export const userLoginFailure = createSelector(
+  getUsersFeatureState,
+  (state)=> state.loginFailure
+)
+
+export const changePassSuccess = createSelector(
+  getUsersFeatureState,
+  (state)=> state.changePwdSuccess
+)
+
+export const changePassFailure = createSelector(
+  getUsersFeatureState,
+  (state)=> state.changePwdFailure
+)
+
+
+
 
 export const userReducer = createReducer(
   initialState,
@@ -105,7 +132,7 @@ export const userReducer = createReducer(
    * Login User status check
    */
   on(Actions.loginUserSuccess, (state, action): userState => {
-    return { ...state, loginSuccess: action.loginMessage };
+    return { ...state, loginSuccess: action.loginMessage};
   }),
   on(Actions.loginUserFailure, (state, action): userState => {
     return { ...state, loginFailure: action.error };
@@ -127,5 +154,17 @@ export const userReducer = createReducer(
   }),
   on(Actions.updateUserFailure, (state, action):userState=>{
     return {...state, updateUserFailure:action.error};
+  }),
+
+  /**
+   * change password
+   */
+
+  on(Actions.changePwdSuccess, (state, action):userState=>{
+    return {...state, changePwdSuccess:action.message};
+  }),
+
+  on(Actions.changePwdFailure, (state, action):userState=>{
+    return {...state, changePwdFailure:action.error}
   }),
 )
