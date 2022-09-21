@@ -9,24 +9,65 @@
   <div class="parcelDetails" *ngIf="oneParcel$ | async as parcel3">
     <h2>PARCEL DESCRIPTION</h2>
     <div *ngFor="let parcel of parcel3" class="card">
-
-      <div>parcel ID:{{ parcel.parcelID }}</div>
-      <div>Sender:{{ parcel.sender }}</div>
-      <div>Receiver:{{ parcel.receiverEmail }}</div>
-      <div>Receiver Location:{{ parcel.receiverLocation }}</div>
-      <div>Receiver Phone:{{ parcel.receiverPhone }}</div>
-      <div>parcel Weight:{{ parcel.parcelWeight }}</div>
-      <div>parcel Price:{{ parcel.price }}</div>
-      <div>parcel Description:{{ parcel.parcelDescription }}</div>
-      <div>Delivery Date:{{ parcel.deliveryDate }}</div>
+      <table>
+        <tr>
+          <th>Parcel ID</th>
+          <td>{{ parcel.parcelID }}</td>
+        </tr>
+        <tr>
+          <th>Sender</th>
+          <td>{{ parcel.sender }}</td>
+        </tr>
+        <tr>
+          <th>Receiver</th>
+          <td>{{ parcel.receiverEmail }}</td>
+        </tr>
+        <tr>
+          <th>Receiver Location</th>
+          <td>{{ parcel.receiverLocation }}</td>
+        </tr>
+        <tr>
+          <th>Receiver Phone</th>
+          <td>{{ parcel.receiverPhone }}</td>
+        </tr>
+        <tr>
+          <th>Parcel Weight</th>
+          <td>{{ parcel.parcelWeight }}</td>
+        </tr>
+        <tr>
+          <th>Parcel Price</th>
+          <td>{{ parcel.price }}</td>
+        </tr>
+        <tr>
+          <th>Parcel Description</th>
+          <td>{{ parcel.parcelDescription }}</td>
+        </tr>
+        <tr>
+          <th>Delivery Date</th>
+          <td>{{ parcel.deliveryDate }}</td>
+        </tr>
+      </table>
+      <div class="updateStatus" *ngIf="parcel.status!='Delivered'">
+        <h3>Update Status</h3>
+        <form class="form" [formGroup]="form" (ngSubmit)="updateStatus()">
+          <div class="status">
+            <label for="">Status</label><br />
+            <select formControlName="status">
+              <option>Delivered</option>
+              <p></p></select
+            >&nbsp;
+            <button class="btn btn-danger">Update Status</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
   <div class="maps">
     <h3 style="padding-left: 20px">Navigation</h3>
     <div>
       <google-map
-        height="40vh"
-        width="40vw;"
+      height="82vh"
+      width="39vw;"
         [center]="center"
         [zoom]="zoom"
         (mapClick)="moveMap($event)"
@@ -43,23 +84,6 @@
       </google-map>
 
       <!-- <div>Latitude: {{ display?.lat }} Longitude: {{ display?.lng }}</div> -->
-    </div>
-    <div class="updateStatus">
-      <h3>Update Status</h3>
-      <form class="form" [formGroup]="form" (ngSubmit)="updateStatus()">
-        <div class="status">
-          <label for="">Status</label><br />
-          <select formControlName="status" type="text">
-            <option selected>--Select an option--</option>
-            <option>Delivered</option>
-            <p ></p>
-          </select>
-        </div>
-        <br />
-        <div>
-          <button class="btn btn-danger">Update Status</button>
-        </div>
-      </form>
     </div>
   </div>
 </div>

@@ -2,9 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { ApiService } from 'src/app/services/api.service';
 import { data } from '../../interfaces/interfaces';
 import {
   changePassword,
+  emptyError,
   loadRole,
   loginUser,
 } from '../../ngrx/Actions/userActions';
@@ -33,7 +35,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private store: Store<userState>,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private api: ApiService
   ) {}
   form!: FormGroup;
 
@@ -56,34 +59,33 @@ export class LoginComponent implements OnInit {
         this.errorMsg = '';
       }, 2000);
     }
+
     this.store.select(getToken).subscribe((res) => {
       let token = res;
       localStorage.setItem('token', token);
       this.checkRole();
       return token;
     });
+
     if (input.email !== '' && input.password !== '') {
       this.store.dispatch(loginUser({ logins: { ...input } }));
-      this.store.select(userLoginSuccess).subscribe((res: any) => {
-        if (res.length != 0) {
-          this.success = 'Logged in successfully';
-          this.errorMsg = '';
+
+      this.api.loginUser(input).subscribe({
+        next:(res:any)=>{
+          this.success = res.message
           this.login = false;
           this.filled = true;
-
           setTimeout(() => {
             this.redirect();
           }, 1500);
-        } else {
-          this.store.select(userLoginFailure).subscribe((res: any) => {
-            this.errorMsg = res.error.message;
-
-            setTimeout(() => {
-              this.errorMsg = '';
-            }, 2000);
-          });
+        },
+        error:(error)=>{
+          this.errorMsg=error.error.message
+          setTimeout(() => {
+            this.errorMsg = '';
+          }, 2000);
         }
-      });
+      })
     }
   }
 
@@ -110,24 +112,26 @@ export class LoginComponent implements OnInit {
     this.view = !this.view;
   }
   onForget() {
-    this.store.dispatch(changePassword({ data: { ...this.form.value } }));
-    this.view = false;
-    this.store.select(changePassSuccess).subscribe((res) => {
-      if (res.length != 0) {
-        console.log(res);
-        this.successChange = res;
-        this.form.reset();
+    this.api.changePassword(this.form.value).subscribe({
+      next: (res: any) => {
+        this.form.disable();
+        this.view = false;
+        this.successChange = res.message;
         setTimeout(() => {
           this.successChange = '';
+          this.form.reset();
+          this.form.enable();
         }, 2500);
-      } else {
-        this.store.select(changePassFailure).subscribe((res: any) => {
-          this.errorMsg = res.error.message;
-          setTimeout(() => {
-            this.errorMsg = '';
-          }, 2500);
-        });
-      }
+      },
+      error: (error) => {
+        this.form.disable();
+        this.view = false;
+        this.errorMsg = error.error.message;
+        setTimeout(() => {
+          this.errorMsg = '';
+          this.form.enable();
+        }, 2500);
+      },
     });
   }
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
 import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 import * as parcelActions from '../Actions/parcelActions';
@@ -11,7 +12,8 @@ export class parcelEffects {
   constructor(
     private api: ApiService,
     private actions: Actions,
-    private actions$: Actions
+    private actions$: Actions,
+    private store:Store
   ) {}
 
   createParcel = createEffect(() => {
@@ -19,6 +21,7 @@ export class parcelEffects {
       ofType(parcelActions.createParcel),
       mergeMap((action) =>
         this.api.createParcel(action.parcel).pipe(
+          tap(()=>this.store.dispatch(parcelActions.loadParcels())),
           map((res) =>
             parcelActions.createParcelSuccess({message: res.message})
           ),
@@ -35,7 +38,6 @@ export class parcelEffects {
       ofType(parcelActions.loadParcels),
       mergeMap(() =>
         this.api.getAllParcels().pipe(
-          tap(res=>res),
           map((parcels) => parcelActions.loadParcelsSuccess({ parcels })),
           catchError((error) =>
             of(parcelActions.loadParcelsFailure({ error: error }))
@@ -50,7 +52,7 @@ export class parcelEffects {
       ofType(parcelActions.deleteParcel),
       mergeMap((action) =>
         this.api.deleteParcel(action.id).pipe(
-          tap(res=>res),
+          tap(()=>this.store.dispatch(parcelActions.loadParcels())),
           map((message) =>
             parcelActions.delParcelSuccess({ message: message.message })
           ),
@@ -67,6 +69,7 @@ export class parcelEffects {
       ofType(parcelActions.editParcel),
       mergeMap((action) =>
         this.api.editParcel(action.id, action.parcel).pipe(
+          tap(()=>this.store.dispatch(parcelActions.loadParcels())),
           map((message) =>
             parcelActions.editParcelSuccess({ message: message.message })
           ),
@@ -83,6 +86,7 @@ export class parcelEffects {
       ofType(parcelActions.reviseStatus),
       mergeMap((action) =>
         this.api.updateParcelStatus(action.id, action.status).pipe(
+          tap(()=>this.store.dispatch(parcelActions.loadParcels())),
           map((message) =>
             parcelActions.reviseStatusSuccess({ message: message.message })
           ),

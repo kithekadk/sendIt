@@ -26,10 +26,9 @@ token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRJRCI6MiwiZnVsbE5hbWUiOiJEY
 ###
 POST http://localhost:4400/parcel/create
 Content-Type: application/json
-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRJRCI6MiwiZnVsbE5hbWUiOiJEYW5pZWwgSyIsInVzZXJOYW1lIjoiRGFuaWVsIiwiZW1haWwiOiJrYWtpbnlpZGtAZ21haWwuY29tIiwicGhvbmVOdW1iZXIiOiIxMjM0NTY3OCIsImxhdCI6MSwibG5nIjozOCwid2VsY29tZSI6IllFUyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY2MzU5MjQ4MiwiZXhwIjoxNjYzNTkyNzgyfQ.ySeMF6tn5JiMJTX_tFXw_v9bNH0v_yfoVBFFMfHW1VU
 
 {
-        "sender":"kakinyidk@gmail.com",
+        "sender":"dk@yopmail.com",
         "parcelWeight":2,
         "price":200,
         "lat":-1.567,
@@ -38,8 +37,8 @@ token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRJRCI6MiwiZnVsbE5hbWUiOiJEY
         "senderLng":40.45,
         "parcelDescription":"test",
         "receiverLocation":"test",
-        "receiverPhone":"745244141",
-        "receiverEmail":"jonathanndambuki16@gmail.com",
+        "receiverPhone":745244141,
+        "receiverEmail":"jonathan@yopmail.com",
         "deliveryDate":"22122022"
 }
 

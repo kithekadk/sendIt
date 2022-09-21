@@ -1,6 +1,6 @@
 .navbar{
     background-color: #191341;
-    width: 84.0vw;
+    width: 83.0vw;
     display: flex;
     align-items: center;
     margin-left: 15.5vw;
@@ -20,9 +20,9 @@
     padding:20px;
     margin-left:15.5vw;
 }
-.pagination-controls{
+/* .pagination-controls{
     bottom:10px;
-}
+} */
 
 
 @media screen and (max-width:935px) {

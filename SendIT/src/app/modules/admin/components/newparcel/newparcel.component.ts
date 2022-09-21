@@ -110,8 +110,11 @@ missing=false
       this.store.dispatch(parcelActions.loadParcels())
       this.filled=true
       
-      this.store.dispatch(parcelActions.loadParcels())
-      this.router.navigate(['/admin/parcels'])
+      setTimeout(() => {
+        this.filled=false
+        this.router.navigate(['/admin/parcels'])
+      }, 1500);
+      
     }
    
   }

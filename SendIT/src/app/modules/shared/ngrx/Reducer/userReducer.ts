@@ -180,4 +180,11 @@ export const userReducer = createReducer(
   on(Actions.changePwdFailure, (state, action):userState=>{
     return {...state, changePwdFailure:action.error}
   }),
+
+  /**
+   * Empty reducer
+   */
+  // on(Actions.changePwdFailure, (state, action):userState=>{
+  //   return { ...state, changePwdFailure:''}
+  // }),
 )

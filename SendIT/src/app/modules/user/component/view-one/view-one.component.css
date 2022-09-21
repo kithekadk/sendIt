@@ -1,9 +1,10 @@
 .navbar{
     background-color: #191341;
-    width: 84vw;
+    width: 83.5vw;
     display: flex;
     align-items: center;
-    padding-right: 0.5vw; 
+    padding-right: 0.5vw;
+    margin-left:0.5vw;
     position: fixed;
 }
 .flex{
@@ -85,6 +86,9 @@
     height: 38vh;
     padding:30px;
     background-color:  #191341;
+}
+.parcelDetails{
+    padding: 2px 10px;
 }
 .heading{
     color:white;

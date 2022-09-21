@@ -97,3 +97,5 @@ props<{message:string}>()
 export const changePwdFailure = createAction('changePwdFailure',
 props<{error:string}>()
 )
+
+export const emptyError = createAction('emptyError');

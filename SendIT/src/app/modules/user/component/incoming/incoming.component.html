@@ -10,7 +10,7 @@
 <div *ngIf="myParcels$|async as parcels">
     <div class="card2" *ngFor="let parcel of parcels">
         <div class="card2header">  
-            <div class="flex"> <h6>From: {{parcel.sender}}</h6> <h6>parcel:{{parcel.parcelID}}</h6></div> 
+            <div class="flex"> <h6>From: {{parcel.sender}}</h6></div> 
             <div>
                 <i
                 (click)="deleteParcel(parcel.parcelID)"

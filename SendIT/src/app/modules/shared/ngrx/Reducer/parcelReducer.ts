@@ -64,12 +64,17 @@ export const getparcelID = createSelector(
     state => state.parcelID
 )
 
+export const addParcelSuccess = createSelector(
+    getParcelsFeatureState,
+    state=>state.parceladdSuccess
+)
+
 export const deleteParcel = createSelector(
     getParcelsFeatureState,
     state=>state.deletParcelSuccess
 )
 
-export const editParcel = createSelector(
+export const editParcelSuccess = createSelector(
     getParcelsFeatureState,
     state=>state.editParcelSuccess
 )

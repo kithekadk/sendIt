@@ -2,18 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
-  MinLengthValidator,
   Validators,
 } from '@angular/forms';
 import { Actions } from '@ngrx/effects';
 import { Router } from '@angular/router';
-import { Action, select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import {
-  userAdderror,
-  useraddSuccess,
   userState,
 } from '../../ngrx/Reducer/userReducer';
 import * as UserActions from '../../ngrx/Actions/userActions';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-register',
@@ -25,8 +23,8 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder,
     public store: Store<userState>,
     private router: Router,
-    private action$: Actions
-  ) {}
+    private api:ApiService
+    ) {}
   form!: FormGroup;
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -46,33 +44,22 @@ export class RegisterComponent implements OnInit {
       setTimeout(() => {
         this.untouched = false;
       }, 2000);
-
       return;
     }
-  
-    this.store.dispatch(
-      UserActions.addUser({ newUser: { ...this.form.value } })
-    );
-    try {
-      this.store.select(useraddSuccess).subscribe((res) => {
-        if (res.length > 0) {
-          this.success = res;
+
+    this.api.createUser(this.form.value).subscribe({
+      next:(res:any)=>{
+        this.success = res.message;
           setTimeout(() => {
             this.router.navigate(['/login']);
           }, 1500);
-        } else {
-          this.store.select(userAdderror).subscribe((res: any) => {
-            
-            this.error = res.error.message;
+      },
+      error:(error)=>{
+        this.error = error.error.message;
             setTimeout(() => {
               this.error = ''
             }, 3000);
-
-          });
-        }
-      });
-    } catch (error) {
-      console.log(error);
-    }
+      }
+    })
   }
 }

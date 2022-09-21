@@ -13,7 +13,7 @@ export interface customParcel extends  Request{
         senderLng:number
         parcelDescription:string
         receiverLocation:string
-        receiverPhone:string
+        receiverPhone:number
         receiverEmail:string
         deliveryDate:string
         status:string

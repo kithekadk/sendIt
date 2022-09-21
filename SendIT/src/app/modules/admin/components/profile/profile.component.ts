@@ -7,8 +7,8 @@ import {
   getUsers,
   userState,
   userUpdateFailure,
-  userUpdateSuccess,
 } from 'src/app/modules/shared/ngrx/Reducer/userReducer';
+import { ApiService } from 'src/app/services/api.service';
 import * as UserActions from '../../../shared/ngrx/Actions/userActions';
 
 @Component({
@@ -20,7 +20,8 @@ export class ProfileComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private store: Store<userState>
+    private store: Store<userState>,
+    private api: ApiService
   ) {}
 
   form!: FormGroup;
@@ -64,32 +65,23 @@ export class ProfileComponent implements OnInit {
     this.store.dispatch(
       UserActions.updateUser({ user: { ...this.form.value } })
     );
-    this.store.select(userUpdateSuccess).subscribe((res) => {
-      
-      
-      if (res.length != 0) {
+
+    this.api.editUser(this.form.value).subscribe({
+      next: (res: any) => {
         this.form.disable();
-        this.success = res;
+        this.success = res.message;
         this.store.dispatch(UserActions.loadUsers());
         setTimeout(() => {
           this.success = '';
           this.router.navigate(['/admin/parcels']);
         }, 2500);
-        return;
-      } else {
-        this.store.select(userUpdateFailure).subscribe((res: any) => {
-          console.log(res);
-          if (res.error.message) {
-            this.error = res.error.message;
-            setTimeout(() => {
-              this.error= '';
-              this.store.select(userUpdateFailure).subscribe((res)=>{
-                res
-              })
-            }, 2000);
-          }
-        });
-      }
+      },
+      error: (error) => {
+        this.error = error.error.message;
+        setTimeout(() => {
+          this.error = '';
+        }, 2000);
+      },
     });
   }
 }
