@@ -55,6 +55,7 @@ export class ParcelsComponent implements OnInit {
 
   }
 
+  
   onLogout() {
     localStorage.clear();
     this.router.navigate(['']);
@@ -111,6 +112,9 @@ export class ParcelsComponent implements OnInit {
     this.store.dispatch(Actions.loadParcels())
   }
 
+  confirmDelete(id:number){
+    this.deleteParcel(id)
+  }
   oneParcel(id:number){
     this.store.dispatch(Actions.SelectedId({parcelID:id}))
 

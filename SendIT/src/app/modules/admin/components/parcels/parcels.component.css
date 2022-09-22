@@ -5,6 +5,13 @@
     align-items: center;
     padding-right: 0.5vw; 
     position: fixed;
+    /* margin-left: 15.5vw; */
+}
+.top{
+    background-color: white;
+    width:84.5vw;
+    height:17vh;
+    position: fixed;
     margin-left: 15.5vw;
 }
 .flex{
@@ -57,7 +64,7 @@
     margin-top: 1vw;
     margin-left: 0.5vw;
     top: 8vh;
-    margin-left: 24.5vw;
+    margin-left:9.5vw;
     cursor: pointer;
 }
 .options div:hover{

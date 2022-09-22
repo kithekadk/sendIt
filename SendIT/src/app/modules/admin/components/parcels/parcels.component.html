@@ -1,28 +1,32 @@
-<div class="navbar">
-  <input
-    type="text"
-    class="search"
-    placeholder="Search by ID..."
-    [(ngModel)]="filter"
-  />
-  <div class="flex">
-    <h6 style="color: white; justify-content: center">{{ Date | date }}</h6>
-    <a class="btn btn-danger" (click)="onLogout()">Logout</a>
+<div class="top">
+  <div class="navbar">
+    <input
+      type="text"
+      class="search"
+      placeholder="Search by ID..."
+      [(ngModel)]="filter"
+    />
+    <div class="flex">
+      <h6 style="color: white; justify-content: center">{{ Date | date }}</h6>
+      <a class="btn btn-danger" (click)="onLogout()">Logout</a>
+    </div>
+  </div>
+  
+  <div class="flex options">
+    <div class="card card-header" (click)="filterStatus('')">All Parcels</div>
+    <div class="card card-header" (click)="filterStatus('In Transit')">
+      In Transit
+    </div>
+    <div class="card card-header" (click)="filterStatus('Awaiting Pick-up')">
+      Awaiting Pickup
+    </div>
+    <div class="card card-header" (click)="filterStatus('Delivered')">
+      Delivered
+    </div>
   </div>
 </div>
 
-<div class="flex options">
-  <div class="card card-header" (click)="filterStatus('')">All Parcels</div>
-  <div class="card card-header" (click)="filterStatus('In Transit')">
-    In Transit
-  </div>
-  <div class="card card-header" (click)="filterStatus('Awaiting Pick-up')">
-    Awaiting Pickup
-  </div>
-  <div class="card card-header" (click)="filterStatus('Delivered')">
-    Delivered
-  </div>
-</div>
+
 
 <div class="body-container">
   <div class="displaysection" *ngIf="parcels2$ | async as parcels2">
@@ -30,10 +34,11 @@
       class="card2"
       *ngFor="let parcel of parcels2 | searchparcel: filter; let i = index">
       <div class="card2header">
-        <div class="flex">To:{{ parcel.receiverEmail }}</div>
-        <div>
-          <i
-            (click)="deleteParcel(parcel.parcelID)"
+        <div class="flex">To:{{ parcel.receiverEmail }}</div> 
+        <div> 
+          <i *ngIf="parcel.status =='Delivered'"
+          (click)="deleteParcel(parcel.parcelID)"
+            type="button" data-bs-toggle="modal" data-bs-target="#myModal"
             style="font-size: 20px; color: red"
             class="fa-solid fa-trash"
           ></i>
@@ -58,6 +63,24 @@
           >
             View
           </button>
+          <!-- <div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel" style="color: black;">Confirm action</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="color: black;" >
+                  Are you sure to perform <b>Delete parcel {{parcel.parcelID}}</b> action??
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Delete</button>
+                </div>
+              </div>
+            </div>
+          </div>  -->
+
         </div>
       </div>
     </div>
