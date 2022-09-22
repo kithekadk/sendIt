@@ -5,14 +5,13 @@
     align-items: center;
     padding-right: 0.5vw; 
     position: fixed;
-    /* margin-left: 15.5vw; */
 }
 .top{
     background-color: white;
     width:84.5vw;
     height:17vh;
     position: fixed;
-    margin-left: 15.5vw;
+    margin-left: 0.5vw;
 }
 .flex{
     display: flex;
@@ -50,7 +49,7 @@
 }
 .body-container{
     margin-top:16.4vh;
-    margin-left: 15vw;
+    margin-left: 0vw;
 }
 .card2header{
     display: flex;
@@ -97,18 +96,41 @@
     padding:30px;
     background-color:  #191341;
 }
+.emptyParcel{
+    width:84.5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.diffColor{
+    background-color: green;
+}
 @media screen and (max-width:935px) {
-    .options{
+    .navbar{
+        background-color: #191341;
+        width: 100vw;
         display: flex;
         align-items: center;
-        margin-right: 15px;
+        
+    }
+    .options{
+        display: flex;
+        justify-content: center;
+        align-items: center;
         gap:3px;
         margin-top:15.4vh;
-        margin-left: 0.5vw;
         flex-wrap: wrap;
     }
+    .top{
+
+        width:100vw;
+        min-height:17vh;
+        position: fixed;
+
+        margin-top: 14vh;
+    }
     .options div{
-        width:21.5vw;
+        width:19.5vw;
         font-size:13px;
         
     }
@@ -143,5 +165,15 @@
     .search{
         margin-left: 1vw;
         width:45vw;
+    }
+    .emptyParcel{
+        width:100vw;
+        height: 45vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    img{
+        height:40vh;
     }
 }

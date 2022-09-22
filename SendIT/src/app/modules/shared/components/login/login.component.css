@@ -42,6 +42,25 @@ a{
 .arrow{
     background-color: rgb(3, 113, 187);
     border: none;
-    /* border-radius: 3px; */
     padding: 3px 0px;
+}
+@media screen and (max-width:935px) {
+    img{
+        display:none;
+    }
+    input, button{
+        width:55vw
+    }
+    .loginDiv{
+        background-color: #0A0A2E;
+        padding: 40px;
+        color:white;
+        width:65vw;
+        height: 75vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
 }

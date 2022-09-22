@@ -1,96 +1,110 @@
 <div class="main">
   <div class="loginDiv">
-    <div><h2>LOGIN HERE</h2></div>
+    <div *ngIf="!view"><h2>LOGIN HERE</h2></div>
     <br />
     <app-dynamic class="alert alert-success" *ngIf="filled" [message]=success (close)="close()"></app-dynamic>
     <p *ngIf="errorMsg" class="alert alert-danger">{{errorMsg}}</p>
     <p *ngIf="successChange" class="alert alert-success">{{successChange}}</p>
     <form #logform="ngForm" (ngSubmit)="onLogin(logform.value)">
-      <div>
-        <label for="email">Input Email</label><br />
-        <input
-          type="email"
-          name="email"
-          required
-          [(ngModel)]="input.email"
-          #email="ngModel"
-          placeholder="Email"
-        />
-
-        <div *ngIf="email.invalid && (email.dirty || email.touched)">
-          <p *ngIf="email.errors?.['required']" style="color: red">
-            Email is required.
-          </p>
-        </div>
-      </div>
-
-      <div>
-        <label for="password">Input Password</label><br />
-        <input
-          type="password"
-          minlength="8"
-          [(ngModel)]="input.password"
-          #password="ngModel"
-          required
-          name="password"
-          placeholder="Password"
-        />
-
-        <div *ngIf="password.invalid && (password.dirty || password.touched)">
-          <p
-            *ngIf="password.errors?.['required']"
-            style="color: rgb(255, 0, 0)"
-          >
-            Password is required.
-          </p>
-          <div *ngIf="password.errors?.['minlength']" style="color: red">
-            At least 8 characters long.
+      <div  *ngIf="!view">
+        <div>
+          <label for="email">Input Email</label><br />
+          <input
+            type="email"
+            name="email"
+            required
+            [(ngModel)]="input.email"
+            #email="ngModel"
+            placeholder="Email"
+          />
+  
+          <div *ngIf="email.invalid && (email.dirty || email.touched)">
+            <p *ngIf="email.errors?.['required']" style="color: red">
+              Email is required.
+            </p>
           </div>
-          <span *ngIf="password.errors?.['serverError']">
-            {{password.errors?.['serverError']}}
-          </span>
         </div>
-      </div>
-      <br />
-      <div>
-        <button type="submit" class="btn btn-primary">Sign In</button><br>
-        <div routerLink="/register"> Don't have an account? <a style="color:rgb(11, 90, 236);">Sign Up</a></div>
-        <a style="color:rgb(11, 90, 236);" (click)="forgotPassword()">Forgot password?</a>
+  
+        <div>
+          <label for="password">Input Password</label><br />
+          <input
+            type="password"
+            minlength="8"
+            [(ngModel)]="input.password"
+            #password="ngModel"
+            required
+            name="password"
+            placeholder="Password"
+          />
+  
+          <div *ngIf="password.invalid && (password.dirty || password.touched)">
+            <p
+              *ngIf="password.errors?.['required']"
+              style="color: rgb(255, 0, 0)"
+            >
+              Password is required.
+            </p>
+            <div *ngIf="password.errors?.['minlength']" style="color: red">
+              At least 8 characters long.
+            </div>
+            <span *ngIf="password.errors?.['serverError']">
+              {{password.errors?.['serverError']}}
+            </span>
+          </div>
+        </div>
+        <br />
+        <div>
+          <button type="submit" class="btn btn-primary">Sign In</button><br>
+          <div routerLink="/register"> Don't have an account? <a style="color:rgb(11, 90, 236);">Sign Up</a></div>
+          <a style="color:rgb(11, 90, 236);" (click)="forgotPassword()">Forgot password?</a>
+        </div>
       </div>
       <div *ngIf="view">
+        <div><h2>RESET PASSWORD</h2></div><br>
+        <p *ngIf="errorMsg2" class="alert alert-danger">{{errorMsg2}}</p>
+        <p *ngIf="successChange2" class="alert alert-success">{{successChange2}}</p>
         <form [formGroup]="form" (ngSubmit)="onForget()">
           <table>
             <tr>
               <td>
                 <label for="">  Phone number</label>
               </td>
+            </tr>
+            <tr>
               <td>
-                <input style="width:15vw;" type="number" formControlName="phoneNumber">
+                <input type="number" formControlName="phoneNumber" placeholder="input registered phone number">
               </td>
             </tr>
-
+            <tr>
+            </tr>
             <tr>
               <td>
                 <label for="">New Password</label>
               </td>
+            </tr>
+            <tr>
               <td>
-                <input style="width:15vw;" type="text" formControlName="password"><br>
+                <input type="text" formControlName="password" placeholder="Input new password">
               </td>
             </tr>
-          </table>
+          </table><br>
         
           <label for="">Input registered email to proceed</label><br>
-          <input style="width:20vw;" type="email" formControlName="email" placeholder="Input email to reset password">
-          <button type="submit" style="width:5vw;" class="arrow"><i class="fa-sharp fa-solid fa-arrow-right"></i></button>
+          <input type="email" formControlName="email" placeholder="Input email to reset password"><br><br>
+
+          <button type="submit"  class="arrow btn btn-primary">Submit &nbsp;<i class="fa-sharp fa-solid fa-arrow-right"></i></button><br>
+          <a style="color:rgb(11, 90, 236);" (click)="signIn()">Click Here to Login</a>
 
         </form>
       </div>
     </form>
   </div>
   <div>
-    <img
-      src="https://media.istockphoto.com/photos/yellow-paper-bubble-envelope-on-table-picture-id1342798601?b=1&k=20&m=1342798601&s=170667a&w=0&h=CagRu1JOrCSvCOOiwu3GjpPwbQfC6F918ZdQvhCtpdc="
+    <img *ngIf="!view"
+      src= "../../../../../assets/undraw_secure_login_pdn4.svg"
       alt=""
     />
+    
+    <img *ngIf="view" src="../../../../../assets/undraw_forgot_password_re_hxwm.svg" alt="">
   </div>
 </div>

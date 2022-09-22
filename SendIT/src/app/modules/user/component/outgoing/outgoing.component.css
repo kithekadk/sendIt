@@ -38,6 +38,11 @@
     margin-left: 0.5vw;
 
 }
+.emptyParcel{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 @media screen and (max-width:935px) {
     .navbar{

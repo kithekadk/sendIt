@@ -1,5 +1,5 @@
 .mainpage{
-    margin-left: 15vw;
+    margin-left: 0vw;
     background-color: rgb(215, 255, 215);
     width:85vw;
     height:100vh;
@@ -14,8 +14,10 @@ input, button{
 }
 
 .body{
+    margin-top: 0vh;
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 .profilepic{
     display: flex;
@@ -29,4 +31,27 @@ input, button{
     margin-top: 20px;
     height: 30vh;
     background-image: url("https://images.pexels.com/photos/346529/pexels-photo-346529.jpeg?auto=compress&cs=tinysrgb&w=600");
+}
+
+@media screen and (max-width:935px) {
+    .mainpage{
+        margin-left: 0vw;
+        background-color: rgb(215, 255, 215);
+        width:100vw;
+        height:100vh;
+        padding:20px;
+    }
+    .body{
+        margin-top: 14vh;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-left: 0vw;
+    }
+    input, button{
+        width:60vw;
+    }
+    .adminprofile{
+        display: none;
+    }
 }

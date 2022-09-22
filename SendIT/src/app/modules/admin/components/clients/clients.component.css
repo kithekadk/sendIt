@@ -3,7 +3,7 @@
     width: 83.0vw;
     display: flex;
     align-items: center;
-    margin-left: 15.5vw;
+    margin-left: 0.5vw;
 }
 .flex{
     display: flex;
@@ -15,27 +15,36 @@
     margin-left: 1vw;
     width:23vw;
 }
-
 .tableDiv{
     padding:20px;
-    margin-left:15.5vw;
+    margin-left: 0.5vw;
 }
-/* .pagination-controls{
-    bottom:10px;
-} */
-
 
 @media screen and (max-width:935px) {
    .hidethis,h6{
     display: none;
    }
     .tableDiv{
-        padding:20px;
-        margin-top:26.5vw;
+        padding:0px;
+        margin-top:22.5vh;
         margin-left: 0.5vw;
     }
     .search{
         margin-left: 1vw;
-        width:30vw;
+        width:50vw;
     }
+    .navbar{
+        background-color: #191341;
+        width: 100.0vw;
+        display: flex;
+        align-items: center;
+        margin-top: 14vh;
+        margin-left: 0;
+        position: fixed;
+    }
+    .tableDiv{
+        padding:5px;
+        margin-left:0vw;
+    }
+
 }

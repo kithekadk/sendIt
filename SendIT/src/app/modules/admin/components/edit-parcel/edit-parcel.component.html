@@ -34,35 +34,7 @@
   
           </div>
         </div>
-        <div class="flex">
-          <div>
-            <label>Parcel Weight</label><br />
-            <input
-              style="width: 16vw"
-              placeholder="In Kgs"
-              type="number"
-              formControlName="parcelWeight"
-            />
-            <p
-              style="color: red"
-              *ngIf="
-                !form.get('parcelWeight')!.valid &&
-                form.get('parcelWeight')!.touched
-              "
-            >
-              Input valid Weight
-            </p>
-          </div>
-          <div>
-            <label>Price</label><br />
-            <input
-              style="width: 16vw"
-              type="number"
-              formControlName="price"
-              readonly
-            />
-          </div>
-        </div>
+        
         <div>
           <label>Parcel Description</label><br />
           <input
@@ -84,7 +56,7 @@
           <div>
             <label>Receiver Location</label><br />  
             
-              <input style="width: 16vw" formControlName="receiverLocation" ngx-google-places-autocomplete (onAddressChange)="AddressChange($event)" />
+              <input id="inputSmall" formControlName="receiverLocation" ngx-google-places-autocomplete (onAddressChange)="AddressChange($event)" />
             <p
               style="color: red"
               *ngIf="
@@ -99,7 +71,7 @@
           <div>
             <label for="">Receiver Phone No</label><br />
             <input
-              style="width: 16vw"
+            id="inputSmall"
               type="number"
               formControlName="receiverPhone"
               minlength="10"
@@ -142,9 +114,37 @@
             Input valid date
           </p>
         </div>
-        <br />
-  
+        <div class="flex">
+          <div>
+            <label>Parcel Weight</label><br />
+            <input
+            id="inputSmall"
+            placeholder="In Kgs"
+            type="number"
+            formControlName="parcelWeight"
+            />
+            <p
+            style="color: red"
+            *ngIf="
+            !form.get('parcelWeight')!.valid &&
+            form.get('parcelWeight')!.touched
+            "
+            >
+            Input valid Weight
+          </p>
+        </div>
         <div>
+          <label>Price</label><br />
+          <input
+          id="inputSmall" 
+          type="number"
+          formControlName="price"
+          readonly
+          />
+        </div>
+      </div>
+      <br />
+      <div>
           <input class="btn btn-primary" type="submit" value="SUBMIT" [disabled] = form.invalid/>
           <!-- <input class="btn btn-danger" type="reset" value="Reset"  
           data-toggle="modal" data-target="#myModal"/> -->

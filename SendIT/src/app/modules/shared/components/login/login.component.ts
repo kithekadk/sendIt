@@ -50,8 +50,10 @@ export class LoginComponent implements OnInit {
     });
   }
   success!: string;
-  successChange!: string;
   errorMsg!: string;
+  successChange!: string;
+  successChange2!: string;
+  errorMsg2!: string;
   onLogin(input: data) {
     if (input.email == '' || input.password == '') {
       this.errorMsg = 'All inputs are required';
@@ -107,6 +109,10 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  signIn(){
+    this.view=false
+  }
+
   view = false;
   forgotPassword() {
     this.view = !this.view;
@@ -115,20 +121,20 @@ export class LoginComponent implements OnInit {
     this.api.changePassword(this.form.value).subscribe({
       next: (res: any) => {
         this.form.disable();
-        this.view = false;
-        this.successChange = res.message;
+        
+        this.successChange2 = res.message;
         setTimeout(() => {
-          this.successChange = '';
+          this.view = false;
+          this.successChange2 = '';
           this.form.reset();
           this.form.enable();
         }, 2500);
       },
       error: (error) => {
         this.form.disable();
-        this.view = false;
-        this.errorMsg = error.error.message;
+        this.errorMsg2 = error.error.message;
         setTimeout(() => {
-          this.errorMsg = '';
+          this.errorMsg2 = '';
           this.form.enable();
         }, 2500);
       },

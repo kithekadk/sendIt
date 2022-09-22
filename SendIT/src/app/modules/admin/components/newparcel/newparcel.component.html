@@ -5,6 +5,7 @@
     <a class="btn btn-danger" (click)="onLogout()">Logout</a>
   </div>
 </div>
+
 <div class="main">
   <div class="formDiv">
     <h2>Create Parcel Order</h2>
@@ -54,7 +55,7 @@
         <div>
           <label>Receiver Location</label><br />  
           
-            <input formControlName="receiverLocation" style="width: 16vw" ngx-google-places-autocomplete (onAddressChange)="AddressChange($event)" />
+            <input formControlName="receiverLocation" id="inputSmall" ngx-google-places-autocomplete (onAddressChange)="AddressChange($event)" />
        
           <p
             style="color: red"
@@ -69,9 +70,8 @@
 
         <div>
           <label for="">Receiver Phone No</label><br />
-          <input
-            style="width: 16vw"
-            type="string"
+          <input id="inputSmall"
+            type="text"
             formControlName="receiverPhone"
             minlength="10"
           />
@@ -118,7 +118,7 @@
         <div>
           <label>Parcel Weight</label><br />
           <input
-            style="width: 16vw"
+          id="inputSmall"
             placeholder="In Kgs"
             type="number"
             formControlName="parcelWeight"
@@ -136,7 +136,7 @@
         <div>
           <label>Price</label><br />
           <input
-            style="width: 16vw"
+          id="inputSmall"
             type="number"
             formControlName="price"
             readonly

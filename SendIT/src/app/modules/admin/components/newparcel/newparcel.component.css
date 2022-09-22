@@ -1,7 +1,7 @@
 .main{
     width: 84vw;
     margin-top: 0.5vw;
-    margin-left: 15.5vw;
+    margin-left: 0.5vw;
     color: white;
     display: flex;
     flex-direction: column;
@@ -36,18 +36,20 @@ input,select{
     width: 84.5vw;
     display: flex;
     align-items: center;
-    margin-left: 15.5vw;
+    margin-left: 0.5vw;
     color: white;
     padding-right:15px;
 }
 .heading{
     padding-left: 20px;
 }
+#inputSmall{
+    width:16vw;
+}
 
 @media screen and (max-width:935px) {
     .main{
-        width: 100vw;
-        margin-top: 0.5vw;
+        width: 96vw;
         margin-left: 0vw;
         color: white;
         display: flex;
@@ -56,6 +58,7 @@ input,select{
         align-items: center;
         padding: 5px;
         height:90.5vh;
+        margin-top: 22.0vh;
         
     }
 
@@ -66,14 +69,25 @@ input,select{
         align-items: center;
         background-color: #0A0A2E;
         padding: 20px;
-        width: 75vw;
+        width: 95vw;
         border-radius: 5px;
         min-height:80.5vh;
     }
     input,select{
-        width:65vw;
+        width:90vw;
     }
     h2,h6{
         display: none;
+    }
+    .navbar{
+        background-color: #191341;
+        margin-top: 14vh;
+        width: 97vw;
+        display: flex;
+        align-items: center;
+        position: fixed;
+    }
+    #inputSmall{
+        width:90vw;
     }
 }
