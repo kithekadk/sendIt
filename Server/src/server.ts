@@ -4,18 +4,12 @@ import cors from 'cors'
 import parcelRouter from './routes/parcelRoutes';
 import mssql from 'mssql';
 import { sqlConfig } from './config/config';
-
+/**
+ * mail server
+ */
 const app = express()
 app.use(cors())
 app.use(json())
-// app.use(async (req: Request, res: Response, next: NextFunction) => {
-//     const pool = await mssql.connect(sqlConfig);
-//     await pool.request();
-//     req.context = Object.assign(req.context || {}, {
-//         connection: pool
-//     });
-//     res.on('close', pool.close);
-// })
 
 app.use('/user', userRouter)
 app.use('/parcel', parcelRouter)
@@ -25,6 +19,6 @@ app.use((err:Error, req:Request, res:Response, next:NextFunction)=>{
 })
 
 app.listen(4400 ,()=>{
-    console.log('Server running on port 4400');
+    console.log('Server running at port 4400');
     
 })
