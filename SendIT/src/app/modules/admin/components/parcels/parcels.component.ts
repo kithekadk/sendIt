@@ -106,10 +106,10 @@ export class ParcelsComponent implements OnInit {
    *  delete a parcel
    */
 
-  deleteParcel(id:number){    
+  deleteParcel(id:number){ 
     this.store.dispatch(Actions.deleteParcel({id:id}))
-    this.router.navigate([`/admin/parcels`])
     this.store.dispatch(Actions.loadParcels())
+    this.router.navigate([`/admin/parcels`])
   }
 
   confirmDelete(id:number){
@@ -119,5 +119,10 @@ export class ParcelsComponent implements OnInit {
     this.store.dispatch(Actions.SelectedId({parcelID:id}))
 
     this.router.navigate([`/admin/view/${id}`])
+  }
+  thisId!:number
+  passId(id:number){
+    console.log(id);
+    this.thisId=id
   }
 }

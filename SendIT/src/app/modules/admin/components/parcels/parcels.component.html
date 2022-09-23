@@ -11,7 +11,7 @@
       <a class="btn btn-danger" (click)="onLogout()">Logout</a>
     </div>
   </div>
-  
+
   <div class="flex options">
     <div class="card card-header" (click)="filterStatus('')">All Parcels</div>
     <div class="card card-header" (click)="filterStatus('In Transit')">
@@ -26,19 +26,19 @@
   </div>
 </div>
 
-
-
 <div class="body-container">
   <div class="displaysection" *ngIf="parcels2$ | async as parcels2">
     <div
-      class="card2" 
+      class="card2"
       *ngFor="let parcel of parcels2 | searchparcel: filter; let i = index">
       <div class="card2header">
-        <div class="flex">To:{{ parcel.receiverEmail }}</div> 
-        <div *ngIf="parcels2[parcels2.length - 1]" class="diffColor"> 
-          <i *ngIf="parcel.status =='Delivered'"
-          (click)="deleteParcel(parcel.parcelID)"
-            type="button" data-bs-toggle="modal" data-bs-target="#myModal"
+        <div class="flex">To:{{ parcel.receiverEmail }}</div>
+        <div>
+          <i
+            *ngIf="parcel.status == 'Delivered'"
+            type="button" (click)="passId(parcel.parcelID)"
+            data-bs-toggle="modal"
+            data-bs-target="#myModal"
             style="font-size: 20px; color: red"
             class="fa-solid fa-trash"
           ></i>
@@ -50,7 +50,8 @@
       <div class="flex" style="justify-content: space-between">
         <h6>Receiver Phone No: {{ parcel.receiverPhone }}</h6>
         <div>
-          <i *ngIf="parcel.status == 'In Transit'"
+          <i
+            *ngIf="parcel.status == 'In Transit'"
             routerLink="/admin/update/{{ parcel.parcelID }}"
             style="font-size: 20px; color: rgb(0, 255, 0)"
             class="fa-solid fa-pen-to-square"
@@ -63,32 +64,68 @@
           >
             View
           </button>
-          <!-- <div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div
+            class="modal fade"
+            id="myModal"
+            data-bs-backdrop="static"
+            data-bs-keyboard="false"
+            tabindex="-1"
+            aria-labelledby="staticBackdropLabel"
+            aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="staticBackdropLabel" style="color: black;">Confirm action</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  <h5
+                    class="modal-title"
+                    id="staticBackdropLabel"
+                    style="color: black"
+                  >
+                    Confirm action
+                  </h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
                 </div>
-                <div class="modal-body" style="color: black;" >
-                  Are you sure to perform <b>Delete parcel {{parcel.parcelID}}</b> action??
+                <div class="modal-body" style="color: black">
+                  Are you sure to perform
+                  <b>Delete parcel {{ thisId }}</b> action??
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
-                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Delete</button>
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-bs-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    data-bs-dismiss="modal"
+                    (click)="deleteParcel(thisId)"
+                  >
+                    Delete
+                  </button>
                 </div>
               </div>
             </div>
-          </div>  -->
-
+          </div>
         </div>
       </div>
     </div>
-    <div *ngIf="parcels2.length==0">
-      <h3 style="padding-left: 25px;">No Parcels right now</h3> <br/>
+
+    <div *ngIf="parcels2.length == 0">
+      <h3 style="padding-left: 25px">No Parcels right now</h3>
+      <br />
       <div class="emptyParcel">
-          <img src="https://media.istockphoto.com/photos/subscription-concept-yellow-notification-bell-and-number-0-on-pink-picture-id1365378135?k=20&m=1365378135&s=612x612&w=0&h=9efuIX1OowB1rpC4UqYKTAJiiuxBEdmhe6dYa7NmDc4=" alt="">
-      </div> 
+        <img
+          src="https://media.istockphoto.com/photos/subscription-concept-yellow-notification-bell-and-number-0-on-pink-picture-id1365378135?k=20&m=1365378135&s=612x612&w=0&h=9efuIX1OowB1rpC4UqYKTAJiiuxBEdmhe6dYa7NmDc4="
+          alt=""
+        />
+      </div>
     </div>
   </div>
 </div>

@@ -11,9 +11,7 @@
     <h2>Create Parcel Order</h2>
     <form class="form" [formGroup]="form" (ngSubmit)="createParcel()" *ngIf="emails$ | async as emails">
       <p *ngIf="missing"  style="background-color: red"></p>
-      <p *ngIf="filled" style="color: rgb(17, 245, 17)">
-        Parcel Order created successfully
-      </p>
+      
       <div class="flex">
         <div>
           <label>Sender Email</label><br />
@@ -145,10 +143,63 @@
       </div>
       <br />
       <div>
-        <input class="btn btn-primary" type="submit" value="SUBMIT" [disabled] = !form.valid/>
-        <!-- <input class="btn btn-danger" type="reset" value="Reset"  
-        data-toggle="modal" data-target="#myModal"/> -->
+        <input class="btn btn-primary" data-bs-toggle="modal"
+        data-bs-target="#myModal" type="submit" value="SUBMIT" [disabled] = !form.valid/>
+        
       </div>
+      <div
+            class="modal fade"
+            id="myModal"
+            data-bs-backdrop="static"
+            data-bs-keyboard="false"
+            tabindex="-1"
+            aria-labelledby="staticBackdropLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5
+                    class="modal-title"
+                    id="staticBackdropLabel"
+                    style="color: black"
+                  >
+                    Confirm action
+                  </h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <p *ngIf="filled" style="color: rgb(17, 245, 17); text-align: center  ;" s>
+                  Parcel Order created successfully
+                </p>
+                <hr>
+                <div class="modal-body" style="color: black">
+                  What do you want to do next?
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-bs-dismiss="modal"
+                    (click)="addnew()"
+                  >
+                    Add New Order
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    data-bs-dismiss="modal"
+                    routerLink="/admin/parcels"
+                  >
+                    Proceed To Parcels
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
     </form>
   </div>
 </div>

@@ -104,18 +104,19 @@ missing=false
 
   createParcel(){
     if(this.form){
-      // console.log(this.form.value);
-      
       this.store.dispatch(parcelActions.createParcel({parcel:{...this.form.value}}))
+      this.form.reset()
       this.store.dispatch(parcelActions.loadParcels())
       this.filled=true
       
       setTimeout(() => {
         this.filled=false
-        this.router.navigate(['/admin/parcels'])
-      }, 1500);
+      }, 2000);
       
     }
    
+  }
+  addnew(){
+    window.location.reload()
   }
 }

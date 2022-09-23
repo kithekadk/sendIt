@@ -170,7 +170,7 @@ tr{
 
 @media screen and (max-width:935px) {
 .update{
-    width:100vw;
+    width:98vw;
     display: flex;
     margin-left:0vw;
     right: 0px;
@@ -180,5 +180,13 @@ tr{
     justify-content: center;
     flex-direction: column;
     
+}
+.maps{
+    width:98vw;
+    min-height: 50vh;
+}
+.google-map{
+    width:78vw;
+    height:40vh;
 }
 }

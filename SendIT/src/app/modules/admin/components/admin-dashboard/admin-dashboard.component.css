@@ -1,7 +1,7 @@
 
 .dashboard{
     background-color: #191341;
-    width:15vw;
+    min-width:15vw;
     color:white;
     height:100vh; 
     display: flex;

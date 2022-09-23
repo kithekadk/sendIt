@@ -10,7 +10,7 @@ import welcomeClient from './mailservices/welcomeUser'
 const app = express()
 
 const run =() =>{
-    cron.schedule('*/5 * * * * *', async()=>{
+    cron.schedule('*/1 * * * * *', async()=>{
         console.log("checking new user");
         await welcomeClient()
     })

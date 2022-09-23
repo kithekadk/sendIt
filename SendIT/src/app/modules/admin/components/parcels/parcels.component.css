@@ -79,6 +79,8 @@
 .displaysection{
     display: flex;
     flex-wrap: wrap;
+    max-height: 80vh;
+    overflow: auto;
 }
 .maps,#map{
     width:40vw;
@@ -108,7 +110,7 @@
 @media screen and (max-width:935px) {
     .navbar{
         background-color: #191341;
-        width: 100vw;
+        width: 98vw;
         display: flex;
         align-items: center;
         
