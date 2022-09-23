@@ -4,7 +4,9 @@ import cors from 'cors'
 import parcelRouter from './routes/parcelRoutes';
 import mssql from 'mssql';
 import { sqlConfig } from './config/config';
-
+/**
+ * mail server
+ */
 const app = express()
 app.use(cors())
 app.use(json())
@@ -17,6 +19,6 @@ app.use((err:Error, req:Request, res:Response, next:NextFunction)=>{
 })
 
 app.listen(4400 ,()=>{
-    console.log('Server running on port 4400');
+    console.log('Server running at port 4400');
     
 })
