@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "aws-deploy": "aws s3 sync s3://sendit-courier/dist/ s3://sendit-courier/dist/send-it/"
   },
   "private": true,
   "dependencies": {

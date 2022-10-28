@@ -24,7 +24,7 @@
             <button class="btn" (click)="oneParcel(parcel.parcelID)" style="background-color: rgb(0, 255, 0)">View</button>
         </div>
     </div>
-    <div *ngIf="parcels">
+    <div *ngIf="parcels.length == 0">
         <h3 style="padding-left: 25px;">No Outgoing Parcels right now</h3> <br/>
         <div class="emptyParcel">
             <img src="https://media.istockphoto.com/photos/subscription-concept-yellow-notification-bell-and-number-0-on-pink-picture-id1365378135?k=20&m=1365378135&s=612x612&w=0&h=9efuIX1OowB1rpC4UqYKTAJiiuxBEdmhe6dYa7NmDc4=" alt="">
